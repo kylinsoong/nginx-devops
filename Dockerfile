@@ -1,6 +1,14 @@
 FROM nginx:1.21.3-alpine
 
-COPY basic.conf /etc/nginx/conf.d/ 
+WORKDIR /app/html
+
+ADD html/admin.html /app/html
+ADD html/index.html /app/html
+ADD html/two.html   /app/html
+
+COPY conf/basic.conf /etc/nginx/conf.d/ 
+
+COPY files/.httpwd /etc/nginx 
 
 EXPOSE 8008
 
