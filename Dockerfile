@@ -6,6 +6,7 @@ ADD html/admin.html /app/html
 ADD html/index.html /app/html
 ADD html/two.html   /app/html
 
+COPY conf/backend.conf /etc/nginx/conf.d/ 
 COPY conf/basic.conf /etc/nginx/conf.d/ 
 
 COPY files/.httpwd /etc/nginx 
