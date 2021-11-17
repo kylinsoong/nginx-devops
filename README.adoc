@@ -1,4 +1,4 @@
-== Nginx DevOps Demo
+= Nginx DevOps Demo
 :toc: manual
 
 == Build & Run
