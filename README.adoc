@@ -1,0 +1,132 @@
+== Nginx DevOps Demo
+:toc: manual
+
+== Build & Run
+
+[source, bash]
+.*Build*
+----
+docker build -t nginx-demo .
+----
+
+[source, bash]
+.*Tag*
+----
+docker tag nginx-demo:latest cloudadc/nginx-demo:1.0.2
+----
+
+== Run
+
+[source, bash]
+.*Start*
+----
+docker run -itd --rm --name test -p 8008:8008 cloudadc/nginx-demo:1.0.2
+----
+
+[source, bash]
+.*Test*
+----
+curl 127.0.0.1:8008/help
+----
+
+
+== Nginx Regular Expression
+
+[source, bash]
+.*Regular Expression Syntax*
+----
+curl 127.0.0.1:8008/help
+----
+
+=== begin with
+
+[source, bash]
+.*1. location /regexpNone*
+----
+$ curl http://10.1.10.8:8008/regexpNone
+begin with: /regexpNone
+
+$ curl http://10.1.10.8:8008/regexpNonehello
+begin with: /regexpNone
+
+$ curl http://10.1.10.8:8008/regexpNone/hello
+begin with: /regexpNone
+----
+
+[source, bash]
+.*2. location /regexpNone/web*
+----
+$ curl http://10.1.10.8:8008/regexpNone/web
+begin with: /regexpNone/web
+
+$ curl http://10.1.10.8:8008/regexpNone/webhello
+begin with: /regexpNone/web
+
+$ curl http://10.1.10.8:8008/regexpNone/web/hello
+begin with: /regexpNone/web
+----
+
+[source, bash]
+.*3. location ^~ /regexpRxp*
+----
+$ curl http://10.1.10.8:8008/regexpRxp
+begin with: ^~ /regexpRxp
+
+$ curl http://10.1.10.8:8008/regexpRxphello
+begin with: ^~ /regexpRxp
+
+$ curl http://10.1.10.8:8008/regexpRxp/hello
+begin with: ^~ /regexpRxp
+----
+
+[source, bash]
+.*4. location ^~ /regexpRxp/web*
+----
+$ curl http://10.1.10.8:8008/regexpRxp/web
+begin with: ^~ /regexpRxp
+
+$ curl http://10.1.10.8:8008/regexpRxp/webhello
+begin with: ^~ /regexpRxp
+
+$ curl http://10.1.10.8:8008/regexpRxp/web/hello
+begin with: ^~ /regexpRxp
+----
+
+=== match
+
+[source, bash]
+.*location = /regexpEq*
+----
+$ curl http://10.1.10.8:8008/regexpEq
+begin with: = /regexpEq
+----
+
+=== case-insensitive match 
+
+[source, bash]
+.*location ~* /regexpInsensitive*
+----
+$ curl http://10.1.10.8:8008/regexpInsensitive
+begin with: ~* /regexpInsensitive
+
+$ curl http://10.1.10.8:8008/reGExpInsenSItiVe
+begin with: ~* /regexpInsensitive
+
+$ curl http://10.1.10.8:8008/reGExpInsenSItiVe/hEllo
+begin with: ~* /regexpInsensitive
+----
+
+=== location block
+
+[source, bash]
+.*location ~* /regexpLocationBlock*
+----
+$ curl http://10.1.10.8:8008/regexpLocationBlock
+@fallback
+----
+
+[source, bash]
+.**
+----
+
+----
