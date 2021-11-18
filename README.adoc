@@ -24,7 +24,7 @@ docker run -itd --rm --name test -p 8008:8008 cloudadc/nginx-demo:1.0.3
 [source, bash]
 .*Test*
 ----
-curl 127.0.0.1:8008/help
+localhost:8008/help
 ----
 
 
@@ -33,98 +33,164 @@ curl 127.0.0.1:8008/help
 [source, bash]
 .*Regular Expression Syntax*
 ----
-curl 127.0.0.1:8008/help
+localhost:8008/help
 ----
 
-=== begin with
+=== location /regexpNone
 
 [source, bash]
-.*1. location /regexpNone*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpNone
-begin with: /regexpNone
-
-$ curl http://127.0.0.1:8008/regexpNonehello
-begin with: /regexpNone
-
-$ curl http://127.0.0.1:8008/regexpNone/hello
-begin with: /regexpNone
+http://localhost:8008/regexpNone
+http://localhost:8008/regexpNonehello
+http://localhost:8008/regexpNone/hello
 ----
+
+=== location /regexpNone/web
 
 [source, bash]
-.*2. location /regexpNone/web*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpNone/web
-begin with: /regexpNone/web
-
-$ curl http://127.0.0.1:8008/regexpNone/webhello
-begin with: /regexpNone/web
-
-$ curl http://127.0.0.1:8008/regexpNone/web/hello
-begin with: /regexpNone/web
+http://localhost:8008/regexpNone/web
+http://localhost:8008/regexpNone/webhello
+http://localhost:8008/regexpNone/web/hello
 ----
+
+=== location ^~ /regexpRxp
 
 [source, bash]
-.*3. location ^~ /regexpRxp*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpRxp
-begin with: ^~ /regexpRxp
-
-$ curl http://127.0.0.1:8008/regexpRxphello
-begin with: ^~ /regexpRxp
-
-$ curl http://127.0.0.1:8008/regexpRxp/hello
-begin with: ^~ /regexpRxp
+http://localhost:8008/regexpRxp
+http://localhost:8008/regexpRxphello
+http://localhost:8008/regexpRxp/hello
 ----
+
+=== location ^~ /regexpRxp/web
 
 [source, bash]
-.*4. location ^~ /regexpRxp/web*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpRxp/web
-begin with: ^~ /regexpRxp
-
-$ curl http://127.0.0.1:8008/regexpRxp/webhello
-begin with: ^~ /regexpRxp
-
-$ curl http://127.0.0.1:8008/regexpRxp/web/hello
-begin with: ^~ /regexpRxp
+http://localhost:8008/regexpRxp/web
+http://localhost:8008/regexpRxp/webhello
+http://localhost:8008/regexpRxp/web/hello
 ----
 
-=== match
+=== location = /regexpEq
 
 [source, bash]
-.*location = /regexpEq*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpEq
-begin with: = /regexpEq
+$ http://localhost:8008/regexpEq
 ----
 
-=== case-insensitive match 
+=== location ~* /regexpInsensitive
 
 [source, bash]
-.*location ~* /regexpInsensitive*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpInsensitive
-begin with: ~* /regexpInsensitive
-
-$ curl http://127.0.0.1:8008/reGExpInsenSItiVe
-begin with: ~* /regexpInsensitive
-
-$ curl http://127.0.0.1:8008/reGExpInsenSItiVe/hEllo
-begin with: ~* /regexpInsensitive
+http://localhost:8008/regexpInsensitive
+http://localhost:8008/reGExpInsenSItiVe
+http://localhost:8008/reGExpInsenSItiVe/hEllo
 ----
 
-=== location block
+=== location ~* /regexpLocationBlock
 
 [source, bash]
-.*location ~* /regexpLocationBlock*
+.*TEST*
 ----
-$ curl http://127.0.0.1:8008/regexpLocationBlock
-@fallback
+http://localhost:8008/regexpLocationBlock
 ----
+
+=== location ~* \.(gif|jpe?g|png|css|js|ico)$ 
 
 [source, bash]
-.**
+.*TEST*
+----
+http://localhost:8008/helloworld.gif
+http://localhost:8008/hello/world.gif
+http://localhost:8008/hello/world/test.gif
+http://localhost:8008/hello/wold/test.jpg
+http://localhost:8008/hello/wold/test.jpeg
+http://localhost:8008/hello/wold/test.png
+http://localhost:8008/hello/wold/test.css
+http://localhost:8008/hello/wold/test.js
+http://localhost:8008/hello/wold/test.ico
 ----
 
+=== location ~ ^(/site/[0-8a-x]+/index.php)$ 
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/site/012345678abcefghigklmnopqrstuvwx/index.php
+http://localhost:8008/site/abcefghigklmnopqrstuvwx012345678/index.php
+http://localhost:8008/site/test01/index.php
+http://localhost:8008/site/01test/index.php
+http://localhost:8008/site/x/index.php
+----
+
+=== location ~* "/docs/[0-8a-x]{3}/index.html"
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/docs/123/index.html
+http://localhost:8008/docs/abc/index.html
+http://localhost:8008/docs/ax8/index.html
+http://localhost:8008/docs/ax8/index.html?name=yes
+----
+
+=== location ~* "/edu/[0-8a-x]{2,4}/index.html"
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/edu/aa/index.html
+http://localhost:8008/edu/aaa/index.html
+http://localhost:8008/edu/aaaa/index.html
+http://localhost:8008/edu/a8/index.html
+http://localhost:8008/edu/ax8/index.html
+http://localhost:8008/edu/ax08/index.html
+http://localhost:8008/edu/ax08/index.html?name=yes
+----
+
+=== location ~* ^(/foo/.*)$
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/foo/
+http://localhost:8008/foo/a
+http://localhost:8008/foo/1
+http://localhost:8008/foo/abcf
+http://localhost:8008/foo/abcf/test
+----
+
+=== location ~* ^(/bar/.+)$
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/bar/a
+http://localhost:8008/bar/1
+http://localhost:8008/bar/abcf
+http://localhost:8008/bar/abcf/test
+----
+
+=== location ~* ^(/zoo/*)$
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/zoo
+http://localhost:8008/zoo/
+----
+
+=== location ~* ^(/moo/+)$
+
+[source, bash]
+.*TEST*
+----
+http://localhost:8008/moo/
 ----
