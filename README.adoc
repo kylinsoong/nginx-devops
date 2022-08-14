@@ -27,13 +27,22 @@ docker run -itd --rm --name test -p 8008:8008 cloudadc/nginx-demo:1.0.3
 localhost:8008/help
 ----
 
+== request_time & upstream_response_time
+
+* http://nginx.org/en/docs/http/ngx_http_log_module.html
+* http://nginx.org/en/docs/http/ngx_http_upstream_module.html
+
+* request_time - request processing time in seconds with a milliseconds resolution; time elapsed between the first bytes were read from the client and the log write after the last bytes were sent to the client.
+* upstream_response_time - keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable.
+
+* Example - link:times/times.conf[times.conf]
 
 == Nginx Regular Expression
 
 [source, bash]
 .*Regular Expression Syntax*
 ----
-localhost:8008/help
+http://localhost:8008/regexp
 ----
 
 === location /regexpNone
