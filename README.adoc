@@ -6,19 +6,16 @@
 [source, bash]
 .*Build*
 ----
-docker build -t nginx-demo .
+docker build -t nginx-devops-demo .
+docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.5
+docker push cloudadc/nginx-devops-demo:1.0.5
 ----
 
 [source, bash]
-.*Tag*
+.*Run*
 ----
-docker tag nginx-demo:latest cloudadc/nginx-demo:1.0.3
-----
-
-[source, bash]
-.*Start*
-----
-docker run -itd --rm --name test -p 8008:8008 cloudadc/nginx-demo:1.0.3
+docker run -it --rm --name backend-1 cloudadc/backend:0.1.3
+docker run -it --rm --name test --link backend-1 -p 8008-8010:8008-8010 cloudadc/nginx-devops-demo:1.0.5
 ----
 
 [source, bash]
@@ -27,15 +24,41 @@ docker run -itd --rm --name test -p 8008:8008 cloudadc/nginx-demo:1.0.3
 localhost:8008/help
 ----
 
+== HTTP Basic Authentication
+
+[source, bash]
+----
+$ for i in admin:admin kylin:default ; do curl -u "$i" http://localhost:8009/sec/base_auth ; done
+Authentication Success,    Request Headers: authorization: [Basic YWRtaW46YWRtaW4=] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
+Authentication Success,    Request Headers: authorization: [Basic a3lsaW46ZGVmYXVsdA==] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
+----
+
 == request_time & upstream_response_time
+
+[source, bash]
+.*Run request 3 times*
+----
+$ for i in {1..3} ; do curl http://localhost:8010/webroot/content; echo; done
+<h1> Content Page.. !</h1>
+<h1> Content Page.. !</h1>
+<h1> Content Page.. !</h1>
+----
+
+[source, bash]
+.*Check from console log*
+----
+172.17.0.1 - 172.17.0.2:8080 -  - [24/Aug/2022:16:48:15 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 9.989 10.011
+172.17.0.1 - 172.17.0.2:8080 -  - [24/Aug/2022:16:48:25 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 10.005 10.004
+172.17.0.1 - 172.17.0.2:8080 -  - [24/Aug/2022:16:48:35 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 10.008 10.007
+----
+
+*Supplements*
 
 * http://nginx.org/en/docs/http/ngx_http_log_module.html
 * http://nginx.org/en/docs/http/ngx_http_upstream_module.html
 
 * request_time - request processing time in seconds with a milliseconds resolution; time elapsed between the first bytes were read from the client and the log write after the last bytes were sent to the client.
 * upstream_response_time - keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable.
-
-* Example - link:times/times.conf[times.conf]
 
 == Nginx Regular Expression
 
