@@ -112,6 +112,8 @@ you should see the following log output:
 2022-10-13 10:07:53.739  INFO 1 --- [0.0-8080-exec-6] i.c.b.websocket.MyTextWebSocketHandler   : Connection Established: StandardWebSocketSession[id=c26c08ae-3b75-35fa-28e3-32255bbea63d, uri=ws://localhost/rlzy/ws]
 ----
 
+image:img/nginx-ws-demo.png[]
+
 *3. add some text and click send button*
 
 you should see the following log output:
