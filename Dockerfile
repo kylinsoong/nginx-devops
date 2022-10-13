@@ -22,6 +22,9 @@ COPY conf/basic.conf /etc/nginx/conf.d/
 COPY conf/secBaseAuth.conf /etc/nginx/conf.d/
 COPY files/.htpasswd /etc/nginx
 
+# WebSocket
+COPY conf/ws.conf /etc/nginx/conf.d/
+
 EXPOSE 8001-8020
 
 STOPSIGNAL SIGQUIT

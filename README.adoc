@@ -7,8 +7,8 @@
 .*Build*
 ----
 docker build -t nginx-devops-demo .
-docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.6
-docker push cloudadc/nginx-devops-demo:1.0.6
+docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.7
+docker push cloudadc/nginx-devops-demo:1.0.7
 ----
 
 [source, bash]
@@ -16,7 +16,7 @@ docker push cloudadc/nginx-devops-demo:1.0.6
 ----
 docker run -it --rm --name backend-1 cloudadc/backend:0.1.3
 docker run -it --rm --name backend-2 cloudadc/backend:0.1.3
-docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.6
+docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.7
 ----
 
 == Parametes
@@ -99,4 +99,24 @@ Authentication Success,    Request Headers: authorization: [Basic YWRtaW46YWRtaW
 Authentication Success,    Request Headers: authorization: [Basic a3lsaW46ZGVmYXVsdA==] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
 ----
 
+== WebSocket
 
+*1. Open broswer access the http://localhost:8010/client.html*
+
+*2. Modify connection section, add url ws://localhost:8010/rlzy/ws and click the Connect button*
+
+you should see the following log output:
+
+[source, bash]
+----
+2022-10-13 10:07:53.739  INFO 1 --- [0.0-8080-exec-6] i.c.b.websocket.MyTextWebSocketHandler   : Connection Established: StandardWebSocketSession[id=c26c08ae-3b75-35fa-28e3-32255bbea63d, uri=ws://localhost/rlzy/ws]
+----
+
+*3. add some text and click send button*
+
+you should see the following log output:
+
+[source, bash]
+----
+2022-10-13 10:02:30.130  INFO 1 --- [0.0-8080-exec-3] i.c.b.websocket.MyTextWebSocketHandler   : aa7fdce6-0b05-7a8f-e967-7670f565374e received: [Hello]
+----
