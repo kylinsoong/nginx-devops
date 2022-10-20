@@ -223,6 +223,8 @@ $ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finerpt -L
 * Sever redirect to http://$host:$port/path
 * nginx expose customized url path
 
+|
+
 [source, bash]
 .*Test via curl*
 ----
