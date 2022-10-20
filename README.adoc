@@ -14,7 +14,7 @@ docker push cloudadc/nginx-devops-demo:1.0.8
 [source, bash]
 .*Run*
 ----
-docker run -it --rm --name backend-1 cloudadc/backend:0.1.4
+docker run -it --rm --name backend-1 -e APP_REDIRECT_ABSOLUTE_PATH="false" cloudadc/backend:0.1.4
 docker run -it --rm --name backend-2 -e APP_REDIRECT_ABSOLUTE_PATH="true"  cloudadc/backend:0.1.4
 docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.8
 ----
@@ -230,6 +230,18 @@ $ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finerpt -L
 ----
 $ curl http://localhost:8007/nice/login.html -L
 <br>    <h2>Welcome</h2><br>This is /gluebanking/welcomemanage/welcomeset page
+----
+
+the configuration like:
+
+[source, bash]
+----
+location /nice  {
+    proxy_pass http://backend-2:8080/gluebanking;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_redirect http://$host:8080/gluebanking /nice ;
+}
 ----
 
 |===
