@@ -19,7 +19,23 @@ docker run -it --rm --name backend-2 cloudadc/backend:0.1.3
 docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.7
 ----
 
-== Parametes
+== Variables
+
+[cols="5a,5a"]
+|===
+|variables |demonstration
+
+|
+* $request
+* $remote_addr
+* $remote_port
+* $server_addr
+* $server_port
+* $http_cookie
+* $http_x_forward_for
+* $http_user_agent
+
+|
 
 [source, bash]
 .*HTTP Request Headers*
@@ -31,38 +47,57 @@ $ curl http://127.0.0.1:8006/webroot/httpHeaders
         client addr: 172.17.0.1:58450
         server addr: 172.17.0.3:8006
 
-             cookie: 
-                xff: 
+             cookie:
+                xff:
          user agent: curl/7.64.1
 ----
 
+|
+* $upstream_addr
+* $upstream_port
+
+|The Nginx default not define the parameters for Upstream Server Port, the Map are used to extract upstream server port, If upstream has multiple server, each with differrent port, this settings are much useful.
+
 [source, bash]
-.*Upstream Server & Upstream Server Port*
+.*Test via curl -v*
 ----
-$ curl http://127.0.0.1:8006/webroot/decision/login -v
+$ curl http://127.0.0.1:8006/webroot/test_upstream_port -v
 ...
 < backend: 172.17.0.2:8080
 < backport: 8080
 ----
 
-NOTE: The Nginx default not define the parameters for Upstream Server Port, the Map are used to extract upstream server port, If upstream has multiple server, each with differrent port, this settings are much useful.
+*check the access log*
+
+----
+172.17.0.2:8080 - 8080
+----
+
+|
+* $request_time
+* $upstream_response_time
+
+|
+
+* `request_time` represents the request processing time in seconds with a milliseconds resolution; time elapsed between the first bytes were read from the client and the log write after the last bytes were sent to the client.
+* `upstream_response_time` keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable. 
 
 [source, bash]
-.*request_time & upstream_response_time*
+.*Test via curl*
 ----
 // Run request 3 times
-$ for i in {1..3} ; do curl http://localhost:8006/webroot/content; echo; done
+$ for i in {1..3} ; do curl http://localhost:8006/webroot/test_request_response_times ; echo; done
 <h1> Content Page.. !</h1>
 <h1> Content Page.. !</h1>
 <h1> Content Page.. !</h1>
 
 // Check access log
-172.17.0.1 - 172.17.0.2:8080 -  - [25/Aug/2022:03:11:55 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 10.004 10.004
-172.17.0.1 - 172.17.0.2:8080 -  - [25/Aug/2022:03:12:05 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 9.984 10.007
-172.17.0.1 - 172.17.0.2:8080 -  - [25/Aug/2022:03:12:15 +0000] "GET /webroot/content HTTP/1.1" 200 26 "-" "curl/7.64.1" - 10.006 10.006
+request_time: 10.002, upstream_response_time: 10.001
+request_time: 10.007, upstream_response_time: 10.008
+request_time: 10.008, upstream_response_time: 10.008
 ----
 
-NOTE: `request_time` represents the request processing time in seconds with a milliseconds resolution; time elapsed between the first bytes were read from the client and the log write after the last bytes were sent to the client. `upstream_response_time` keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable. More details refer to http://nginx.org/en/docs/http/ngx_http_log_module.html and http://nginx.org/en/docs/http/ngx_http_upstream_module.html.
+|===
 
 == proxy_redirect
 
