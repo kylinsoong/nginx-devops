@@ -7,16 +7,16 @@
 .*Build*
 ----
 docker build -t nginx-devops-demo .
-docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.7
-docker push cloudadc/nginx-devops-demo:1.0.7
+docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.8
+docker push cloudadc/nginx-devops-demo:1.0.8
 ----
 
 [source, bash]
 .*Run*
 ----
-docker run -it --rm --name backend-1 cloudadc/backend:0.1.3
-docker run -it --rm --name backend-2 cloudadc/backend:0.1.3
-docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.7
+docker run -it --rm --name backend-1 cloudadc/backend:0.1.4
+docker run -it --rm --name backend-2 -e APP_REDIRECT_ABSOLUTE_PATH="true"  cloudadc/backend:0.1.4
+docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.8
 ----
 
 == Variables
@@ -34,6 +34,8 @@ docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8
 * $http_cookie
 * $http_x_forward_for
 * $http_user_agent
+* $host
+* $hostname
 
 |
 
@@ -43,6 +45,8 @@ docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8
 $ curl http://127.0.0.1:8006/webroot/httpHeaders
 
             request: GET /webroot/httpHeaders HTTP/1.1
+               host: 10.1.10.202
+           hostname: lb-2
 
         client addr: 172.17.0.1:58450
         server addr: 172.17.0.3:8006
@@ -97,19 +101,136 @@ request_time: 10.007, upstream_response_time: 10.008
 request_time: 10.008, upstream_response_time: 10.008
 ----
 
+|
+* $bytes_sent
+* $body_bytes_sent
+* $content_length
+* $request_length
+* $upstream_response_length
+
+|
+
+[source, bash]
+.*Test via curl*
+----
+for i in {1..3} ; do curl http://localhost:8006/webroot/test_request_response_size ; echo; done
+----
+
+[source, bash]
+.*Check logs*
+----
+bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723
+bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723
+bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723
+----
+
 |===
 
 == proxy_redirect
 
+[cols="5a,5a"]
+|===
+|Scenarios |Demonstration
+
+|
+* Sever redirect to http://$host/path
+|
+
 [source, bash]
+.*Test via curl*
+----
+curl http://localhost:8007/gluebanking/login.html -L
+----
+
+The above request:
+
+1. request `/gluebanking/login.html` arrive to nginx, nginx forward /gluebanking/login.html` to server
+2. server redirect to `http://host/gluebanking/login_jump.html`
+3. nginx receive the response, nginx update response header, change the Location from `http://host/gluebanking/login_jump.html` to `http://host:8007/gluebanking/login_jump.html`
+4. client receive nginx response, due to 302, client re-request to `/gluebanking/login_jump.html`
+5. nginx receive `/gluebanking/login_jump.html`, forward to server
+6. server redirect to `http://host/gluebanking/welcomemanage/welcomeset`
+7. nginx receive the response, nginx update response header, change the Location from `http://host/gluebanking/welcomemanage/welcomeset` to `http://host:8087/gluebanking/welcomemanage/welcomeset`
+8. client receive nginx response, due to 302, client re-request to `/gluebanking/welcomemanage/welcomeset`, nginx forward request to server
+9. server response, nginx receive the response ans send response to client.
+
+Three alternatives configuration can be used:
+
+[source, bash]
+.*Option 1*
+----
+location /gluebanking  {
+    proxy_pass http://backend-1:8080;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_redirect http://$host/ http://$host:$server_port/ ;
+}
+----
+
+[source, bash]
+.*Option 2*
+----
+location /gluebanking  {
+    proxy_pass http://backend-1:8080;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_redirect http://$host/ / ;
+}
+----
+
+|
+* Sever redirect to http://$host/path
+* nginx expose customized url path
+
+|This section use the same backend as above gluebanking, in this section we will use customized url `fine` to replace backend `gluebanking`
+
+[source, bash]
+.*Example 1*
+----
+curl http://localhost:8007/fine/login.html -L
+----
+
+this configuration:
+
+[source, bash]
+----
+location /fine  {
+    proxy_pass http://backend-1:8080/gluebanking;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_redirect http://$host/gluebanking /fine ;
+}
+----
+
+* the `/fine` will be replace to `/gluebanking` while the request go into backend server
+* the `http://$host/gluebanking` will be update to `http://$host:8007/fine` while nginx response from backend server
+
+[source, bash]
+.*Example 2*
 ----
 $ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finebi -L
 <h1>BI Login Page.. !</h1>
+----
+
+[source, bash]
+.*Example 3*
+----
 $ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finerpt -L
 <h1>BI Login Page.. !</h1>
 ----
 
-NOTE: Sets the text that should be changed in the “Location” and “Refresh” header fields of a proxied server response. https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect.
+|
+* Sever redirect to http://$host:$port/path
+* nginx expose customized url path
+
+[source, bash]
+.*Test via curl*
+----
+$ curl http://localhost:8007/nice/login.html -L
+<br>    <h2>Welcome</h2><br>This is /gluebanking/welcomemanage/welcomeset page
+----
+
+|===
 
 == Regular Expression
 
@@ -118,7 +239,6 @@ NOTE: Sets the text that should be changed in the “Location” and “Refresh�
 ----
 http://localhost:8008/regexp
 ----
-
 [source, bash]
 .*TEST*
 ----

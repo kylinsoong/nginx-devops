@@ -9,8 +9,8 @@ ADD html/man.html   /app/html
 
 COPY conf/basic.conf /etc/nginx/conf.d/ 
 
-# Parameters
-COPY conf/httpinfo.conf /etc/nginx/conf.d/
+# Variables
+COPY conf/variables.conf /etc/nginx/conf.d/
 
 # proxy_redirect
 COPY conf/proxyRedirect.conf /etc/nginx/conf.d/
