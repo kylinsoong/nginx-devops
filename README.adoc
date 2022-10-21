@@ -126,6 +126,46 @@ bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114,
 
 |===
 
+== Logging
+
+NGINX Logging usually used to monitor the traffic pass through the NGINX, usually Logging are tightly bound with variables, the following are some basic scenarios for Logging and variables.
+
+=== APM 
+
+[source, bash]
+.*log_format*
+----
+log_format apm ' "$time_local" client=$remote_addr '
+                'method=$request_method request="$request" '
+                'request_length=$request_length '
+                'status=$status bytes_sent=$bytes_sent '
+                'body_bytes_sent=$body_bytes_sent '
+                'referer=$http_referer '
+                'user_agent="$http_user_agent" '
+                'upstream_addr=$upstream_addr '
+                'upstream_status=$upstream_status '
+                'request_time=$request_time '
+                'upstream_response_time=$upstream_response_time '
+                'upstream_connect_time=$upstream_connect_time '
+                'upstream_header_time=$upstream_header_time';
+----
+
+[source, bash]
+.*Test via curl*
+----
+for i in {1..3} ; do curl http://localhost:8006/webroot/test_log_apm ; done
+----
+
+[source, bash]
+.*logging sample*
+----
+"21/Oct/2022:13:41:24 +0800" client=127.0.0.1 method=GET request="GET /webroot/test_log_apm HTTP/1.1" request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent="curl/7.29.0" upstream_addr=10.1.10.181:8080 upstream_status=200 request_time=0.003 upstream_response_time=0.004 upstream_connect_time=0.001 upstream_header_time=0.004
+"21/Oct/2022:13:41:24 +0800" client=127.0.0.1 method=GET request="GET /webroot/test_log_apm HTTP/1.1" request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent="curl/7.29.0" upstream_addr=10.1.10.182:8080 upstream_status=200 request_time=0.010 upstream_response_time=0.010 upstream_connect_time=0.001 upstream_header_time=0.010
+"21/Oct/2022:13:41:24 +0800" client=127.0.0.1 method=GET request="GET /webroot/test_log_apm HTTP/1.1" request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent="curl/7.29.0" upstream_addr=10.1.10.181:8080 upstream_status=200 request_time=0.004 upstream_response_time=0.004 upstream_connect_time=0.000 upstream_header_time=0.004
+----
+
+
+
 == proxy_redirect
 
 [cols="5a,5a"]
