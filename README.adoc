@@ -7,16 +7,17 @@
 .*Build*
 ----
 docker build -t nginx-devops-demo .
-docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.8
-docker push cloudadc/nginx-devops-demo:1.0.8
+docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.9
+docker push cloudadc/nginx-devops-demo:1.0.9
 ----
 
 [source, bash]
 .*Run*
 ----
+docker run -it --rm --name auth-server cloudadc/auth-server:0.1.4
 docker run -it --rm --name backend-1 -e APP_REDIRECT_ABSOLUTE_PATH="false" cloudadc/backend:0.1.4
 docker run -it --rm --name backend-2 -e APP_REDIRECT_ABSOLUTE_PATH="true"  cloudadc/backend:0.1.4
-docker run -it --rm --name test --link backend-1 --link backend-2 -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.8
+docker run -it --rm --name test --link backend-1 --link backend-2 --link auth-server  -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.9
 ----
 
 == Variables
@@ -291,21 +292,163 @@ location /nice  {
 [source, bash]
 .*Regular Expression Syntax*
 ----
-http://localhost:8008/regexp
+$ curl http://localhost:8008/regexp
+
+        =     -    The URI must match the specified pattern exactly.
+        ^~    -    The URI must begin with the specified pattern.
+        None  -    The URI must begin with the specified pattern.
+        ~     -    The URI must be a case-sensitive match to the specified regular expression.
+        ~*    -    The URI must be a case-insensitive match to the specified regular expression.
+        @     -    Defines a named location block.
+
+        ()    -    Match group or evaluate the content of ().
+        []    -    Match any char inside []. 
+        {}    -    Match a specific number of occurrence. eg, [0-9]{3} match 342 but not 32, {2,4} match length of 2, 3 and 4.
+
+        |     -    Or.
+        ?     -    Check for zero or one occurrence of the previous char, eg jpe?g.
+        .     -    Any char.
+        *     -    Match zero, one or more occurrence of the previous char.
+        .*    -    Match zero, one or more occurrence of any char.
+        +     -    Match one or more occurrence of the previous char.
+        !     -    Not (negative look ahead).
+
+        \     -    Escape the next char.
+        /     -    The forward slash / is used to match any sub location, including none example location /.
+
+        ^     -    Match the beginning of the text (opposite of $). By itself, ^ is a shortcut for all paths (since they all have a beginning).
+        $     -    The expression must be at the end of the evaluated text(no char/text after the match), $ is usually used at the end of a regex location expression.
 ----
+
 [source, bash]
-.*TEST*
+.*Test vis bash script*
 ----
 ./regexpTest.sh
 ----
 
-== HTTP Basic Authentication
+== Security
+
+=== HTTP Authentication Basic
+
+The `ngx_http_auth_basic_module` module allows limiting access to resources by validating the user name and password using the "HTTP Basic Authentication" protocol.
+
+* https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html
 
 [source, bash]
 ----
 $ for i in admin:admin kylin:default ; do curl -u "$i" http://localhost:8009/sec/base_auth ; done
 Authentication Success,    Request Headers: authorization: [Basic YWRtaW46YWRtaW4=] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
 Authentication Success,    Request Headers: authorization: [Basic a3lsaW46ZGVmYXVsdA==] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
+----
+
+=== Client Authorization
+
+The `ngx_http_auth_request_module` module implements client authorization based on the result of a subrequest. If the subrequest returns a 2xx response code, the access is allowed. If it returns 401 or 403, the access is denied with the corresponding error code. Any other response code returned by the subrequest is considered an error.
+
+* https://nginx.org/en/docs/http/ngx_http_auth_request_module.html
+
+==== App with IDP
+
+In production environment, especially legacy application, the application itself has Authentication & Authorization ability, like use DB to keep username/password, JAAS or spring security based application layer mechanism.
+
+image:img/ngx-client-auth.png[]
+
+NGINX Client Authorization can enhance the Authorization, which implement Authorization on NGINX before the request arrive the App, add more logic on proxy layer.  
+
+The Key Configuration:
+
+[source, bash]
+----
+   location /secret {
+      auth_request /auth;
+      auth_request_set $user $upstream_http_x_forwarded_user;
+      proxy_set_header X-User $user;
+      add_header Set-Cookie $user;
+      proxy_pass http://backend-1:8080;
+   }
+
+   location /auth {
+      internal;
+      proxy_pass http://backend-1:8080;
+      proxy_pass_request_body off;
+      proxy_set_header Content-Length "";
+      proxy_set_header X-Original-URI $request_uri;
+      proxy_set_header X-Original-Remote-Addr $remote_addr;
+      proxy_set_header X-Original-Host $host;
+   }
+----
+
+Test via curl
+
+[source, bash]
+----
+$ curl http://localhost:8009/secret
+username=admin
+----
+
+Check the log output
+
+[source, bash]
+----
+2022-10-26 03:10:14.781  INFO 1 --- [0.0-8080-exec-1] io.cloudadc.backend.foo.FooController    : authing user
+2022-10-26 03:10:14.799  INFO 1 --- [0.0-8080-exec-2] io.cloudadc.backend.foo.FooController    : current user is username=admin
+----
+
+==== App use centralized IDP
+
+In some scenario, the app use a centralized IDP, which the request be forward to centralized IDP for Authentication & Authorization, in this scenario also can use Client Authorization to enhance the whole 
+
+
+The Key Configuration:
+
+[source, bash]
+----
+   location /foo {
+      auth_request /authorize;
+
+      auth_request_set $user $upstream_http_x_forwarded_user;
+      auth_request_set $ups_status $upstream_http_x_forwarded_status;
+
+      proxy_set_header X-Forwarded-User $user;
+      proxy_set_header X-Forwarded-Status $ups_status;
+
+      proxy_pass http://backend-1:8080;
+   }
+
+   location /authorize {
+      internal;
+      proxy_set_header Host $host;
+      proxy_pass_request_body off;
+      proxy_set_header Content-Length "";
+      proxy_pass http://auth-server:8080;
+  }
+----
+
+Test via curl
+
+[source, bash]
+----
+$ curl http://localhost:8009/foo
+<br>F5 Demo App
+
+    Request URI: /foo
+    Protocol: HTTP/1.0
+
+    Server IP: 172.17.0.3
+    Server Port: 8080
+    Server Hostname: 1db99ccd6d63
+
+    Client IP: 172.17.0.5
+    Client Port: 33118
+    Client Hostname: 172.17.0.5
+
+    Session: 38134017B3A0BE81C236C285DFC15A1E
+
+    X-Forwarded-For: null
+
+    Cookies:  
+
+    Request Headers: x-forwarded-user: [anonymousUser] host: [backend-1:8080] connection: [close] x-forwarded-status: [200] user-agent: [curl/7.64.1] accept: [*/*] 
 ----
 
 == WebSocket

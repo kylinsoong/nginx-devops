@@ -18,8 +18,8 @@ COPY conf/proxyRedirect.conf /etc/nginx/conf.d/
 # regexp
 COPY conf/basic.conf /etc/nginx/conf.d/
 
-# HTTP Basic Authentication
-COPY conf/secBaseAuth.conf /etc/nginx/conf.d/
+# security
+COPY conf/sec.conf  /etc/nginx/conf.d/
 COPY files/.htpasswd /etc/nginx
 
 # WebSocket
