@@ -398,7 +398,7 @@ Check the log output
 
 In some scenario, the app use a centralized IDP, which the request be forward to centralized IDP for Authentication & Authorization, in this scenario also can use Client Authorization to enhance the whole 
 
-image:img/nginx-client-auth-idp.png []
+image:img/nginx-client-auth-idp.png[]
 
 The Key Configuration:
 
