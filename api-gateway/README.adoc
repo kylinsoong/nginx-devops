@@ -333,21 +333,97 @@ Login into http://127.0.0.1:9411/zipkin/ for tracing via either `X-B3-Traceid`, 
 
 === Cache API responses
 
+[source, bash]
+.*1. Create Route*
+----
+curl http://127.0.0.1:9180/apisix/admin/routes/2 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' -X PUT -d '
+{ 
+  "plugins": {
+    "proxy-cache": {
+      "cache_key": [
+        "$uri",
+        "-cache-id"
+      ],
+      "cache_bypass": [
+        "$arg_bypass"
+      ],
+      "cache_method": [
+        "GET"
+      ],
+      "cache_http_status": [
+        200
+      ],
+      "hide_cache_headers": true,
+      "no_cache": [
+        "$arg_test"
+      ]
+    },
+    "zipkin": {
+      "endpoint": "http://127.0.0.1:9411/api/v2/spans",
+      "sample_ratio": 1
+    },
+    "prometheus": {},
+    "http-logger": {
+      "uri": "http://mockbin.org/bin/54371e43-38dd-4b5f-ad71-fde82cecf1c5"
+    },
+    "limit-count": {
+      "count": 100,
+      "time_window": 60,
+      "rejected_code": 503,
+      "key_type": "var",
+      "key": "remote_addr"
+    }
+  },
+  "upstream_id": "1",
+  "uri": "/anything/*"
+}'
+----
 
 [source, bash]
-.**
+.*2. Test Response Cache*
+----
+$ for i in {1..3} ; do sleep 0.5 ; curl -I -X GET "http://127.0.0.1:9080/anything/foo?arg=10"  ; done
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 99
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Server: APISIX/3.0.0
+Apisix-Cache-Status: MISS
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 98
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Server: APISIX/3.0.0
+Apisix-Cache-Status: HIT
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 97
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Server: APISIX/3.0.0
+Apisix-Cache-Status: HIT
 ----
 
-----
+NOTE: Refer to Response Header `Apisix-Cache-Status`, the 1st response is `MISS`, the 2nd and 3rd response is `HIT`.
 
 [source, bash]
-.**
+.*TODO*
 ----
-
-----
-
-[source, bash]
-.**
-----
-
+TODO
 ----
