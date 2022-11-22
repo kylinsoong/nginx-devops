@@ -1,0 +1,68 @@
+= Nginx DevOps Demo
+:toc: manual
+
+== Build & Run
+
+[source, bash]
+.*Build*
+----
+docker build -t cloudadc/nginx-devops-demo:2.0.0 -f Dockerfile.alpine .
+docker push cloudadc/nginx-devops-demo:2.0.0
+----
+
+[source, bash]
+.*Run alpine*
+----
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:2.0.0
+----
+
+== AB Test
+
+[source, bash]
+.*1. Access A*
+----
+$ curl http://localhost:8002/foo -I
+HTTP/1.1 200 OK
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 10:30:54 GMT
+Content-Type: text/html
+Content-Length: 8
+Connection: keep-alive
+----
+
+[source, bash]
+.*2. Set to B*
+----
+curl -X POST "http://localhost:8001/api/7/http/keyvals/canary" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"abswitch\": \"1\"}"
+----
+
+[source, bash]
+.*3. Access B*
+----
+$ curl http://localhost:8002/foo -I
+HTTP/1.1 404 Not Found
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 10:32:35 GMT
+Content-Type: text/html
+Content-Length: 7
+Connection: keep-alive
+----
+
+[source, bash]
+.*4. Set to A*
+----
+curl -X PATCH "http://localhost:8001/api/7/http/keyvals/canary" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"abswitch\": \"0\"}"
+----
+
+[source, bash]
+.*5. Access A*
+----
+$ curl http://localhost:8002/foo -I
+HTTP/1.1 200 OK
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 10:33:58 GMT
+Content-Type: text/html
+Content-Length: 8
+Connection: keep-alive
+----
+

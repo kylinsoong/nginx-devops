@@ -1,0 +1,10 @@
+FROM cloudadc/nginx-alpine:0.1
+
+COPY conf/dev/api.conf /etc/nginx/conf.d/
+COPY conf/dev/keyvals.conf /etc/nginx/conf.d/
+
+EXPOSE 8001-8020
+
+STOPSIGNAL SIGQUIT
+
+CMD ["nginx", "-g", "daemon off;"]
