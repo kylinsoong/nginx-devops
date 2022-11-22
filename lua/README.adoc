@@ -240,3 +240,146 @@ Date: Mon, 21 Nov 2022 08:59:54 GMT
 Content-Type: text/html
 Connection: keep-alive
 ----
+
+== Binary Installing
+
+=== NGINX Plus Only
+
+[source, bash]
+.*1. Install*
+----
+rpm -ivh nginx-plus-27-2.el7.ngx.x86_64.rpm 
+----
+
+[source, bash]
+.*2. Starting & Testing*
+----
+systemctl start nginx
+
+$ curl http://localhost:80 -I
+HTTP/1.1 200 OK
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 01:57:54 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Mon, 10 Oct 2022 22:22:57 GMT
+Connection: keep-alive
+ETag: "63449b41-267"
+Accept-Ranges: bytes
+----
+
+=== NGINX Plus + Lua
+
+[source, bash]
+.*1. Install*
+----
+rpm -ivh nginx-plus-27-2.el7.ngx.x86_64.rpm 
+rpm -ivh nginx-plus-module-ndk-27-0.3.1-1.el7.ngx.x86_64.rpm
+rpm -ivh nginx-plus-module-lua-27-0.10.21-1.el7.ngx.x86_64.rpm
+----
+
+NOTE: Using `rpm -ql nginx-plus-module-lua` can overview the luajit and dynamic module packaged by nginx-plus-module-lua.
+
+[source, bash]
+.*2. Configure dynamic module, add the following in nginx.conf*
+----
+load_module modules/ndk_http_module.so;
+load_module modules/ngx_http_lua_module.so;
+load_module modules/ngx_stream_lua_module.so;
+----
+
+[source, bash]
+.*3. Create Hello Lua*
+----
+mkdir /etc/nginx/lua
+cat >> /etc/nginx/lua/hello_lua.lua << EOF
+ngx.say("hello lua, by NGINX");
+EOF
+chmod a+x /etc/nginx/lua/hello_lua.lua
+----
+
+[source, bash]
+.*4. Add lua location*
+----
+    location /lua {
+        default_type 'text/html';
+        content_by_lua_file lua/hello_lua.lua;
+    }
+----
+
+[source, bash]
+.*5. Starting & Testing*
+----
+# systemctl restart nginx
+
+# curl http://localhost:80/lua
+hello lua, by NGINX
+
+# curl http://localhost:80/lua -I
+HTTP/1.1 200 OK
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 02:24:39 GMT
+Content-Type: text/html
+Connection: keep-alive
+----
+
+=== NGINX Plus + NJS
+
+[source, bash]
+.*1. Install*
+----
+rpm -ivh nginx-plus-27-2.el7.ngx.x86_64.rpm 
+rpm -ivh nginx-plus-module-njs-27-0.7.4-1.el7.ngx.x86_64.rpm
+----
+
+[source, bash]
+.*2. Configure dynamic module, add the following in nginx.conf*
+----
+load_module modules/ngx_http_js_module.so;
+load_module modules/ngx_stream_js_module.so;
+----
+
+[source, bash]
+.*3. Create Hello NJS*
+----
+mkdir /etc/nginx/njs
+cat >> /etc/nginx/njs/hello_njs.js << EOF
+function hello(r) {
+    r.return(200, " hello NJS, by NGINX");
+}
+
+export default {hello}
+EOF
+chmod a+x /etc/nginx/njs/hello_njs.js 
+----
+
+[source, bash]
+.*4. Add njs location*
+----
+js_path "/etc/nginx/njs/";
+js_import hello_njs.js;
+
+server {
+...
+    location /njs {
+        default_type 'text/html';
+        js_content njs/hello_njs.hello;
+    }
+----
+
+[source, bash]
+.*5. Starting & Testing*
+----
+# systemctl restart nginx
+
+# curl http://localhost:80/njs 
+ hello NJS, by NGINX
+
+# curl http://localhost:80/njs -I
+HTTP/1.1 200 OK
+Server: nginx/1.21.6
+Date: Tue, 22 Nov 2022 04:00:48 GMT
+Content-Type: text/html
+Content-Length: 21
+Connection: keep-alive
+----
