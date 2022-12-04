@@ -6,14 +6,14 @@
 [source, bash]
 .*Build*
 ----
-docker build -t cloudadc/nginx-devops-demo:2.0.2 -f Dockerfile.alpine .
-docker push cloudadc/nginx-devops-demo:2.0.2
+docker build -t cloudadc/nginx-devops-demo:2.0.3 -f Dockerfile.alpine .
+docker push cloudadc/nginx-devops-demo:2.0.3
 ----
 
 [source, bash]
 .*Run alpine*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.2
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.3
 ----
 
 == AB Test
@@ -182,13 +182,91 @@ success
 
 NOTE: If the above test hit 401, invalid token, place use the Step 2 to re geneate a token.
 
-=== TD 
+=== NGINX + Keycloak
+ 
+[source, bash]
+.*1. Start Keycloak*
+----
+docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev
+----
+
+*2. Create Realm via import from file*
+
+* Login into Keycloak http://10.1.10.1:8080/admin/
+* Import `idp.json` as below
+
+image:auth/nginx-idp-jwt.png[]
 
 [source, bash]
-.**
+.*3. Overview key API*
+----
+$ for i in authorization_endpoint jwks_uri token_endpoint ; do curl -s http://10.1.10.1:8080/realms/IDP/.well-known/openid-configuration | jq .$i ; done
+"http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/auth"
+"http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/certs"
+"http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/token"
 ----
 
+*4. Extract Client Secret*
+
+image:auth/nginx-idp-client-secrets.png[]
+
+[source, bash]
+.*5. Create Configuration*
 ----
+git clone https://github.com/nginxinc/nginx-openid-connect
+cd nginx-openid-connect
+/configure.sh -k request -s yOXgfxc4QMBGhFtjP8tdr7ldzSKmA8lp -h nginx.test.com http://10.1.10.1:8080/realms/IDP/.well-known/openid-configuration
+----
+
+NOTE: `yOXgfxc4QMBGhFtjP8tdr7ldzSKmA8lp` is the client secrets, this will genrate 4 files: `frontend.conf`, `openid_connect_configuration.conf`, `openid_connect.server_conf`, `openid_connect.js` which can be used as a start configuration pages.
+
+[source, bash]
+.*6. Overview the openid_connect_configuration.conf*
+----
+map $host $oidc_authz_endpoint {
+    nginx.test.com http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/auth;
+    default "http://127.0.0.1:8080/auth/realms/master/protocol/openid-connect/auth";
+    #www.example.com "https://my-idp/oauth2/v1/authorize";
+}
+
+map $host $oidc_token_endpoint {
+    nginx.test.com http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/token;
+    default "http://127.0.0.1:8080/auth/realms/master/protocol/openid-connect/token";
+}
+
+map $host $oidc_jwt_keyfile {
+    nginx.test.com http://10.1.10.1:8080/realms/IDP/protocol/openid-connect/certs;
+    default "http://127.0.0.1:8080/auth/realms/master/protocol/openid-connect/certs";
+}
+
+map $host $oidc_client {
+    nginx.test.com "DMZ-NGINX";
+    default "my-client-id";
+}
+
+map $host $oidc_client_secret {
+    nginx.test.com "yOXgfxc4QMBGhFtjP8tdr7ldzSKmA8lp";
+    default "my-client-secret";
+}
+
+map $host $oidc_hmac_key {
+    nginx.test.com YIs2PYadE+E9smawpjCrN55H;
+    # This should be unique for every NGINX instance/cluster
+    default "ChangeMe";
+}
+----
+
+[source, bash]
+.*7. Start Docker*
+----
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.3
+----
+
+*8. Access http://nginx.test.com:8010/ to test*
+
+image:auth/nginx-idp-test.png[]
+
+
 
 [source, bash]
 .**

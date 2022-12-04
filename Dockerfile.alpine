@@ -1,4 +1,4 @@
-FROM cloudadc/nginx-alpine:0.1
+FROM cloudadc/nginx-alpine:0.2
 
 COPY conf/dev/api.conf /etc/nginx/conf.d/
 COPY conf/dev/keyvals.conf /etc/nginx/conf.d/
@@ -10,6 +10,13 @@ COPY conf/dev/crt/example.com.pass /etc/nginx
 
 COPY auth/jwt.conf /etc/nginx/conf.d/
 COPY auth/nginx.jwk /etc/nginx
+
+COPY auth/test.html /usr/share/nginx/html
+COPY auth/frontend.conf /etc/nginx/conf.d/
+COPY auth/openid_connect_configuration.conf /etc/nginx/conf.d/
+COPY auth/openid_connect.server_conf /etc/nginx/conf.d/
+COPY auth/openid_connect.js /etc/nginx/conf.d/
+
 
 EXPOSE 8001-8020
 EXPOSE 8443
