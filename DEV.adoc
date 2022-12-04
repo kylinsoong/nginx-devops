@@ -6,14 +6,14 @@
 [source, bash]
 .*Build*
 ----
-docker build -t cloudadc/nginx-devops-demo:2.0.4 -f Dockerfile.alpine .
-docker push cloudadc/nginx-devops-demo:2.0.4
+docker build -t cloudadc/nginx-devops-demo:2.0.5 -f Dockerfile.alpine .
+docker push cloudadc/nginx-devops-demo:2.0.5
 ----
 
 [source, bash]
 .*Run alpine*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.4
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.5
 ----
 
 == AB Test
@@ -182,6 +182,21 @@ success
 
 NOTE: If the above test hit 401, invalid token, place use the Step 2 to re geneate a token.
 
+=== NJS Append JWT Claims
+
+[source, bash]
+.*1. Test*
+----
+$ curl -H "Authorization: Bearer `cat auth/nginx.jwt`" http://127.0.0.1:8004/jwt
+success
+----
+
+*2. Use tcpdump extract JWT token that send to banckend server, review the payload*
+
+image:auth/nginx-jwt-payload-append.png[]
+
+NOTE: Compare the initial token link:auth/nginx.jwt[nginx.jwt], there are 3 attributes be appended.
+
 === NGINX + Keycloak
  
 [source, bash]
@@ -260,7 +275,7 @@ map $host $oidc_hmac_key {
 [source, bash]
 .*7. Start Docker*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.4
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.5
 ----
 
 *8. Access http://nginx.test.com:8010/ to test*

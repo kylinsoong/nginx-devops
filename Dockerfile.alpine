@@ -16,6 +16,8 @@ COPY auth/frontend.conf /etc/nginx/conf.d/
 COPY auth/openid_connect_configuration.conf /etc/nginx/conf.d/
 COPY auth/openid_connect.server_conf /etc/nginx/conf.d/
 COPY auth/openid_connect.js /etc/nginx/conf.d/
+COPY auth/jwt.js  /etc/nginx/conf.d/
+COPY auth/jwt-njs.conf  /etc/nginx/conf.d/
 
 
 EXPOSE 8001-8020
