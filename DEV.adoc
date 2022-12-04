@@ -6,14 +6,14 @@
 [source, bash]
 .*Build*
 ----
-docker build -t cloudadc/nginx-devops-demo:2.0.3 -f Dockerfile.alpine .
-docker push cloudadc/nginx-devops-demo:2.0.3
+docker build -t cloudadc/nginx-devops-demo:2.0.4 -f Dockerfile.alpine .
+docker push cloudadc/nginx-devops-demo:2.0.4
 ----
 
 [source, bash]
 .*Run alpine*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.3
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.4
 ----
 
 == AB Test
@@ -188,6 +188,7 @@ NOTE: If the above test hit 401, invalid token, place use the Step 2 to re genea
 .*1. Start Keycloak*
 ----
 docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev
+docker run -p 8080:8080 --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev
 ----
 
 *2. Create Realm via import from file*
@@ -259,7 +260,7 @@ map $host $oidc_hmac_key {
 [source, bash]
 .*7. Start Docker*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.3
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.4
 ----
 
 *8. Access http://nginx.test.com:8010/ to test*
