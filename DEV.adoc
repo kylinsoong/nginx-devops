@@ -6,14 +6,14 @@
 [source, bash]
 .*Build*
 ----
-docker build -t cloudadc/nginx-devops-demo:2.0.1 -f Dockerfile.alpine .
-docker push cloudadc/nginx-devops-demo:2.0.1
+docker build -t cloudadc/nginx-devops-demo:2.0.2 -f Dockerfile.alpine .
+docker push cloudadc/nginx-devops-demo:2.0.2
 ----
 
 [source, bash]
 .*Run alpine*
 ----
-docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.1
+docker run -it --rm --name nginx -p 8001-8020:8001-8020 -p 8443:8443 cloudadc/nginx-devops-demo:2.0.2
 ----
 
 == AB Test
@@ -116,4 +116,88 @@ $ curl --cacert conf/dev/crt/example.com.crt --resolve example.com:8443:127.0.0.
 success
 * Connection #0 to host example.com left intact
 * Closing connection 0
+----
+
+== JWT
+
+=== JWK on File System
+
+[source, bash]
+.*1. Generate JWK*
+----
+$ ./auth/jwkgen.sh nginxjwtauthentication
+generate nginx.jwk, content:
+{"keys": [{ "k":"bmdpbnhqd3RhdXRoZW50aWNhdGlvbg", "kty":"oct", "kid":"0001" }] }
+----
+
+NOTE: `nginxjwtauthentication` used to sign JWT, `nginx.jwk` use to nginx auth jwt module setting up. 
+
+*2. Generate JWT*
+
+Use https://jwt.io/ to generate JWT, set the following 
+
+[cols="2,5a"]
+|===
+|ITEMS |CONFIG
+
+|HEADER
+|
+
+[source, json]
+----
+{
+  "alg": "HS256",
+  "typ": "JWT",
+  "kid": "0001"
+}
+----
+
+|PAYLOAD
+|
+
+[source, json]
+----
+{
+  "sub": "NGINX TEST",
+  "name": "NGINX JWT Authentication",
+  "iss": "Kylin SONG",
+  "iat": 1670130127,
+  "exp": 1790130127
+}
+----
+
+|SIGNATURE
+|Replace `your-256-bit-secret` with `nginxjwtauthentication` which used in generate JWK, keep the other as default.
+
+|===
+
+image:auth/gen-jwt-via-jwk.png[]
+
+[source, bash]
+.*3. Test*
+----
+$ curl -H "Authorization: Bearer `cat auth/nginx.jwt`" http://127.0.0.1:8003/test 
+success
+----
+
+NOTE: If the above test hit 401, invalid token, place use the Step 2 to re geneate a token.
+
+=== TD 
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
 ----
