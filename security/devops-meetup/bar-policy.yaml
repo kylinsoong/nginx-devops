@@ -1,0 +1,26 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: xff-injection
+  namespace: demo-bar
+spec:
+  policy:
+    signature-requirements:
+    - tag: xff-injection
+    signature-sets: 
+    - name: xff-injection
+      block: true
+      signatureSet: 
+        filter:
+          tagValue: xff-injection
+          tagFilter: eq
+    applicationLanguage: utf-8
+    blocking-settings:
+      violations:
+      - alarm: true
+        block: false
+        name: VIOL_DATA_GUARD
+    enforcementMode: blocking
+    name: xff-injection
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE

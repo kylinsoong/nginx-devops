@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webgoat
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owasp-webgoat
+  namespace: webgoat
+  labels:
+    app: owasp-webgoat
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: owasp-webgoat
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: owasp-webgoat
+    spec:
+      containers:
+        - name: owasp-webgoat
+          image: webgoat/goatandwolf:latest
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          ports:
+            - containerPort: 8080
+              name: web
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: owasp-webgoat
+  namespace: webgoat
+spec:
+  selector:
+    app: owasp-webgoat
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort

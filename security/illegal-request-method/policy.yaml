@@ -1,0 +1,26 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: illegal-request-method
+  namespace: illegal-request-method
+spec:
+  policy:
+    signature-requirements:
+    - tag: illegal-request-method
+    signature-sets: 
+    - name: illegal-request-method
+      block: true
+      signatureSet: 
+        filter:
+          tagValue: illegal-request-method
+          tagFilter: eq
+    applicationLanguage: utf-8
+    blocking-settings:
+      violations:
+      - alarm: true
+        block: false
+        name: VIOL_DATA_GUARD
+    enforcementMode: blocking
+    name: illegal-request-method
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE

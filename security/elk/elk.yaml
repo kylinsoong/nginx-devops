@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elk
+  namespace: elk
+  labels:
+    app: elk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elk
+  template:
+    metadata:
+      labels:
+        app: elk
+    spec:
+      containers:
+      - name: elk
+        image: sebp/elk:7.16.1
+        volumeMounts:
+        - name: elasticsearch-data
+          mountPath: /var/log/elasticsearch
+        ports:
+        - containerPort: 9200
+        - containerPort: 5601
+        - containerPort: 5144
+      volumes:
+      - name: elasticsearch-data
+        persistentVolumeClaim:
+          claimName: elasticsearch-pvc
+

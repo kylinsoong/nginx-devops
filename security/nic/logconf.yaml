@@ -1,0 +1,12 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APLogConf
+metadata:
+  name: logconf-elk
+  namespace: nginx-ingress
+spec:
+  filter:
+    request_type: illegal
+  content:
+    format: default
+    max_message_size: 64k
+    max_request_size: any

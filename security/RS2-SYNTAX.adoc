@@ -1,0 +1,159 @@
+= RE2 Regular Expression Syntax Example
+:toc: manual
+
+== The content rule option
+
+Use the content rule option to match a specified string located anywhere in the full content of the request.
+
+[source.bash]
+.*Rule*
+----
+rule: content:"ABC";
+----
+
+[source.bash]
+.*Example*
+----
+$ curl http://microservice-security.101.net:30080/ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525666261<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+
+$ curl -H "TEST: ABC" http://microservice-security.101.net:30080
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525666771<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+
+$ curl http://microservice-security.101.net:30080/user?id=ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525667281<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== The uricontent rule option
+
+Use the uricontent rule option to match a specified string located anywhere in the URI of the request.
+
+[source.bash]
+.*Rule*
+----
+rule: uricontent:"ABC";
+----
+
+[source.bash]
+.*Example*
+----
+$ curl http://microservice-security.101.net:30080/ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525673911<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+
+$ curl http://microservice-security.101.net:30080/user?id=ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525673401<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== The headercontent rule option
+
+Use the headercontent rule option to match a specified string located in the HTTP request header.
+
+[source.bash]
+.*Rule*
+----
+rule: headercontent:"ABC";
+----
+
+[source.bash]
+.*Example*
+----
+$ curl -H "TEST: ABC" http://microservice-security.101.net:30080
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17000903267954410242<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== The valuecontent rule option
+
+Use the valuecontent rule option to match a specified string located in an alphanumeric user-input parameter.
+
+[source.bash]
+.*Rule*
+----
+rule: valuecontent:"ABC";
+----
+
+[source.bash]
+.*Example*
+----
+$ curl http://microservice-security.101.net:30080/user?id=ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525675951<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== The nocase modifier
+
+Use the nocase modifier to make a word case-insensitive.
+
+[source.bash]
+.*Rule*
+----
+rule: valuecontent:"ABC"; nocase;
+----
+
+[source.bash]
+.*Example*
+----
+$ curl http://microservice-security.101.net:30080/user?id=abc
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525676461<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+
+$ curl http://microservice-security.101.net:30080/user?id=ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525676971<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+
+$ curl http://microservice-security.101.net:30080/user?id=AbcD
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525677481<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== The offset modifier
+
+Use the offset modifier to specify that the previous keyword matches within its scope starting no less than the specified number of bytes from the beginning of the scope.
+
+[source.bash]
+.*Rule*
+----
+rule: valuecontent:"ABC"; offset:5;
+----
+
+[source.bash]
+.*Example*
+----
+$ curl http://microservice-security.101.net:30080/user?id=123456ABC
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17000903267954417892<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+
+[source.bash]
+.*Rule*
+----
+
+----
+
+[source.bash]
+.*Example*
+----
+
+----
+
+
+[source.bash]
+.*Rule*
+----
+
+----
+
+[source.bash]
+.*Example*
+----
+
+----
+
+
+[source.bash]
+.*Rule*
+----
+
+----
+
+[source.bash]
+.*Example*
+----
+
+----
+

@@ -1,0 +1,26 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: illegal-file-type
+  namespace: illegal-file-type
+spec:
+  policy:
+    signature-requirements:
+    - tag: illegal-file-type
+    signature-sets: 
+    - name: illegal-file-type
+      block: true
+      signatureSet: 
+        filter:
+          tagValue: illegal-file-type
+          tagFilter: eq
+    applicationLanguage: utf-8
+    blocking-settings:
+      violations:
+      - alarm: true
+        block: false
+        name: VIOL_DATA_GUARD
+    enforcementMode: blocking
+    name: illegal-file-type
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE

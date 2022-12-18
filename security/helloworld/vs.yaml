@@ -1,0 +1,19 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: nginx-ingress-vs
+  namespace: webgoat
+spec:
+  ingressClassName: nginx
+  policies:
+    - name: webgoat-waf-policy
+  upstreams:
+    - name: webgoat-upstream
+      service: owasp-webgoat
+      port: 8080
+  host: microservice-security.101.net
+  routes:
+    - path: /
+      action:
+        pass: webgoat-upstream
+

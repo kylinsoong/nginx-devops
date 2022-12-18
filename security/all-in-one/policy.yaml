@@ -1,0 +1,35 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: dataguard-alarm
+  namespace: filter-by-content
+spec:
+  policy:
+    signature-requirements:
+    - tag: filter-content
+    signature-sets: 
+    - name: bot-detect
+      block: true
+      signatureSet: 
+        filter:
+          tagValue: filter-content
+          tagFilter: eq
+    applicationLanguage: utf-8
+    blocking-settings:
+      violations:
+      - alarm: true
+        block: false
+        name: VIOL_DATA_GUARD
+    data-guard:
+      creditCardNumbers: true
+      enabled: true
+      enforcementMode: ignore-urls-in-list
+      enforcementUrls: []
+      lastCcnDigitsToExpose: 4
+      lastSsnDigitsToExpose: 4
+      maskData: true
+      usSocialSecurityNumbers: true
+    enforcementMode: blocking
+    name: dataguard-alarm
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE

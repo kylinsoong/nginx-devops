@@ -1,0 +1,536 @@
+= Microservice Security 101
+:toc: manual
+
+== Prerequisites
+
+=== NGINX Ingress Controller
+
+* https://github.com/nginxinc/kubernetes-ingress
+* https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/
+
+For quick deploy, copy link:nic/deploy.sh[deploy.sh] to `kubernetes-ingress/deployments` folder and execute the bash directly.
+
+[source, bash]
+.*Quick Deploy*
+----
+./deploy.sh
+----
+
+[source, bash]
+.*Install Verification*
+----
+$ kubectl get pods -n nginx-ingress --no-headers
+nginx-ingress-68d894666b-jsvsr   1/1   Running   0     11h
+----
+
+=== ELK
+
+* https://github.com/f5devcentral/f5-waf-elk-dashboards
+
+=== ELK Log Config
+
+APLogConf used for format the security log that send to ELK, which referenced by Ingress Resource.
+
+[source, bash]
+----
+kubectl apply -f nic/logconf.yaml
+----
+
+=== Regular expressions Syntax
+
+* https://github.com/google/re2/wiki/Syntax
+* link:RS2-SYNTAX.adoc[RE2 Regular Expression Syntax Example]
+
+== HelloWorld
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f helloworld/webgoat.yaml 
+----
+
+[source, bash]
+.*2. Deploy Security Policy*
+----
+kubectl apply -f helloworld/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy APP*
+----
+kubectl apply -f helloworld/vs.yaml
+----
+
+[source, bash]
+.*4. Deploy APP(An Alternative Way)*
+----
+kubectl apply -f helloworld/ingress.yaml 
+----
+
+[source, bash]
+.*5. Test*
+----
+~]# curl "http://microservice-security.101.net:30080/WebGoat/login?<script>" 
+<html>
+  <head>
+    <title>Request Rejected</title>
+  </head>
+  <body>
+    The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7471558104982133347<br><br><a href='javascript:history.back();'>[Go Back]</a>
+  </body>
+</html>
+----
+
+[source, bash]
+.*6. Batch TEST*
+----
+for i in {1..10} ; do for j in $(cat helloworld/ips) ; do curl -H "X-Forwarded-For: $j" "http://microservice-security.101.net:30080/WebGoat/login?<script>" ; echo ; done ; done
+----
+
+ELK 上可以看到攻击的地理位置分布。
+
+[source, bash]
+.*7. Clean up*
+----
+kubectl delete -f helloworld/policy.yaml 
+kubectl delete -f helloworld/vs.yaml
+kubectl delete -f helloworld/ingress.yaml
+kubectl delete -f helloworld/webgoat.yaml 
+----
+
+== Filter by Content
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f filter-by-content/deploy.yaml
+----
+
+[source, bash]
+.*2. Create ELK Log config*
+----
+kubectl apply -f filter-by-content/logconf.yaml
+----
+
+[source, bash]
+.*3. Add Policy*
+----
+kubectl apply -f filter-by-content/uds.yaml 
+kubectl apply -f filter-by-content/policy.yaml 
+----
+
+[source, bash]
+.*4. Deploy Ingress*
+----
+kubectl apply -f filter-by-content/ingress.yaml
+----
+
+[source, bash]
+.*5. TEST*
+----
+$ curl http://microservice-security.101.net:30080/devops/test123
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525585681<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*6. Clean up*
+----
+kubectl delete -f filter-by-content/ingress.yaml
+kubectl delete -f filter-by-content/policy.yaml
+kubectl delete -f filter-by-content/uds.yaml 
+kubectl delete -f filter-by-content/logconf.yaml 
+kubectl delete -f filter-by-content/deploy.yaml 
+----
+
+== Illegal Request Method
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f illegal-request-method/deploy.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f illegal-request-method/uds.yaml 
+kubectl apply -f illegal-request-method/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f illegal-request-method/ingress.yaml 
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl http://microservice-security.101.net:30080/devops/test -X DELETE
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525587211<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f illegal-request-method/ingress.yaml
+kubectl delete -f illegal-request-method/policy.yaml 
+kubectl delete -f illegal-request-method/uds.yaml
+kubectl delete -f illegal-request-method/deploy.yaml 
+----
+
+== XFF Injection
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f xff-injection/deploy.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f xff-injection/uds.yaml 
+kubectl apply -f xff-injection/policy.yaml 
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f xff-injection/ingress.yaml 
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl -H "X-Forwarded-For: select * from t where 1 =1 " "http://microservice-security.101.net:30080/devops/test"
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525587721<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f xff-injection/ingress.yaml
+kubectl delete -f xff-injection/policy.yaml
+kubectl delete -f xff-injection/uds.yaml
+kubectl delete -f xff-injection/deploy.yaml
+----
+
+== Host Localhost
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f host-validation/deploy.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f host-validation/uds.yaml
+kubectl apply -f host-validation/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f host-validation/ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+curl -H "Host: localhost" "http://microservice-security.101.net:30080/devops/test"
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f host-validation/ingress.yaml
+kubectl delete -f host-validation/policy.yaml
+kubectl delete -f host-validation/uds.yaml
+kubectl delete -f host-validation/deploy.yaml
+----
+
+== Illegal Directory Access
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f illegal-directory-access/deploy.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f illegal-directory-access/uds.yaml 
+kubectl apply -f illegal-directory-access/policy.yaml 
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f illegal-directory-access/ingress.yaml 
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl http://microservice-security.101.net:30080/devops/uploads/11.jsp
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525657081<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f illegal-directory-access/ingress.yaml
+kubectl delete -f illegal-directory-access/policy.yaml
+kubectl delete -f illegal-directory-access/uds.yaml
+kubectl delete -f illegal-directory-access/deploy.yaml
+----
+
+== Weak Password
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f week-passwd/deploy.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f week-passwd/uds.yaml 
+kubectl apply -f week-passwd/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f week-passwd/ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl "http://microservice-security.101.net:30080/devops?user=admin&password=default"
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525648921<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f week-passwd/ingress.yaml
+kubectl delete -f week-passwd/policy.yaml
+kubectl delete -f week-passwd/uds.yaml
+kubectl delete -f week-passwd/deploy.yaml
+----
+
+== Illegal File Extension
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f illegal-file-extension/deploy.yaml 
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f illegal-file-extension/uds.yaml 
+kubectl apply -f illegal-file-extension/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f illegal-file-extension/ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl "http://microservice-security.101.net:30080/devops/test.db"
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525624951<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f illegal-file-extension/ingress.yaml
+kubectl delete -f illegal-file-extension/policy.yaml
+kubectl delete -f illegal-file-extension/uds.yaml
+kubectl delete -f illegal-file-extension/deploy.yaml
+----
+
+== Illegal File Type
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f illegal-file-type/deploy.yaml 
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f illegal-file-type/uds.yaml 
+kubectl apply -f illegal-file-type/policy.yaml
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f illegal-file-type/ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl "http://microservice-security.101.net:30080/devops/test.php"
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9268430331525625971<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f illegal-file-type/ingress.yaml
+kubectl delete -f illegal-file-type/policy.yaml
+kubectl delete -f illegal-file-type/uds.yaml
+kubectl delete -f illegal-file-type/deploy.yaml
+----
+
+== Application Admin Access
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f application-admin-access/deploy.yaml 
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f application-admin-access/uds.yaml 
+kubectl apply -f application-admin-access/policy.yaml 
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f application-admin-access/ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+$ curl http://microservice-security.101.net:30080/redis-admin/redis
+<html>
+   <head>
+      <title>Request Rejected</title>
+   </head>
+   <body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17000903267954407182<br><br><a href='javascript:history.back();'>[Go Back]</a></body>
+</html>
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f application-admin-access/ingress.yaml
+kubectl delete -f application-admin-access/policy.yaml
+kubectl delete -f application-admin-access/uds.yaml
+kubectl delete -f application-admin-access/deploy.yaml
+----
+
+== DevOps Meetup Demo
+
+[source, bash]
+.*1. Deploy Microservice App*
+----
+kubectl apply -f foo.yaml 
+kubectl apply -f bar.yaml
+----
+
+[source, bash]
+.*2. Add Policy*
+----
+kubectl apply -f foo-uds.yaml 
+kubectl apply -f foo-policy.yaml 
+
+kubectl apply -f bar-uds.yaml 
+kubectl apply -f bar-policy.yaml 
+----
+
+[source, bash]
+.*3. Deploy Ingress*
+----
+kubectl apply -f foo-ingress.yaml 
+kubectl apply -f bar-ingress.yaml
+----
+
+[source, bash]
+.*4. TEST*
+----
+./test.sh
+----
+
+[source, bash]
+.*5. Clean up*
+----
+kubectl delete -f foo-ingress.yaml
+kubectl delete -f foo-policy.yaml 
+kubectl delete -f foo-uds.yaml 
+kubectl delete -f foo.yaml
+
+kubectl delete -f bar-ingress.yaml
+kubectl delete -f bar-policy.yaml 
+kubectl delete -f bar-uds.yaml 
+kubectl delete -f bar.yaml
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
