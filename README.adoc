@@ -452,6 +452,18 @@ $ curl http://localhost:8009/foo
     Request Headers: x-forwarded-user: [anonymousUser] host: [backend-1:8080] connection: [close] x-forwarded-status: [200] user-agent: [curl/7.64.1] accept: [*/*] 
 ----
 
+=== SSL
+
+link:DEV.adoc#ssl[SSL]
+
+=== JWT
+
+link:DEV.adoc#jwt[JWT]
+
+=== API/Web security(WAF)
+
+link:security/README.adoc[API Web application firewall].
+
 == WebSocket
 
 *1. Open broswer access the http://localhost:8010/client.html*
@@ -475,3 +487,18 @@ you should see the following log output:
 ----
 2022-10-13 10:02:30.130  INFO 1 --- [0.0-8080-exec-3] i.c.b.websocket.MyTextWebSocketHandler   : aa7fdce6-0b05-7a8f-e967-7670f565374e received: [Hello]
 ----
+
+== Advanced Concepts
+
+=== Lua Vs NJS
+
+link:lua/README.adoc[Lua Hello Vs NJS Hello].
+
+=== NGINX Vs APISIX
+
+link:api-gateway/README.adoc[How APISIX build a modern API Gatway via NGINX]?
+
+=== A/B Test
+
+link:DEV.adoc#ab-test[AB Test]
+
