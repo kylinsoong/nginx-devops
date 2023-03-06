@@ -1,0 +1,248 @@
+= Protect Application with NGINX(On-premise)
+:toc: manual
+
+== 安装与部署
+
+=== 安装
+
+[source, bash]
+.*1. Install NGINX*
+----
+yum localinstall nginx-plus-28-1.el7.ngx.x86_64.rpm
+----
+
+[source, bash]
+.*2. Install Dependencies(perl-thrift, jq)*
+----
+yum install epel-release -y
+yum install perl-thrift -y
+yum install jq -y
+----
+
+[source, bash]
+.*3. Install NGINX app protect*
+----
+yum install `ls`
+----
+
+The rpm lists as below:
+
+[source, bash]
+----
+app-protect-28+4.100.1-1.el7.ngx.x86_64.rpm
+app-protect-attack-signatures-2023.01.19-1.el7.ngx.x86_64.rpm
+app-protect-common-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-compiler-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-engine-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-plugin-4.100.1-1.el7.ngx.x86_64.rpm
+app-protect-threat-campaigns-2023.01.24-1.el7.ngx.x86_64.rpm
+nginx-plus-module-appprotect-28+4.100.1-1.el7.ngx.x86_64.rpm
+----
+
+[source, bash]
+.*4. vetify the installed rpms*
+----
+# rpm -qa | grep app-protect
+app-protect-28+4.100.1-1.el7.ngx.x86_64
+app-protect-common-10.208.1-1.el7.ngx.el7.centos.x86_64
+app-protect-engine-10.208.1-1.el7.ngx.el7.centos.x86_64
+app-protect-threat-campaigns-2023.01.24-1.el7.ngx.x86_64
+app-protect-attack-signatures-2023.01.19-1.el7.ngx.x86_64
+app-protect-compiler-10.208.1-1.el7.ngx.x86_64
+app-protect-plugin-4.100.1-1.el7.ngx.x86_64
+
+# rpm -qa | grep nginx
+nginx-plus-28-1.el7.ngx.x86_64
+nginx-plus-module-appprotect-28+4.100.1-1.el7.ngx.x86_64
+----
+
+=== 配置
+
+[source, bash]
+.*1. nginx.conf 中添加动态模块*
+----
+load_module modules/ngx_http_app_protect_module.so;
+----
+
+[source, bash]
+.*2. 在 http/server/location 上下文开启应用防护*
+----
+app_protect_enable on;
+----
+
+[source, bash]
+.*3. 启动*
+----
+systemctl start nginx
+----
+
+=== 测试
+
+[source, bash]
+.*1. 在 location 上下文开启应用防护*
+----
+    location /foo {
+        status_zone status_app_foo;
+        app_protect_enable on;
+        proxy_pass http://backend;
+    }
+
+    location /bar {
+        status_zone status_app_bar;
+        proxy_pass http://backend;
+    }
+----
+
+[source, bash]
+.*2. 访问 foo*
+----
+$ curl "http://10.1.10.195:8101/foo?a="<script>"&b=1234"
+
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023060088<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+[source, bash]
+.*3. 访问 bar*
+----
+$ curl "http://10.1.10.195:8101/bar?a=<script>&b=1234"
+<br>F5 Demo App
+
+    Request URI: /bar?a=<script>&b=1234
+    Protocol: HTTP/1.0
+
+    Server IP: 10.1.10.181
+    Server Port: 8080
+    Server Hostname: 10.1.10.181
+
+    Client IP: 10.1.10.195
+    Client Port: 36154
+    Client Hostname: 10.1.10.195
+
+    Session: 872FD68450D1948D778F0604A11DA9FC
+
+    X-Forwarded-For: null
+
+    Cookies:  
+
+    Request Headers: host: [backend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
