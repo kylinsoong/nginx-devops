@@ -4,10 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-
-@SuppressWarnings("unused")
 @SpringBootApplication
 public class Main implements CommandLineRunner {
 	
@@ -33,33 +28,24 @@ public class Main implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		args = new String[] {"/Users/ksong/tmp/test/nginx-1.23.3"};
-		
 		log.info("NGINX Log Grepper Start");
 		
 		if(args.length != 1 || !Files.exists(Paths.get(args[0])) || !Paths.get(args[0]).toFile().isDirectory()) {
 			throw new Exception("Run greer with folder name");
 		}
 		
-		File dir = Paths.get(args[0]).toFile();
-				
-		iterateFiles(dir.listFiles());
-		
-		
+		iterateFiles(Paths.get(args[0]).toFile().listFiles());
 	}
-	
-	private int id = 1;
-	
+		
 	public  void iterateFiles(File[] files) throws IOException {
         for (File file : files) {
             if (file.isDirectory()) {
-                iterateFiles(file.listFiles()); // Calls same method again.
+                iterateFiles(file.listFiles()); 
             } else {
-//            	System.out.println(file);
             	if(file.getName().endsWith(".c")) {
             		List<String> list = new ArrayList<>();
             		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             		    String line;
-            		    StringBuffer sb = new StringBuffer();
             		    while ((line = br.readLine()) != null) {
             		    	if(line.length() > 0)
             		    	    list.add(line);
@@ -97,15 +83,11 @@ public class Main implements CommandLineRunner {
 	}
 
 	private void dumplines(String log) {
-		
 		if(log.contains("\"")) {
 			log = log.substring(log.indexOf("\"") + 1, log.lastIndexOf("\""));
 			log = log.replace("%V", "").replace("%s", "").replace("%c", "").replace("%d", "").replace("%p", "").replace("%uz", "").replace("%P", "").replace("\"", "");
 			log = log.replace("\\", "").replace("%ui", "").replace("%ud", "").replace("%i", "").replace("%Xl", "").replace("%l", "");
 			System.out.println(log);
-		}
-		
+		}	
 	}
-	
-	
 }
