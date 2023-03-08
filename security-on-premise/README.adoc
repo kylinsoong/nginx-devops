@@ -71,7 +71,14 @@ app_protect_enable on;
 ----
 
 [source, bash]
-.*3. 启动*
+.*3. 在 http/server/location 上下文开启日志（输出到文件）*
+----
+app_protect_security_log_enable on;
+app_protect_security_log "/etc/app_protect/conf/log_default.json" /var/log/app_protect/security.log;
+----
+
+[source, bash]
+.*4. 启动*
 ----
 systemctl start nginx
 ----
@@ -127,41 +134,105 @@ $ curl "http://10.1.10.195:8101/bar?a=<script>&b=1234"
     Request Headers: host: [backend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
 ----
 
-[source, bash]
-.**
-----
+== 通用型防护能力
 
-----
+=== SQL Injection
 
 [source, bash]
-.**
+----
+$ curl http://10.1.10.195:8101/foo?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023062128<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
+=== Cross Site Scripting
+
+[source, bash]
+----
+$ curl http://10.1.10.195:8101/foo?a="<script>"
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023062638<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html
+----
+
+=== 目录遍历防护效果
+
+[source, bash]
+----
+$ curl http://10.1.10.195:8101/foo?../../../test
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 458779997830158493<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+== 自定义策略
+
+=== 文件类型防护
+
+[source, bash]
+.*1. 创建 /etc/app_protect/conf/filetype.json 文件*
+----
+{
+    "name": "external_resources_file_types",
+    "template": {
+        "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "enforcementMode": "blocking",
+    "blocking-settings": {
+        "violations": [
+            {
+                "name": "VIOL_FILETYPE",
+                "alarm": true,
+                "block": true
+            }
+        ]
+    },
+    "filetypes": [
+    {
+        "name": "*",
+        "type": "wildcard",
+        "allowed": true,
+        "checkPostDataLength": false,
+        "postDataLength": 4096,
+        "checkRequestLength": false,
+        "requestLength": 8192,
+        "checkUrlLength": true,
+        "urlLength": 2048,
+        "checkQueryStringLength": true,
+        "queryStringLength": 2048,
+        "responseCheck": false
+    },
+    {
+        "name": "pat",
+        "allowed": false
+    },
+    {
+        "name": "mat",
+        "allowed": false
+    },
+    {
+        "name": "txt",
+        "allowed": false
+    }
+  ]
+}
 ----
 
 [source, bash]
-.**
+.*2. 配置 NGINX*
 ----
-
-----
-
-[source, bash]
-.**
-----
-
-----
-
-[source, bash]
-.**
-----
-
+    location /foo {
+        status_zone status_app_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/filetype.json" ;
+        proxy_pass http://backend;
+    }
 ----
 
 [source, bash]
-.**
+.*3. 测试*
+----
+$ curl http://10.1.10.195:8101/foo?../../../test ; echo
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17432556761964223971<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-----
+== 自定义特征库
 
 [source, bash]
 .**
