@@ -3,6 +3,17 @@
 
 == 安装与部署
 
+=== 把机准备
+
+[source, bash]
+.*功能测试把机*
+----
+docker run -itd --rm --name app-http -p 8080:8080 cloudadc/cafe:1.0
+----
+
+NOTE: Use the `ip addr add 10.1.10.172/24 dev ens33` to add multiple IP addresses to single Linux network interface.
+
+
 === 安装
 
 [source, bash]
@@ -234,34 +245,88 @@ $ curl http://10.1.10.195:8101/foo?../../../test ; echo
 
 == 自定义特征库
 
-[source, bash]
-.**
-----
-
-----
+=== Filter by Content
 
 [source, bash]
-.**
+.*Key Policy*
+----
+"rule": "content:\"test123\"; nocase;"
 ----
 
-----
-
-[source, bash]
-.**
-----
-
-----
+* link:filter-by-content/uds-filter-content.json[uds-filter-content.json]
+* link:filter-by-content/uds-filter-content-policy.json[uds-filter-content-policy.json]
+* link:filter-by-content/uds-filter-content.conf[uds-filter-content.conf]
 
 [source, bash]
-.**
+.*Test*
+----
+// normal request
+$ curl http://10.1.10.195:8108/foo/test345
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:12:41 +0000
+URI: /foo/test345
+Request ID: 46f465862262b61ab6903b8539a873b2
+
+// risk request
+$ curl http://10.1.10.195:8108/foo/test123
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7231362286722259098<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-----
+=== Illegal Request Method
 
 [source, bash]
-.**
+.*Key Policy*
+----
+"rule": "re2:\"/^(CONNECT|DELETE|TRACE|COPYMOVE|PUT)\\s+/\"; nocase;",
 ----
 
+* link:illegal-request-method/uds-illegal-request-method.json[uds-illegal-request-method.json]
+* link:illegal-request-method/uds-illegal-request-method-policy.json[uds-illegal-request-method-policy.json]
+* link:illegal-request-method/illegal-request-method.conf[illegal-request-method.conf]
+
+[source, bash]
+.*Test*
+----
+// normal request
+$ curl http://10.1.10.195:8109/foo/test -X GET
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:24:36 +0000
+URI: /foo/test
+Request ID: c71d7200e7ceb9baadc952880d3886f4
+
+// risk request
+$ curl http://10.1.10.195:8109/foo/test -X DELETE
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7231362286722261648<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== XFF Injection
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/X-Forwarded-For:.*?\\s+(select|update|union|wait|sleep|insert|chr|char|substr|substring)/\"; nocase;",
+----
+
+* link:xff-injection/uds-xff-injection.json[uds-xff-injection.json]
+* link:xff-injection/uds-xff-injection-policy.json[uds-xff-injection-policy.json]
+* link:xff-injection/xff-injection.conf[xff-injection.conf]
+
+[source, bash]
+.*Test*
+----
+// normal request
+$ curl http://10.1.10.195:8110/foo/test
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:42:49 +0000
+URI: /foo/test
+Request ID: 5db73250b5aa912944c7976044c04179
+
+// risk request
+$ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110/foo/test
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17170494753228555214<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
 [source, bash]

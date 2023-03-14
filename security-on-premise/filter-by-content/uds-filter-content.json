@@ -1,0 +1,24 @@
+{
+    "signatures": [
+        {
+            "accuracy": "medium",
+            "attackType": {
+                "name": "Brute Force Attack"
+            },
+            "description": "Medium accuracy user defined signature with tag",
+            "name": "Bot_medium_acc",
+            "risk": "medium",
+            "rule": "content:\"test123\"; nocase;",
+            "signatureType": "request",
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ]
+        }
+    ],
+    "tag": "filter-content"
+}
