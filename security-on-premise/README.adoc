@@ -337,7 +337,7 @@ $ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110
 
 *1. The JWT Token Payload defined a user id*
 
-image:img/auth/test-jwt.png[]
+image:auth/test-jwt.png[]
 
 * link:auth/jwt.conf[jwt.conf]
 * link:auth/jwt.js[jwt.js]
