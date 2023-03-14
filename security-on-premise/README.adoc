@@ -329,10 +329,34 @@ $ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17170494753228555214<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-[source, bash]
-.**
-----
+== API 安全（JWT）
 
+=== TD
+
+=== user id validation
+
+*1. The JWT Token Payload defined a user id*
+
+image:img/auth/test-jwt.png[]
+
+* link:auth/jwt.conf[jwt.conf]
+* link:auth/jwt.js[jwt.js]
+* link:auth/test.jwt[test.jwt]
+
+[source, bash]
+.*2. Test*
+----
+// normal request
+$ curl -H "Authorization: Bearer `cat auth/test.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:05:46:51 +0000
+URI: /foo/test?uid=bbc123456
+Request ID: 85573e3554db784466a5f4223a4835d6
+
+// risk request
+$ curl -H "Authorization: Bearer `cat auth/test.jwt`" http://10.1.10.195:8107/foo/test?uid=aab123456
+uid not align with security token governance uid
 ----
 
 [source, bash]
