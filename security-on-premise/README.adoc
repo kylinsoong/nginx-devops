@@ -359,9 +359,9 @@ NOTE: More details about JWT refer to https://datatracker.ietf.org/doc/html/rfc7
 
 *1. The JWT Token Payload defined a user id*
 
-image:auth/test-jwt.png[]
+image:auth/api.security.jwt.png[]
 
-* link:auth/jwt.conf[jwt.conf]
+* link:auth/jwt-payload-authentication.conf[jwt-payload-authentication.conf]
 * link:auth/jwt.js[jwt.js]
 * link:auth/test.jwt[test.jwt]
 
@@ -369,7 +369,7 @@ image:auth/test-jwt.png[]
 .*2. Test*
 ----
 // normal request
-$ curl -H "Authorization: Bearer `cat auth/test.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
+$ curl -H "Authorization: Bearer `cat auth/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
 Server address: 172.17.0.2:8080
 Server name: f25377244e7c
 Date: 14/Mar/2023:05:46:51 +0000
@@ -377,7 +377,7 @@ URI: /foo/test?uid=bbc123456
 Request ID: 85573e3554db784466a5f4223a4835d6
 
 // risk request
-$ curl -H "Authorization: Bearer `cat auth/test.jwt`" http://10.1.10.195:8107/foo/test?uid=aab123456
+$ curl -H "Authorization: Bearer `cat auth/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=aab123456
 uid not align with security token governance uid
 ----
 
