@@ -1,2 +1,0 @@
-generate nginx.jwk, content:
-{"keys": [{ "k":"Y21iY25hcHRlc3QyMDIzMDI", "kty":"oct", "kid":"0001" }] }

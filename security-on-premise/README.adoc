@@ -445,55 +445,134 @@ $ curl http://10.1.10.195:8116/foo/redis-admin/redis
 
 == API Security Authentication
 
-=== Token Validation
+=== JWT Validation
 
 [source, bash]
 .*1. Generate JWK*
 ----
-./jwkgen.sh nginxjwtauthenticationbykylin > api.security.jwk
+./jwkgen.sh nginxjwtauthenticationbykylin 
 ----
 
-NOTE: More details about JWK refer to https://datatracker.ietf.org/doc/html/rfc7517, JWK usually can be accessed from a Zero-trust gateway, or IDP server. In this section we configured JWK on local file system. the generated `api.security.jwk` will be copy to NGINX Host.
+* link:jwt-validation/api.security.jwk[api.security.jwk]
+
+NOTE: The above command geneted a `api.security.jwk`, more details about JWK refer to https://datatracker.ietf.org/doc/html/rfc7517, JWK usually can be accessed from a Zero-trust gateway, or IDP server. In this section we configured JWK on local file system. the generated `api.security.jwk` will be copy to NGINX Host.
 
 *2. Generate JWT*
 
-image:auth/api.security.jwt.png[]
+image:jwt-validation/api.security.jwt.png[]
 
 NOTE: More details about JWT refer to https://datatracker.ietf.org/doc/html/rfc7519.
 
+* link:jwt-validation/api.security.jwt[api.security.jwt]
+
+To view the jwt payload run the following commands:
 
 [source, bash]
-.**
+----
+CONTENT=$(cat jwt-validation/api.security.jwt);  IFS='.' ; read -r header payload signature <<< "$CONTENT" ; echo $payload | base64 --decode
 ----
 
+The referrenced payload looks as below:
+
+[source, json]
 ----
-
-
-=== user id validation
-
-*1. The JWT Token Payload defined a user id*
-
-image:auth/api.security.jwt.png[]
-
-* link:auth/jwt-payload-authentication.conf[jwt-payload-authentication.conf]
-* link:auth/jwt.js[jwt.js]
-* link:auth/test.jwt[test.jwt]
+{
+  "name": "API Security Authention",
+  "sub": "ACME Corp. inc",
+  "iss": "ACME Corp",
+  "iat": 1678862106,
+  "exp": 1708862106,
+  "uid": "bbc123456"
+}
+----
 
 [source, bash]
-.*2. Test*
+.*3. NGINX Configuration*
+----
+server {
+  listen 8106;
+  status_zone server_backend_api_security_validation;
+  location / {
+    status_zone location_backend_api_security_validation;
+    auth_jwt "API Realm";
+    auth_jwt_key_file api.security.jwk;
+    proxy_pass http://backend;
+  }
+}
+----
+
+* link:jwt-validation/jwt-validation.conf[jwt-validation.conf]
+
+[source, bash]
+.*4. Test*
 ----
 // normal request
-$ curl -H "Authorization: Bearer `cat auth/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
+$ curl -H "Authorization: Bearer `cat jwt-validation/api.security.jwt`" http://10.1.10.195:8106/foo/test?uid=bbc123456
 Server address: 172.17.0.2:8080
-Server name: f25377244e7c
-Date: 14/Mar/2023:05:46:51 +0000
+Server name: 90b887d7843e
+Date: 15/Mar/2023:07:39:00 +0000
 URI: /foo/test?uid=bbc123456
-Request ID: 85573e3554db784466a5f4223a4835d6
+Request ID: 1100f4eebf0df7dd0167a668aa73c74d
 
 // risk request
-$ curl -H "Authorization: Bearer `cat auth/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=aab123456
+$ curl -H "Authorization: Bearer abcded" http://10.1.10.195:8106/foo/test?uid=bbc123456 -I
+HTTP/1.1 401 Unauthorized
+Server: nginx/1.23.2
+Date: Wed, 15 Mar 2023 07:41:30 GMT
+Content-Type: text/html
+Content-Length: 179
+Connection: keep-alive
+WWW-Authenticate: Bearer realm="API Realm",error="invalid_token"
+----
+
+=== JWT Based Dual Factor Authentication
+
+*1. The JWT Token Payload defined a user id as authentication factor*
+
+link:jwt-validation/api.security.jwk[api.security.jwk]
+
+[source, bash]
+.*2. NGINX Configuration*
+----
+js_import main from jwt.js;
+js_set $jwt_claim_uid main.jwt_payload_uid;
+
+server {
+  listen 8107;
+  status_zone status_jwt_dual-factor-authentication;
+  location / {
+    status_zone status_jwt_dual-factor-authentication_location;
+
+    if ($jwt_claim_uid != $arg_uid) {
+        return 401 "uid not align with security token governance uid";
+    }
+
+    proxy_pass http://backend;
+  }
+}
+----
+
+* link:jwt-dual-factor-authentication/jwt-dual-factor-authentication.conf[jwt-dual-factor-authentication.conf]
+* link:jwt-dual-factor-authentication/jwt.js[jwt.js]
+* link:jwt-dual-factor-authentication/api.security.jwt[api.security.jwt]
+
+[source, bash]
+.*3. Test*
+----
+// normal request
+$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
+Server address: 172.17.0.2:8080
+Server name: 90b887d7843e
+Date: 15/Mar/2023:08:15:23 +0000
+URI: /foo/test?uid=bbc123456
+Request ID: 7d35c94bf02956c7785147357b2f5799
+
+// risk request
+$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123 ; echo
 uid not align with security token governance uid
 ----
+
+=== JWT Rate Limit
 
 [source, bash]
 .**

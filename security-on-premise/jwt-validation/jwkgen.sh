@@ -32,9 +32,9 @@ API_SECRET_JWK='{"keys":
 API_SECRET_JWK=$(echo $API_SECRET_JWK | sed "s|CHANGEME|$SECRET_KEY|g")
 echo $API_SECRET_JWK > api.security.jwk
 echo "generated api.security.jwk"
-JWT_HEADER=$(echo -n $HEADER | base64 | tr '+/' '-_' | tr -d '=')
-JWT_PAYLOAD=$(echo -n $PAYLOAD | base64 | tr '+/' '-_' | tr -d '=')
-HEADER_PAYLOAD=$JWT_HEADER.$JWT_PAYLOAD
-JWT_SIG=$(echo -n $HEADER_PAYLOAD | openssl dgst -binary -sha256 -hmac $SECRET | base64 | tr '+/' '-_' | tr -d '=')
-JWT=$HEADER_PAYLOAD.$JWT_SIG
-echo $JWT
+#JWT_HEADER=$(echo -n $HEADER | base64 | tr '+/' '-_' | tr -d '=')
+#JWT_PAYLOAD=$(echo -n $PAYLOAD | base64 | tr '+/' '-_' | tr -d '=')
+#HEADER_PAYLOAD=$JWT_HEADER.$JWT_PAYLOAD
+#JWT_SIG=$(echo -n $HEADER_PAYLOAD | openssl dgst -binary -sha256 -hmac $SECRET | base64 | tr '+/' '-_' | tr -d '=')
+#JWT=$HEADER_PAYLOAD.$JWT_SIG
+#echo $JWT
