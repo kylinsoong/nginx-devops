@@ -443,6 +443,121 @@ $ curl http://10.1.10.195:8116/foo/redis-admin/redis
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106461351<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
+== OpenAPI Whitelist Policy
+
+=== OpenAPI doc
+
+image:openapi-whitelist-policy/api-fruits.png[]
+
+* link:openapi-whitelist-policy/openapi-fruits.json[openapi-fruits.json]
+
+The openapi come from `cloudadc/fruits:0.0.1`, if you run fruits on localhost:
+
+[source, bash]
+----
+docker run -itd --rm --name app-fruits -p 8090:8080 cloudadc/fruits:0.0.1
+----
+
+then you openapi doc can be find at http://127.0.0.1:8090/v3/api-docs 
+
+=== Whitelist Policy Configuration
+
+Modify the `/etc/app_protect/conf/NginxApiSecurityPolicy.json`, either set the *open-api-files* point to openapi doc as http protocol, or as file protocol.
+
+[source, json]
+----
+      "open-api-files" : [
+        {
+          "link": "file:///etc/app_protect/conf/openapi-fruits.json"
+        }
+      ],
+----
+
+[source, json]
+----
+      "open-api-files" : [
+        {
+          "link": "http://127.0.0.1:8090/v3/api-docs"
+        }
+      ],
+----
+
+=== Test Whitelist Policy
+
+[source, bash]
+.*Test PUT Method*
+----
+$ curl http://10.1.10.195:8301/fruits/ -X PUT
+{"supportID": "8359298969457788494"}
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+== Binary Content filter
+
+=== gRPC
+
+[source, bash]
+.*1. Start gRPC Server*
+----
+docker run -itd --rm --name grpc-server -e PORT=8009 -p 8009:8009 -d cloudadc/grpc-go-greeting:0.1 greeter_server
+----
+
+[source, bash]
+.*2. NGINX Configuration*
+----
+server {
+    listen    8301;
+    server_name _;
+
+    status_zone status_fruits;
+
+    location / {
+        status_zone status_fruits;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/NginxApiSecurityPolicy.json";
+        proxy_pass http://backendapi;
+    }
+
+}
+----
+
+* link:grpc-binary-content-filer/fruits.conf[fruits.conf]
+* link:grpc-binary-content-filer/grpc-greeting.json[grpc-greeting.json]
+
+[source, bash]
+.*3. Test*
+----
+$ echo "ADDRESS=10.1.10.195:8401" > grpc-binary-content-filer/address 
+
+$ docker run --env-file ./grpc-binary-content-filer/address cloudadc/grpc-go-greeting:0.1 greeter_client "This should be blocked <script>evil_script()</script>" 
+2023/03/15 10:46:39 could not greet: rpc error: code = 7 desc = Blocked by NGINX App Protect, Your support ID is 3607562325608046964
+----
+
+=== Dubbo
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
 == API Security Authentication
 
 === JWT Validation
