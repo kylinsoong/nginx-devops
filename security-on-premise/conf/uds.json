@@ -1,0 +1,64 @@
+{
+    "softwareVersion": "15.1.0",
+    "tag": "Fruits",
+    "revisionDatetime": "2020-01-22T18:32:02Z",
+    "signatures": [
+        {
+            "name": "Apple_medium_acc",
+            "rule": "re2:\"/\\/images\\/|\\/media\\/|\\/uploads\\/|\\/pic\\/|\\/img\\/|\\/tmp\\/|\\/pictures\\//U\"; nocase; objonly; re2:\"/\\.(php|asp|aspx|jsp|jspx)$/U\"; nocase; objonly;",
+            "signatureType": "request",
+            "attackType": {
+                "name": "Buffer Overflow"
+            },
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ],
+            "risk": "medium",
+            "accuracy": "medium",
+            "description": "Medium accuracy user defined signature with tag (Fruits)"
+        },
+		{
+            "name": "custom_medium_acc",
+            "rule": "re2:\"/(\\.pkcs12|\\.svn|\\.htaccess|\\.old|\\.sql|\\.bak|\\.tar|\\.pem|\\.pwd|\\.mdb|\\.der|\\.swp|\\.env|\\.yml|\\.db|\\.class|\\.dmp|\\.war|\\.idea|\\.log|\\.gz|\\.git|\\.vimrc|\\.sh|\\.DS_Store|\\.history|\\.project|\\.cgi|\\.conf|\\.pfx|\\.p12|\\.bash_history|\\.swo|\\.pl|\\.core|\\.pyc|\\.raw|\\.viminfo|\\.bp|\\.save|robots.txt)$/U\"; nocase; objonly;",
+            "signatureType": "request",
+            "attackType": {
+                "name": "Other Application Attacks"
+            },
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ],
+            "risk": "medium",
+            "accuracy": "medium",
+            "description": "Medium accuracy user defined signature with tag (images)"
+        },
+		{
+            "name": "test_medium_acc",
+            "rule": "re2:\"/=(123456|default|admin888|123123|password)/\"; nocase; re2:\"/=admin/\"; nocase;",
+            "signatureType": "request",
+            "attackType": {
+                "name": "Other Application Attacks"
+            },
+            "systems": [
+                {
+                    "name": "Microsoft Windows"
+                },
+                {
+                    "name": "Unix/Linux"
+                }
+            ],
+            "risk": "medium",
+            "accuracy": "medium",
+            "description": "Medium accuracy user defined signature with tag (images)"
+        }
+    ]
+}

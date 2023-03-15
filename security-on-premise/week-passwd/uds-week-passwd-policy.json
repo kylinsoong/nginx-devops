@@ -1,0 +1,36 @@
+{
+  "policy": {
+    "signature-requirements": [
+      {
+        "tag": "week-passwd"
+      }
+    ],
+    "signature-sets": [
+      {
+        "name": "week-passwd",
+        "block": true,
+        "signatureSet": {
+          "filter": {
+            "tagValue": "week-passwd",
+            "tagFilter": "eq"
+          }
+        }
+      }
+    ],
+    "applicationLanguage": "utf-8",
+    "blocking-settings": {
+      "violations": [
+        {
+          "alarm": true,
+          "block": false,
+          "name": "VIOL_DATA_GUARD"
+        }
+      ]
+    },
+    "enforcementMode": "blocking",
+    "name": "week-passwd",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    }
+  }
+}

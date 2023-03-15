@@ -329,6 +329,120 @@ $ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17170494753228555214<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
+=== Host Localhost
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "uricontent:\"/test\"; nocase; objonly;"
+----
+
+* link:host-validation/uds-host-validation.json[uds-host-validation.json]
+* link:host-validation/uds-host-validation-policy.json[uds-host-validation-policy.json]
+* link:host-validation/host-validation.conf[host-validation.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl -H "Host: localhost" http://10.1.10.195:8111/foo/test
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404772574<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Illegal Directory Access
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/\\/images\\/|\\/media\\/|\\/uploads\\/|\\/pic\\/|\\/img\\/|\\/tmp\\/|\\/pictures\\//U\"; nocase; objonly; re2:\"/\\.(php|asp|aspx|jsp|jspx)$/U\"; nocase; objonly;",
+----
+
+* link:illegal-directory-access/uds-illegal-directory-access.json[uds-illegal-directory-access.json]
+* link:illegal-directory-access/uds-illegal-directory-access-policy.json[uds-illegal-directory-access-policy.json]
+* link:illegal-directory-access/illegal-directory-access.conf[illegal-directory-access.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl http://10.1.10.195:8112/foo/uploads/11.jsp
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106457781<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Weak Password
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/=(123456|default|admin888|123123|password)/\"; nocase; re2:\"/=admin/\"; nocase;",
+----
+
+* link:week-passwd/uds-week-passwd.json[uds-week-passwd.json]
+* link:week-passwd/uds-week-passwd-policy.json[uds-week-passwd-policy.json]
+* link:week-passwd/week-passwd.conf[week-passwd.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl "http://10.1.10.195:8113/foo?user=admin&password=default"
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106459311<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Illegal File Extension
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/(\\.pkcs12|\\.svn|\\.htaccess|\\.old|\\.sql|\\.bak|\\.tar|\\.pem|\\.pwd|\\.mdb|\\.der|\\.swp|\\.env|\\.yml|\\.db|\\.class|\\.dmp|\\.war|\\.idea|\\.log|\\.gz|\\.git|\\.vimrc|\\.sh|\\.DS_Store|\\.history|\\.project|\\.cgi|\\.conf|\\.pfx|\\.p12|\\.bash_history|\\.swo|\\.pl|\\.core|\\.pyc|\\.raw|\\.viminfo|\\.bp|\\.save|robots.txt)$/U\"; nocase; objonly;",
+----
+
+* link:illegal-file-extension/uds-illegal-file-extension.json[uds-illegal-file-extension.json]
+* link:illegal-file-extension/uds-illegal-file-extension-policy.json[uds-illegal-file-extension-policy.json]
+* link:illegal-file-extension/illegal-file-extension.conf[illegal-file-extension.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl http://10.1.10.195:8114/foo/test.db
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404771045<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Illegal File Type
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/\\.(php|asp|aspx)$/U\"; nocase; objonly;",
+----
+
+* link:illegal-file-type/uds-illegal-file-type.json[uds-illegal-file-type.json]
+* link:illegal-file-type/uds-illegal-file-type-policy.json[uds-illegal-file-type-policy.json]
+* link:illegal-file-type/illegal-file-type.conf[illegal-file-type.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl http://10.1.10.195:8115/foo/test.php
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404771555<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Application Admin Access
+
+[source, bash]
+.*Key Policy*
+----
+"rule": "re2:\"/\\/redis-admin\\/|\\/axis2-web\\/|\\/axis2-admin\\/|\\/manager\\/html|\\/host-manager\\/html|\\/console\\/j_security_check|\\/ibm\\/console|\\/wp-content\\/|\\/wp-admin\\/|\\/wp-conf\\//U\"; nocase; objonly;",
+----
+
+* link:application-admin-access/uds-application-admin-access.json[uds-application-admin-access.json]
+* link:application-admin-access/uds-application-admin-access-policy.json[uds-application-admin-access-policy.json]
+* link:application-admin-access/application-admin-access.conf[application-admin-access.conf]
+
+[source, bash]
+.*Test*
+----
+$ curl http://10.1.10.195:8116/foo/redis-admin/redis
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106461351<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
 == API Security Authentication
 
 === Token Validation

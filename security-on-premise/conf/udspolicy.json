@@ -1,0 +1,29 @@
+{
+    "policy": {
+        "name": "user_defined_single_signature",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "signatures": [
+            {
+                "name": "Apple_medium_acc",
+                "tag": "Fruits"
+            }
+        ],
+        "signature-sets": [
+            {
+                "name": "Fruit_signature_set",
+                "block": true,
+                "alarm": true,
+                "signatureSet": {
+                    "filter": {
+                        "tagValue": "Fruits",
+                        "tagFilter": "eq"
+                    }
+                }
+            }
+        ]
+    }
+}
