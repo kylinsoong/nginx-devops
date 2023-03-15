@@ -243,7 +243,7 @@ $ curl http://10.1.10.195:8101/foo?../../../test ; echo
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17432556761964223971<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-== 自定义特征库
+== Microservice Application Protection
 
 === Filter by Content
 
