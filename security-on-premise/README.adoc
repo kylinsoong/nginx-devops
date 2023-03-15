@@ -491,9 +491,9 @@ The referrenced payload looks as below:
 ----
 server {
   listen 8106;
-  status_zone server_backend_api_security_validation;
+  status_zone status_jwt_validation;
   location / {
-    status_zone location_backend_api_security_validation;
+    status_zone status_jwt_validation;
     auth_jwt "API Realm";
     auth_jwt_key_file api.security.jwk;
     proxy_pass http://backend;
@@ -525,7 +525,7 @@ Connection: keep-alive
 WWW-Authenticate: Bearer realm="API Realm",error="invalid_token"
 ----
 
-=== JWT Based Dual Factor Authentication
+=== JWT Dual Factor Authentication
 
 *1. The JWT Token Payload defined a user id as authentication factor*
 
@@ -572,24 +572,74 @@ $ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.securit
 uid not align with security token governance uid
 ----
 
-=== JWT Rate Limit
+=== JWT Rate Limiting
 
 [source, bash]
-.**
+.*1. JWT Token*
+----
+$ CONTENT=$(cat jwt-rate-limit/premium.jwt);  IFS='.' ; read -r header payload signature <<< "$CONTENT" ; echo $payload | base64 --decode
+{"name":"API Security Authention","sub":"ACME Corp. inc","iss":"ACME Corp","iat":1678862106,"exp":1708862106,"tier":"premium"}
+
+$ CONTENT=$(cat jwt-rate-limit/standard.jwt);  IFS='.' ; read -r header payload signature <<< "$CONTENT" ; echo $payload | base64 --decode
+{"name":"API Security Authention","sub":"ACME Corp. inc","iss":"ACME Corp","iat":1678862106,"exp":1708862106,"tier":"standard"}
 ----
 
-----
+* link:jwt-rate-limit/premium.jwt[premium.jwt]
+* link:jwt-rate-limit/standard.jwt[standard.jwt]
+
 
 [source, bash]
-.**
+.*2. NGINX Configuration*
+----
+js_import extracter from extracttier.js;
+js_set $jwt_claim_tier extracter.jwt_payload_tier;
+
+limit_req_zone $binary_remote_addr zone=standard_zone:10m rate=3r/s;
+limit_req_zone $binary_remote_addr zone=premium_zone:10m rate=1000r/s;
+
+server {
+  listen 8105;
+  status_zone status_jwt-rate-limit;
+
+  location /foo {
+    status_zone status_jwt-rate-limit_foo;
+
+    if ($jwt_claim_tier = "standard" ) {
+        rewrite ^.*$ /standard;
+    }
+
+    if ($jwt_claim_tier = "premium" ) {
+        rewrite ^.*$ /premium;
+    }
+
+    rewrite ^.*$ /all;
+  }
+
+  location = /premium {
+    limit_req zone=premium_zone burst=5 nodelay;
+    proxy_pass http://backend;
+  }
+
+  location = /standard {
+    limit_req zone=standard_zone burst=5 nodelay;
+    proxy_pass http://backend;
+  }
+
+  location = /all {
+    proxy_pass http://backend;
+  }
+}
 ----
 
-----
+* link:jwt-rate-limit/jwt-rate-limit.conf[jwt-rate-limit.conf]
+* link:jwt-rate-limit/extracttier.js[extracttier.js]
 
 [source, bash]
-.**
+.*3. Test*
 ----
+curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" http://10.1.10.195:8105/foo/test?uid=bbc123456
 
+curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://10.1.10.195:8105/foo/test?uid=bbc123456
 ----
 
 [source, bash]
