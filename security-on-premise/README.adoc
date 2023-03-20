@@ -644,7 +644,7 @@ WWW-Authenticate: Bearer realm="API Realm",error="invalid_token"
 
 *1. The JWT Token Payload defined a user id as authentication factor*
 
-link:jwt-validation/api.security.jwk[api.security.jwk]
+link:jwt-validation/api.security.jwt[api.security.jwt]
 
 [source, bash]
 .*2. NGINX Configuration*
@@ -693,10 +693,24 @@ uid not align with security token governance uid
 .*1. JWT Token*
 ----
 $ CONTENT=$(cat jwt-rate-limit/premium.jwt);  IFS='.' ; read -r header payload signature <<< "$CONTENT" ; echo $payload | base64 --decode
-{"name":"API Security Authention","sub":"ACME Corp. inc","iss":"ACME Corp","iat":1678862106,"exp":1708862106,"tier":"premium"}
+{
+  "name": "API Security Authention",
+  "sub": "ACME Corp. inc",
+  "iss": "ACME Corp",
+  "iat": 1678862106,
+  "exp": 1708862106,
+  "tier": "premium"
+}
 
 $ CONTENT=$(cat jwt-rate-limit/standard.jwt);  IFS='.' ; read -r header payload signature <<< "$CONTENT" ; echo $payload | base64 --decode
-{"name":"API Security Authention","sub":"ACME Corp. inc","iss":"ACME Corp","iat":1678862106,"exp":1708862106,"tier":"standard"}
+{
+  "name": "API Security Authention",
+  "sub": "ACME Corp. inc",
+  "iss": "ACME Corp",
+  "iat": 1678862106,
+  "exp": 1708862106,
+  "tier": "standard"
+}
 ----
 
 * link:jwt-rate-limit/premium.jwt[premium.jwt]
