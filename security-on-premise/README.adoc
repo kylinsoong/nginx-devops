@@ -771,16 +771,61 @@ curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" http://10.1.10
 curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://10.1.10.195:8105/foo/test?uid=bbc123456
 ----
 
+== Performance Testing
+
+
+=== Prepare the Topology
+
 [source, bash]
-.**
+.*1. Create a NAT to allow backend pull docker image from internet*
 ----
-
+gcloud compute routers create nat-router-us-central1 --region=us-central1 --network=default --advertisement-mode=CUSTOM --set-advertisement-ranges=10.128.0.0/20
+gcloud compute routers nats create nat-us-central1 --router=nat-router-us-central1 --router-region=us-central1 --auto-allocate-nat-external-ips --nat-custom-subnet-ip-ranges=default
 ----
 
 [source, bash]
-.**
+.*2. Create Backend APP*
+----
+gcloud compute instances create-with-container backend-1 \
+   --zone=us-central1-a \
+   --machine-type=e2-standard-2 \
+   --network-interface=private-network-ip=10.128.0.101,subnet=default,no-address \
+   --image=projects/cos-cloud/global/images/cos-stable-101-17162-127-42 \
+   --boot-disk-size=10GB \
+   --boot-disk-type=pd-balanced \
+   --boot-disk-device-name=backend-1 \
+   --container-image=cloudadc/cafe:1.0 \
+   --container-restart-policy=always
+
+gcloud compute instances create-with-container backend-2 \
+   --zone=us-central1-a \
+   --machine-type=e2-standard-2 \
+   --network-interface=private-network-ip=10.128.0.102,subnet=default,no-address \
+   --image=projects/cos-cloud/global/images/cos-stable-101-17162-127-42 \
+   --boot-disk-size=10GB \
+   --boot-disk-type=pd-balanced \
+   --boot-disk-device-name=backend-2 \
+   --container-image=cloudadc/cafe:1.0 \
+   --container-restart-policy=always
 ----
 
+[source, bash]
+.*3. Create client VM*
+----
+gcloud compute instances create client \
+   --zone=us-central1-a \
+   --machine-type=e2-standard-4 \
+   --network-interface=private-network-ip=10.128.0.10,subnet=default,no-address \
+   --create-disk=auto-delete=yes,boot=yes,device-name=client,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230306,mode=rw,size=10,type=pd-balanced \
+   --metadata=startup-script='#!/bin/bash
+      apt-get update
+      apt-get install -y ca-certificates curl gnupg lsb-release
+      mkdir -m 0755 -p /etc/apt/keyrings
+      curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+      apt-get update
+      apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+      docker pull cloudadc/wrk:0.1'
 ----
 
 [source, bash]
