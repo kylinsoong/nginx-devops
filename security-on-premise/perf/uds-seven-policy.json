@@ -1,0 +1,36 @@
+{
+  "policy": {
+    "signature-requirements": [
+      {
+        "tag": "seven-uds-policy"
+      }
+    ],
+    "signature-sets": [
+      {
+        "name": "seven-uds-policy",
+        "block": true,
+        "signatureSet": {
+          "filter": {
+            "tagValue": "seven-uds-policy",
+            "tagFilter": "eq"
+          }
+        }
+      }
+    ],
+    "applicationLanguage": "utf-8",
+    "blocking-settings": {
+      "violations": [
+        {
+          "alarm": true,
+          "block": false,
+          "name": "VIOL_DATA_GUARD"
+        }
+      ]
+    },
+    "enforcementMode": "blocking",
+    "name": "seven-uds-policy",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    }
+  }
+}
