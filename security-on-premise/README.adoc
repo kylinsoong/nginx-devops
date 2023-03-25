@@ -773,75 +773,82 @@ curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://10.1.10.
 
 == Performance Testing
 
-
 === Prepare the Topology
 
-[source, bash]
-.*1. Create a NAT to allow backend pull docker image from internet*
-----
-gcloud compute routers create nat-router-us-central1 --region=us-central1 --network=default --advertisement-mode=CUSTOM --set-advertisement-ranges=10.128.0.0/20
-gcloud compute routers nats create nat-us-central1 --router=nat-router-us-central1 --router-region=us-central1 --auto-allocate-nat-external-ips --nat-custom-subnet-ip-ranges=default
-----
+image:perf/nap-perf-topology.png[]
 
 [source, bash]
-.*2. Create Backend APP*
+.*Start Backend*
 ----
-gcloud compute instances create-with-container backend-1 \
-   --zone=us-central1-a \
-   --machine-type=e2-standard-2 \
-   --network-interface=private-network-ip=10.128.0.101,subnet=default,no-address \
-   --image=projects/cos-cloud/global/images/cos-stable-101-17162-127-42 \
-   --boot-disk-size=10GB \
-   --boot-disk-type=pd-balanced \
-   --boot-disk-device-name=backend-1 \
-   --container-image=cloudadc/cafe:1.0 \
-   --container-restart-policy=always
-
-gcloud compute instances create-with-container backend-2 \
-   --zone=us-central1-a \
-   --machine-type=e2-standard-2 \
-   --network-interface=private-network-ip=10.128.0.102,subnet=default,no-address \
-   --image=projects/cos-cloud/global/images/cos-stable-101-17162-127-42 \
-   --boot-disk-size=10GB \
-   --boot-disk-type=pd-balanced \
-   --boot-disk-device-name=backend-2 \
-   --container-image=cloudadc/cafe:1.0 \
-   --container-restart-policy=always
+docker run -itd --rm --name app-http -p 8080:8080 cloudadc/cafe:1.0
 ----
 
 [source, bash]
-.*3. Create client VM*
+.*Count the CPU Usage and Max Active Connections*
 ----
-gcloud compute instances create client \
-   --zone=us-central1-a \
-   --machine-type=e2-standard-4 \
-   --network-interface=private-network-ip=10.128.0.10,subnet=default,no-address \
-   --create-disk=auto-delete=yes,boot=yes,device-name=client,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230306,mode=rw,size=10,type=pd-balanced \
-   --metadata=startup-script='#!/bin/bash
-      apt-get update
-      apt-get install -y ca-certificates curl gnupg lsb-release
-      mkdir -m 0755 -p /etc/apt/keyrings
-      curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-      apt-get update
-      apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-      docker pull cloudadc/wrk:0.1'
+for i in {1..1000} ; do CPU=$(top -b -n 1 | head -n 4 | grep Cpu | awk '{print $2}'); NUM=$(netstat -antulop | wc -l); echo $CPU, $NUM ; sleep 10 ; done
 ----
+
+=== NGINX Configuration
 
 [source, bash]
-.**
+----
+upstream backend {
+  zone upstream_backend 64k;
+  #server 192.168.23.10:80;
+  server 192.168.22.66:8080;
+  server 192.168.22.67:8080;
+  server 192.168.22.68:8080;
+}
+
+#app_protect_enable on;
+#app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
+
+#app_protect_user_defined_signatures "/etc/app_protect/conf/uds-illegal-file-type.json";
+#app_protect_user_defined_signatures "/etc/app_protect/conf/uds-three.json";
+app_protect_user_defined_signatures "/etc/app_protect/conf/uds-five.json";
+#app_protect_user_defined_signatures "/etc/app_protect/conf/uds-seven.json";
+
+server {
+  listen 8080;
+  status_zone server_backend;
+
+  #app_protect_enable on;
+  #app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
+
+  location / {
+    status_zone location_backend;
+
+    app_protect_enable on;
+    #app_protect_policy_file "/etc/app_protect/conf/uds-illegal-file-type-policy.json";
+    #app_protect_policy_file "/etc/app_protect/conf/uds-three-policy.json";
+    app_protect_policy_file "/etc/app_protect/conf/uds-five-policy.json";
+    #app_protect_policy_file "/etc/app_protect/conf/uds-seven-policy.json";
+
+
+    #app_protect_enable on;
+    #app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
+    #app_protect_policy_file "/etc/app_protect/conf/NginxStrictPolicy.json";
+    #app_protect_policy_file "/etc/app_protect/conf/datagurd-policy.json";
+    #app_protect_policy_file "/etc/app_protect/conf/uds-seven-policy.json";
+
+    proxy_pass http://backend;
+  }
+}
 ----
 
-----
+* link:perf/uds-three.json[perf/uds-three.json]
+* link:perf/uds-three-policy.json[perf/uds-three-policy.json]
+* link:perf/uds-five.json[perf/uds-five.json]
+* link:perf/uds-five-policy.json[perf/uds-five-policy.json]
+* link:perf/uds-seven.json[perf/uds-seven.json]
+* link:perf/uds-seven-policy.json[perf/uds-seven-policy.json]
+
+=== Implement Performance Test
 
 [source, bash]
-.**
+----
+for i in {1..4} ; do docker run --rm cloudadc/wrk:0.1 -t 4 -c 200 -d 120s http://192.168.22.117:8080/uesr/test ; sleep 100 ; done
 ----
 
-----
 
-[source, bash]
-.**
-----
-
-----
