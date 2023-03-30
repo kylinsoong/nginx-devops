@@ -1,12 +1,12 @@
 = API Gateway
 :toc: manual
 
-== server 和 listen 指令
+== server
 
 === listen 指令分别监听端口、IP、及IP:端口的差异
 
 [source, bash]
-.*NGINX Configuration*
+.*1. NGINX Configuration*
 ----
 server {
     listen    9001;
@@ -21,15 +21,27 @@ server {
 }
 ----
 
+* link:gw-3.1.d/listen.conf[listen.conf]
+
 [source, bash]
-.*NGINX Listen list*
+.*2. NGINX Listen list*
 ----
 # netstat -antulop | grep nginx
 tcp        0      0 0.0.0.0:9001            0.0.0.0:*               LISTEN      1719/nginx: master   off (0.00/0/0)
 tcp        0      0 10.1.10.195:80          0.0.0.0:*               LISTEN      1719/nginx: master   off (0.00/0/0)
 ----
 
-*Conclusion*
+[source, bash]
+.*3. Test*
+----
+~]# curl http://example.com:9001
+10.1.10.195:9001
+
+~]# curl http://10.1.10.195:9001 
+10.1.10.195:9001
+----
+
+*4. Conclusion*
 
 |===
 |Configuration |Listen
@@ -44,4 +56,289 @@ tcp        0      0 10.1.10.195:80          0.0.0.0:*               LISTEN      
 |10.1.10.195:80
 |===
 
-NOTE: If both `listen 9001` and `listen 10.1.10.195:9001` exist, the NGINX listen on `0.0.0.0:9001`.
+* If both `listen 9001` and `listen 10.1.10.195:9001` exist, the NGINX listen on `0.0.0.0:9001`.
+* IP has high priority than PORT
+
+=== defaut_server
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+    listen 9002;
+    server_name "bar.com";
+}
+
+server {
+    listen 9002;
+    server_name "foo.com";
+}
+
+server {
+    listen 9003;
+    server_name "bar.com";
+}
+
+server {
+    listen 9003 default_server;
+    server_name "foo.com";
+}
+----
+
+* link:gw-3.1.d/defaut_server.conf[defaut_server.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# curl http://example.com:9002 
+from 9002 bar.com
+
+~]# curl http://example.com:9003 
+from 9003 foo.com
+----
+
+*3. Conclusion*
+
+* The `default_server` are used only can be used while `listen` and `server_name` can not route HTTP request.
+* If `listen` and `server_name` can not route HTTP request, and no `default_server`, the first server block will be used.
+
+=== Host Name Based Route
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+    listen    9004;
+    server_name "foo.example.com";
+}
+
+server {
+    listen    9004;
+    server_name "bar.example.com";
+}
+
+server {
+    listen    9004;
+    server_name "zoo.example.com";
+}
+----
+
+* link:gw-3.1.d/server_name.conf[server_name.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# curl  -H "Host: foo.example.com" http://10.1.10.195:9004 
+from foo.example.com
+
+~]# curl  -H "Host: bar.example.com" http://10.1.10.195:9004 
+from bar.example.com
+
+~]# curl  -H "Host: zoo.example.com" http://10.1.10.195:9004 
+from zoo.example.com
+----
+
+*3. Conclusion*
+
+* The `server_name` match HTTP Request Header `Host`, which can be used as Host Based Route.
+
+=== Host Name Based Route(catch-all, multi)
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+    listen    9005;
+    server_name _;
+}
+
+server {
+    listen    9005;
+    server_name  a.example.com  b.example.com  c.example.com  *.example.com;
+}
+----
+
+* link:gw-3.1.d/server_name_empty.conf[server_name_empty.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# for i in a b c d ; do curl  -H "Host: $i.example.com" http://10.1.10.195:9005 ; echo ; done
+from multi, a.example.com
+from multi, b.example.com
+from multi, c.example.com
+from multi, d.example.com
+
+~]# for i in a b c d ; do curl  -H "Host: $i.example.org" http://10.1.10.195:9005 ; echo ; done
+from catch-all, a.example.org
+from catch-all, b.example.org
+from catch-all, c.example.org
+from catch-all, d.example.org
+----
+
+*3. Conclusion*
+
+* The `server_name` can match multiple host, the "_" catch all.
+
+=== Host Name Based Route(wildcard, regular expressions)
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+    listen    9006;
+    server_name *.example.com;
+}
+
+server {
+    listen    9006;
+    server_name test.*;
+}
+
+server {
+    listen    9006;
+    server_name  ~^(?<user>.+)\.example\.net$;
+}
+----
+
+* link:gw-3.1.d/server_name_regular.conf[server_name_regular.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# curl  -H "Host: test.com" http://10.1.10.195:9006 
+from test.*, test.com
+
+~]# curl  -H "Host: test.example.com" http://10.1.10.195:9006 
+from *.example.com, test.example.com
+
+~]# curl  -H "Host: test.example.net" http://10.1.10.195:9006 
+from test.*, test.example.net
+
+~]# curl  -H "Host: user1.example.net" http://10.1.10.195:9006
+from regular expressions names, user1.example.net
+----
+
+*3. Conclusion*
+
+* starting with wildcard has high priority than ending with
+* wildcard has high priority than regular expression
+
+=== HTTPS 服务的监听
+
+[source, bash]
+.*1. Configurtion*
+----
+server {
+    listen              9007 ssl;
+    server_name         example.com;
+    ssl_certificate     gw-3.1.d/crt/example.com.crt;
+    ssl_certificate_key gw-3.1.d/crt/example.com.key;
+    ssl_password_file   gw-3.1.d/crt/example.com.pass;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+}
+----
+
+* link:gw-3.1.d/listen-ssl.conf[listen-ssl.conf]
+* link:gw-3.1.d/crt/example.com.crt[example.com.crt]
+* link:gw-3.1.d/crt/example.com.key[example.com.key]
+* link:gw-3.1.d/crt/example.com.pass[example.com.pass]
+
+[source, bash]
+.*2. Test*
+----
+~]# curl --cacert example.com.crt https://example.com:9007 
+from 9007 ssl
+----
+
+*3. Conclusion*
+
+* NGINX can be used SSL offload.
+
+=== IPv6 服务监听
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+    listen    [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008 ipv6only=on;
+    server_name example.com;
+}
+
+server {
+    listen    9009;
+    listen    [::]:9009;
+    server_name example.com;
+}
+----
+
+* link:gw-3.1.d/listen-ipv6.conf[listen-ipv6.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# curl -g -6 http://[fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008
+from [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008
+
+~]# curl -g -6 http://[fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9009
+from [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9009
+
+~]# curl http://10.1.10.195:9009
+from 10.1.10.195:9009
+----
+
+*3. Conclusion*
+
+* Nginx can listen on specific nic ipv6 address
+* Nginx can listen on dual-stack(IPv4, Ipv6) on all L3 IP address from all L2 nics.
+
+== location
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
