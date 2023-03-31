@@ -539,16 +539,311 @@ ttcp -t -u -p 9042 10.1.10.195
 
 == Health Check
 
-[source, bash]
-.**
-----
-
-----
+=== HTTP 被动健康检查
 
 [source, bash]
-.**
+.*1. Configuration*
+----
+upstream backendHTTP1 {
+  zone upstream_backendHTTP1 64k;
+  server 10.1.20.203:8080 max_fails=3 fail_timeout=3s;
+  server 10.1.20.204:8080 max_fails=3 fail_timeout=3s;
+}
 ----
 
+* link:gw-health.d/http1.conf[gw-health.d/http1.conf]
+
+[source, bash]
+.*2. Test*
+----
+for i in {1..10} ; do curl http://10.1.10.195:9051/test ; done
+----
+
+=== HTTP 主动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+  listen 9052;
+  location / {
+    health_check interval=10 passes=2 fails=3;
+    proxy_pass http://backendHTTP2;
+  }
+}
+----
+
+* link:gw-health.d/http2.conf[gw-health.d/http2.conf]
+
+[source, bash]
+.*2. Test*
+----
+for i in {1..10} ; do curl http://10.1.10.195:9052/test ; done
+----
+
+[source, bash]
+.*3. Verify*
+----
+$ curl -s http://10.1.10.195:8080/api/8/http/upstreams/backendHTTP2 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 29,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+{
+  "server": "10.1.20.204:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 29,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+----
+
+=== HTTP 主动健康检查(自定义返回内容)
+
+[source, bash]
+.*1. Configuration*
+----
+match server_ok {
+    status 200-399;
+    body ~ "health";
+}
+
+server {
+  listen 9053;
+  location / {
+    health_check interval=10 passes=2 fails=3 uri=/health match=server_ok;
+    proxy_pass http://backendHTTP3;
+  }
+}
+----
+
+link:gw-health.d/http3.conf[gw-health.d/http3.conf]
+
+[source, bash]
+.*2. Test*
+----
+for i in {1..10} ; do curl http://10.1.10.195:9053/test ; done
+----
+
+[source, bash]
+.*3. Verify*
+----
+$ curl -s http://10.1.10.195:8080/api/8/http/upstreams/backendHTTP3 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 49,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+{
+  "server": "10.1.20.204:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 49,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+----
+
+=== gRPC 主动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+  listen 9054 http2;
+  location / {
+    health_check type=grpc grpc_status=12;
+    grpc_pass grpc://backendgRPC1;
+  }
+}
+----
+
+* link:gw-health.d/grpc.conf[gw-health.d/grpc.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ curl -s http://10.1.10.195:8080/api/8/http/upstreams/backendgRPC1 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:8009",
+  "state": "up",
+  "health_checks": {
+    "checks": 33,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+{
+  "server": "10.1.20.204:8009",
+  "state": "up",
+  "health_checks": {
+    "checks": 33,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+----
+
+=== TCP 被动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backendTCP1 {
+  zone upstream_backendTCP1 64k;
+  server 10.1.20.203:8080 max_fails=2 fail_timeout=30s slow_start=30s;
+  server 10.1.20.204:8080 max_fails=2 fail_timeout=30s slow_start=30s;
+}
+----
+
+* link:gw-health.d/stream/tcp1.conf[gw-health.d/stream/tcp1.conf]
+
+[source, bash]
+.*2. Test*
+----
+for i in {1..10} ; do curl http://10.1.10.195:9055/test ; done
+----
+
+=== TCP 主动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+  listen 9056;
+  status_zone server_backendTCP2;
+  proxy_pass  backendTCP2;
+  health_check interval=10 passes=2 fails=3;
+  health_check_timeout 5s;
+}
+----
+
+* link:gw-health.d/stream/tcp2.conf[gw-health.d/stream/tcp2.conf]
+
+[source, bash]
+.*2. Test*
+----
+for i in {1..10} ; do curl http://10.1.10.195:9056/test ; done
+----
+
+[source, bash]
+.*3. Verify*
+----
+$ curl -s http://10.1.10.195:8080/api/8/stream/upstreams/backendTCP2 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 31,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+{
+  "server": "10.1.20.204:8080",
+  "state": "up",
+  "health_checks": {
+    "checks": 31,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+----
+
+=== UDP 被动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backendUDP1 {
+  zone upstream_backendUDP1 64k;
+  server 10.1.20.203:5001 max_fails=2 fail_timeout=30s;
+  server 10.1.20.204:5001 max_fails=2 fail_timeout=30s;
+}
+----
+
+[source, bash]
+.*2. Check*
+----
+$ curl -s http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP1 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:5001",
+  "state": "up",
+  "health_checks": {
+    "checks": 0,
+    "fails": 0,
+    "unhealthy": 0
+  }
+}
+{
+  "server": "10.1.20.204:5001",
+  "state": "up",
+  "health_checks": {
+    "checks": 0,
+    "fails": 0,
+    "unhealthy": 0
+  }
+}
+
+----
+
+=== UDP 主动健康检查
+
+[source, bash]
+.*1. Configuration*
+----
+server {
+  listen 9058 udp;
+  status_zone server_backendUDP2;
+  proxy_pass  backendUDP2;
+  health_check interval=20 passes=2 fails=2 udp;
+}
+----
+
+[source, bash]
+.*2. Check*
+----
+$ curl -s http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP2 -H 'accept: application/json' | jq '.peers[] | {server, state, health_checks}'
+{
+  "server": "10.1.20.203:5001",
+  "state": "up",
+  "health_checks": {
+    "checks": 6,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
+{
+  "server": "10.1.20.204:5001",
+  "state": "up",
+  "health_checks": {
+    "checks": 6,
+    "fails": 0,
+    "unhealthy": 0,
+    "last_passed": true
+  }
+}
 ----
 
 == Request Persistence

@@ -1,0 +1,12 @@
+upstream backendUDP1 {
+  zone upstream_backendUDP1 64k;
+  server 10.1.20.203:5001;
+  server 10.1.20.204:5001;
+}
+
+server {
+  listen 9052 udp;
+  status_zone server_backendUDP1;
+  proxy_pass  backendUDP1;
+}
+
