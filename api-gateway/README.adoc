@@ -782,6 +782,8 @@ upstream backendUDP1 {
 }
 ----
 
+* link:gw-health.d/stream/udp1.conf[gw-health.d/stream/udp1.conf]
+
 [source, bash]
 .*2. Check*
 ----
@@ -819,6 +821,8 @@ server {
   health_check interval=20 passes=2 fails=2 udp;
 }
 ----
+
+* link:gw-health.d/stream/udp2.conf[gw-health.d/stream/udp2.conf]
 
 [source, bash]
 .*2. Check*
