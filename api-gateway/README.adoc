@@ -21,7 +21,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/listen.conf[listen.conf]
+* link:gw-server.d/listen.conf[listen.conf]
 
 [source, bash]
 .*2. NGINX Listen list*
@@ -85,7 +85,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/defaut_server.conf[defaut_server.conf]
+* link:gw-server.d/defaut_server.conf[defaut_server.conf]
 
 [source, bash]
 .*2. Test*
@@ -123,7 +123,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/server_name.conf[server_name.conf]
+* link:gw-server.d/server_name.conf[server_name.conf]
 
 [source, bash]
 .*2. Test*
@@ -158,7 +158,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/server_name_empty.conf[server_name_empty.conf]
+* link:gw-server.d/server_name_empty.conf[server_name_empty.conf]
 
 [source, bash]
 .*2. Test*
@@ -201,7 +201,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/server_name_regular.conf[server_name_regular.conf]
+* link:gw-server.d/server_name_regular.conf[server_name_regular.conf]
 
 [source, bash]
 .*2. Test*
@@ -232,18 +232,18 @@ from regular expressions names, user1.example.net
 server {
     listen              9007 ssl;
     server_name         example.com;
-    ssl_certificate     gw-3.1.d/crt/example.com.crt;
-    ssl_certificate_key gw-3.1.d/crt/example.com.key;
-    ssl_password_file   gw-3.1.d/crt/example.com.pass;
+    ssl_certificate     gw-server.d/crt/example.com.crt;
+    ssl_certificate_key gw-server.d/crt/example.com.key;
+    ssl_password_file   gw-server.d/crt/example.com.pass;
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 }
 ----
 
-* link:gw-3.1.d/listen-ssl.conf[listen-ssl.conf]
-* link:gw-3.1.d/crt/example.com.crt[example.com.crt]
-* link:gw-3.1.d/crt/example.com.key[example.com.key]
-* link:gw-3.1.d/crt/example.com.pass[example.com.pass]
+* link:gw-server.d/listen-ssl.conf[listen-ssl.conf]
+* link:gw-server.d/crt/example.com.crt[example.com.crt]
+* link:gw-server.d/crt/example.com.key[example.com.key]
+* link:gw-server.d/crt/example.com.pass[example.com.pass]
 
 [source, bash]
 .*2. Test*
@@ -273,7 +273,7 @@ server {
 }
 ----
 
-* link:gw-3.1.d/listen-ipv6.conf[listen-ipv6.conf]
+* link:gw-server.d/listen-ipv6.conf[listen-ipv6.conf]
 
 [source, bash]
 .*2. Test*
@@ -292,6 +292,76 @@ from 10.1.10.195:9009
 
 * Nginx can listen on specific nic ipv6 address
 * Nginx can listen on dual-stack(IPv4, Ipv6) on all L3 IP address from all L2 nics.
+
+=== gRPC 服务监听
+
+[source, bash]
+.*1. Configurtaion*
+----
+server {
+  listen 9041 http2;
+}
+----
+
+* link:gw-type.d/grpc.conf[gw-type.d/grpc.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# echo "ADDRESS=10.1.10.195:9041" > address
+~]# docker run --env-file ./address cloudadc/grpc-go-greeting:0.1 greeter_client "NGINX"
+2023/03/31 02:52:18 Greeting: Hello NGINX
+----
+
+=== TCP 服务监听
+
+[source, bash]
+.*1. Backend*
+----
+ttcp -r
+ttcp -r
+----
+
+[source, bash]
+.*2. Configurtaion*
+----
+server {
+  listen 9042;
+}
+----
+
+* link:gw-type.d/stream/tcp.conf[gw-type.d/stream/tcp.conf]
+
+[source, bash]
+.*3. Test*
+----
+ttcp -t -p 9042 10.1.10.195
+----
+
+=== UDP 服务监听
+
+[source, bash]
+.*1. Backend*
+----
+ttcp -r -u
+ttcp -r -u
+----
+
+[source, bash]
+.*2. Configurtaion*
+----
+server {
+  listen 9042 udp;
+}
+----
+
+* link:gw-type.d/stream/udp.conf[gw-type.d/stream/udp.conf]
+
+[source, bash]
+.*3. Test*
+----
+ttcp -t -u -p 9042 10.1.10.195
+----
 
 == location
 
@@ -329,6 +399,142 @@ from 10.1.10.195:9009
 .**
 ----
 
+----
+
+== Service Type
+
+=== HTTP
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backendHTTP {
+  zone upstream_backendHTTP 64k;
+  server 10.1.20.203:8080;
+  server 10.1.20.204:8080;
+}
+
+server {
+  listen 9040;
+  status_zone server_backendHTTP;
+  location / {
+    status_zone location_backendHTTP;
+    proxy_pass http://backendHTTP;
+  }
+}
+----
+
+* link:gw-type.d/http.conf[gw-type.d/http.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ curl http://10.1.10.195:9040/test -I
+HTTP/1.1 200 OK
+Server: nginx/1.23.2
+Date: Fri, 31 Mar 2023 02:36:27 GMT
+Content-Type: text/plain
+Content-Length: 147
+Connection: keep-alive
+Expires: Fri, 31 Mar 2023 02:36:26 GMT
+Cache-Control: no-cache
+----
+
+=== gRPC
+
+[source, bash]
+.*1. Configurtaion*
+----
+upstream backendgRPC {
+  zone upstream_backendgRPC 64k;
+  server 10.1.20.203:8009;
+  server 10.1.20.204:8009;
+}
+
+server {
+  listen 9041 http2;
+  status_zone server_backendgRPC;
+  location / {
+    status_zone location_backendgRPC;
+    grpc_pass grpc://backendgRPC;
+  }
+}
+----
+
+* link:gw-type.d/grpc.conf[gw-type.d/grpc.conf]
+
+[source, bash]
+.*2. Test*
+----
+~]# echo "ADDRESS=10.1.10.195:9041" > address
+~]# docker run --env-file ./address cloudadc/grpc-go-greeting:0.1 greeter_client "NGINX"
+2023/03/31 02:52:18 Greeting: Hello NGINX
+----
+
+=== TCP
+
+[source, bash]
+.*1. Backend*
+----
+ttcp -r
+ttcp -r
+----
+
+[source, bash]
+.*2. Configurtaion*
+----
+upstream backendTCP {
+  zone upstream_backendTCP 64k;
+  server 10.1.20.203:5001;
+  server 10.1.20.204:5001;
+}
+
+server {
+  listen 9042;
+  status_zone server_backendTCP;
+  proxy_pass  backendTCP;
+}
+----
+
+* link:gw-type.d/stream/tcp.conf[gw-type.d/stream/tcp.conf]
+
+[source, bash]
+.*3. Test*
+----
+ttcp -t -p 9042 10.1.10.195
+----
+
+=== UDP
+
+[source, bash]
+.*1. Backend*
+----
+ttcp -r -u
+ttcp -r -u
+----
+
+[source, bash]
+.*2. Configurtaion*
+----
+upstream backendUDP {
+  zone upstream_backendUDP 64k;
+  server 10.1.20.203:5001;
+  server 10.1.20.204:5001;
+}
+
+server {
+  listen 9042 udp;
+  status_zone server_backendUDP;
+  proxy_pass  backendUDP;
+}
+----
+
+* link:gw-type.d/stream/udp.conf[gw-type.d/stream/udp.conf]
+
+[source, bash]
+.*3. Test*
+----
+ttcp -t -u -p 9042 10.1.10.195
 ----
 
 == Health Check
