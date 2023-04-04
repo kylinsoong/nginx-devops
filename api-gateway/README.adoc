@@ -891,3 +891,9 @@ $ curl -s http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP2 -H 'accept:
 ----
 
 ----
+
+== API Gateway
+
+=== Content Caching
+
+link:cache.adoc[Content Caching]

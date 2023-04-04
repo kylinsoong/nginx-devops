@@ -1,0 +1,20 @@
+= API Gateway - Content Caching
+:toc: manual
+
+== OSData App
+
+[source, bash]
+.*Start*
+----
+docker run -it --rm --name osdata -p 8090:8090 cloudadc/osdata:1.0.0 
+----
+
+[source, bash]
+.*Test*
+----
+for i in {1..5} ; do curl http://127.0.0.1:8090/images/$i.png -I ; done
+for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.docx -I ; done
+for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pptx -I ; done
+for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pdf -I ; done
+for i in {1..3} ; do curl http://127.0.0.1:8090/vedio/$i.mp4 -I ; done
+----
