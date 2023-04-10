@@ -6,15 +6,287 @@
 [source, bash]
 .*Start*
 ----
-docker run -it --rm --name osdata -p 8090:8090 cloudadc/osdata:1.0.0 
+docker run -it --rm --name osdata -p 8090:8090 cloudadc/osdata:1.0.1 
 ----
 
 [source, bash]
 .*Test*
 ----
-for i in {1..5} ; do curl http://127.0.0.1:8090/images/$i.png -I ; done
+http://127.0.0.1:8090
+for i in {1..10} ; do curl http://127.0.0.1:8090/images/$i.png -I ; done
 for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.docx -I ; done
 for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pptx -I ; done
 for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pdf -I ; done
-for i in {1..3} ; do curl http://127.0.0.1:8090/vedio/$i.mp4 -I ; done
+for i in {1..4} ; do curl http://127.0.0.1:8090/vedio/$i.mp4 -I ; done
+for i in {1..10} ; do curl http://127.0.0.1:8090/html/$i.html -I ; done
 ----
+
+== Specifying Which Requests to Cache
+
+=== proxy_cache_min_uses
+
+[source, bash]
+.*1. Continute access http request 5 times*
+----
+$ for i in {1..6} ; do curl -s http://10.1.20.204:7001/html/1.html -I | grep X-Proxy-Cache; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: HIT
+----
+
+[source, bash]
+.*2. View the cached content*
+----
+/data/nginx/cache/
+|-- 0
+|   `-- 2f
+|	`-- 589db6285db9d2b221991093581102f0
+----
+
+=== proxy_cache_methods
+
+[source, bash]
+.*1. Continute access http request 5 times*
+----
+for i in {1..5} ; do curl http://10.1.20.204:7001/html/user.html -X PUT ; done 
+----
+
+*2. View the cached content*
+
+There is no content cached.
+
+== Limiting or Disabling Caching
+
+=== proxy_cache_valid
+
+[source, bash]
+.*1. Configuration*
+----
+proxy_cache_valid 200 304 2m;
+proxy_cache_valid any 1m;
+----
+
+[source, bash]
+.*2. Test return 200*
+----
+$ for i in {1..6} ; do curl -s http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: HIT
+----
+
+=== proxy_cache_bypass
+
+[source, bash]
+.*Configuration*
+----
+proxy_cache_bypass $cookie_nocache $cookie_comment $arg_nocache $arg_comment $http_cachepurge;
+----
+
+[source, bash]
+.*1. Test Cookie nocache*
+----
+$ curl -s http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: HIT
+
+$ curl -s --cookie "nocache=1" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+
+$ curl -s --cookie "nocache=0" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: HIT
+
+$ curl -s --cookie "nocache=any" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+----
+
+[source, bash]
+.*2. Test nocache parameter*
+----
+$ curl -s http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: HIT
+
+$ curl -s http://10.1.20.204:7001/html/10.html?nocache=1 -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+
+$ curl -s http://10.1.20.204:7001/html/10.html?nocache=0 -I | grep X-Proxy-Cache
+X-Proxy-Cache: MISS
+
+$ curl -s http://10.1.20.204:7001/html/10.html?nocache=any -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+----
+
+[source, bash]
+.*3. Test HTTP Header*
+----
+$ curl -s http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: HIT
+
+$ curl -s -H "cachepurge: 1" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+
+$ curl -s -H "cachepurge: 0" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: HIT
+
+$ curl -s -H "cachepurge: any" http://10.1.20.204:7001/html/10.html -I | grep X-Proxy-Cache
+X-Proxy-Cache: BYPASS
+----
+
+=== proxy_no_cache
+
+[source, bash]
+.*Configuration*
+----
+proxy_no_cache $cookie_notcache $arg_notcache $http_authorization;
+----
+
+NOTE: `proxy_no_cache` is used to specify which requests should not be cached by Nginx. If a request matches the conditions specified in proxy_no_cache, Nginx will not cache the response, even if caching is enabled for the corresponding location.
+
+[source, bash]
+.*1. Test cookie notcache*
+----
+$ for i in {1..6} ; do curl -s --cookie "notcache=1" http://10.1.20.204:7001/html/1.html -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+
+$ for i in {1..6} ; do curl -s --cookie "notcache=any" http://10.1.20.204:7001/html/1.html -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+----
+
+[source, bash]
+.*2. Test Parameter notcache*
+----
+$ for i in {1..6} ; do curl -s http://10.1.20.204:7001/html/1.html?notcache=1 -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+
+$ for i in {1..6} ; do curl -s http://10.1.20.204:7001/html/1.html?notcache=any -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+----
+
+[source, bash]
+.*3. Test Http Request Variable*
+----
+$ for i in {1..6} ; do curl -s -H "authorization: YWRtaW46YWRtaW4K" http://10.1.20.204:7001/html/1.html -I | grep X-Proxy-Cache ; done
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+X-Proxy-Cache: MISS
+----
+
+== Purging Content From The Cache
+
+[source, bash]
+.*1. Trigger the Content Cache*
+----
+for j in {1..5} ; do for i in {1..6} ; do curl -s http://10.1.20.204:7001/html/$j.html ; done ; done
+----
+
+[source, bash]
+.*2. Check the Cache Content*
+----
+/data/nginx/cache/
+|-- 0
+|   `-- 2f
+|       `-- 589db6285db9d2b221991093581102f0
+|-- 1
+|   `-- 16
+|       `-- 2ad064b44bc1d4e173875927df5ea161
+|-- 2
+|   `-- 64
+|       `-- b80c469e3cfd6c68f675a01e0799d642
+|-- b
+|   `-- ed
+|       `-- 33a66204dce6ea778cff6e9c07bededb
+`-- c
+    `-- 71
+        `-- 7fe06fcb24ad18e1b804c50362b1071c
+
+10 directories, 5 files
+----
+
+[source, bash]
+.*3. Purging One*
+----
+$ curl -X PURGE http://10.1.20.204:7001/html/4.html -I
+HTTP/1.1 204 No Content
+Server: nginx/1.23.2
+Date: Mon, 10 Apr 2023 10:17:23 GMT
+Connection: keep-alive
+----
+
+[source, bash]
+.*4. Check the Cache Content*
+----
+/data/nginx/cache/
+|-- 0
+|   `-- 2f
+|       `-- 589db6285db9d2b221991093581102f0
+|-- 1
+|   `-- 16
+|       `-- 2ad064b44bc1d4e173875927df5ea161
+|-- 2
+|   `-- 64
+|-- b
+|   `-- ed
+|       `-- 33a66204dce6ea778cff6e9c07bededb
+`-- c
+    `-- 71
+        `-- 7fe06fcb24ad18e1b804c50362b1071c
+
+10 directories, 4 files
+----
+
+[source, bash]
+.*5. Purging All*
+----
+$ curl -X PURGE http://10.1.20.204:7001/* -I
+HTTP/1.1 204 No Content
+Server: nginx/1.23.2
+Date: Mon, 10 Apr 2023 10:19:55 GMT
+Connection: keep-alive
+----
+
+[source, bash]
+.*6. Check the Cache Content*
+----
+/data/nginx/cache/
+|-- 0
+|   `-- 2f
+|-- 1
+|   `-- 16
+|-- 2
+|   `-- 64
+|-- b
+|   `-- ed
+`-- c
+    `-- 71
+
+10 directories, 0 files
+----
+

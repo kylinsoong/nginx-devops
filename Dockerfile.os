@@ -7,11 +7,17 @@ ADD tmp/2.png /app/os/images
 ADD tmp/3.png /app/os/images
 ADD tmp/4.png /app/os/images
 ADD tmp/5.png /app/os/images
+ADD tmp/6.png /app/os/images
+ADD tmp/7.png /app/os/images
+ADD tmp/8.png /app/os/images
+ADD tmp/9.png /app/os/images
+ADD tmp/10.png /app/os/images
 
 WORKDIR /app/os/vedio
 ADD tmp/1.mp4 /app/os/vedio
 ADD tmp/2.mp4 /app/os/vedio
 ADD tmp/3.mp4 /app/os/vedio
+ADD tmp/4.mp4 /app/os/vedio
 
 WORKDIR /app/os/docs
 ADD tmp/1.docx /app/os/docs
@@ -35,6 +41,9 @@ ADD tmp/7.html /app/os/html
 ADD tmp/8.html /app/os/html
 ADD tmp/9.html /app/os/html
 ADD tmp/10.html /app/os/html
+
+WORKDIR /app/os
+COPY api-gateway/cache/index.html /app/os
 
 
 COPY api-gateway/cache/backend.conf /etc/nginx/conf.d/
