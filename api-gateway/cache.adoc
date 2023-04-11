@@ -290,3 +290,165 @@ Connection: keep-alive
 10 directories, 0 files
 ----
 
+== Byte-Range Caching
+
+=== Basic Byte-Range Caching Configuration
+
+[source, bash]
+.*1. Configuration*
+----
+    location /vedio {
+        slice             2m;
+        proxy_cache       objectstoragecache;
+        proxy_cache_key   $scheme$proxy_host$request_uri$slice_range;
+        proxy_cache_min_uses 3;
+        proxy_set_header  Range $slice_range;
+        proxy_cache_valid 200 206 1h;
+        proxy_cache_valid any 1m;
+        add_header X-Proxy-Cache $upstream_cache_status;
+        proxy_pass http://images.gateway.io:8090;
+    }
+----
+
+[source, bash]
+.*2. Check the Cache Content*
+----
+/data/nginx/cache/
+
+0 directories, 0 files
+----
+
+[source, bash]
+.*3. Access the Vedio File*
+----
+curl  -s http://10.1.20.204:7001/vedio/1.mp4 -o 1.mp4
+----
+
+[source, bash]
+.*4. Check the Cache Content*
+----
+/data/nginx/cache/
+|-- 5
+|   `-- c1
+|	`-- 3da38738db3c55ed7740346a56027c15
+|-- 7
+|   `-- 56
+|	`-- 07a5b06f5fdfabc3a72415f90f35a567
+|-- 9
+|   `-- 52
+|	`-- d5f97a53843566f3b1a5775aa2c29529
+|-- a
+|   `-- ad
+|	`-- 66e1be52dc636e8508580dfcb3a87ada
+|-- d
+|   `-- d4
+|	`-- 91c3fbad018c4f4d7e45408b67ca5d4d
+`-- e
+    `-- af
+	`-- 0d05ec5233c55f1aba16260cdb9edafe
+
+12 directories, 6 files
+----
+
+=== Performance Comparision
+
+[source, bash]
+.*1. Execute Performance Comparision Request*
+----
+$ for i in {1..6}; do curl -w "@cache/curl-format.txt" -o /dev/null -s http://10.1.20.204:7001/vedio/1.mp4 ;echo; done
+     time_namelookup:  0.005493s
+        time_connect:  0.005932s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.005986s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.008753s
+                     ----------
+          time_total:  0.461682s
+
+     time_namelookup:  0.000360s
+        time_connect:  0.002648s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.002684s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.005103s
+                     ----------
+          time_total:  0.443665s
+
+     time_namelookup:  0.000400s
+        time_connect:  0.002707s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.002744s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.004909s
+                     ----------
+          time_total:  0.367407s
+
+     time_namelookup:  0.000352s
+        time_connect:  0.000734s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.000766s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.001100s
+                     ----------
+          time_total:  0.175896s
+
+     time_namelookup:  0.000422s
+        time_connect:  0.001986s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.002015s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.002301s
+                     ----------
+          time_total:  0.171978s
+
+     time_namelookup:  0.000411s
+        time_connect:  0.002200s
+     time_appconnect:  0.000000s
+    time_pretransfer:  0.002232s
+       time_redirect:  0.000000s
+  time_starttransfer:  0.002511s
+                     ----------
+          time_total:  0.109206s
+----
+
+* link:cache/curl-format.tx[curl-format.tx]
+* Total 6 request mp4 file 6 times, the first 3 times mp4 not cached on NGINX, the second 3 times mp4 cached on NGINX.
+
+*2. How silce size affect total time*
+
+|===
+|Time(s) |no-cache |slice(1m) |slice(5m) |slice(10m)
+
+|time_connect
+|0.001744
+|0.000615
+|0.002200
+|0.000690
+
+|time_pretransfer
+|0.001789
+|0.000684
+|0.002232
+|0.000722
+
+|time_starttransfer
+|0.004375
+|0.000990
+|0.002511
+|0.002443
+
+|time_total
+|0.496134
+|0.201303
+|0.109206
+|0.182252
+|===
+
+NOTE: HIT Cache can increase performance, the slice size can affect the total time spend.
+
+[source, bash]
+.**
+----
+
+----
+
