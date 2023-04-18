@@ -3,6 +3,8 @@
 
 == OSData App
 
+=== Run Local
+
 [source, bash]
 .*Start*
 ----
@@ -19,6 +21,19 @@ for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pptx -I ; done
 for i in {1..3} ; do curl http://127.0.0.1:8090/docs/$i.pdf -I ; done
 for i in {1..4} ; do curl http://127.0.0.1:8090/vedio/$i.mp4 -I ; done
 for i in {1..10} ; do curl http://127.0.0.1:8090/html/$i.html -I ; done
+----
+
+=== Access OSData App Via NGINX
+
+*NGINX Configuration*
+
+* link:cache/catch.conf[catch.conf]
+* link:cache/batch.sh[batch.sh]
+
+[source, bash]
+.*Run Batch Test*
+----
+./cache/batch.sh 10.1.20.204 7001
 ----
 
 == Specifying Which Requests to Cache

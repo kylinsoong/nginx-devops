@@ -145,7 +145,28 @@ $ curl "http://10.1.10.195:8101/bar?a=<script>&b=1234"
     Request Headers: host: [backend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*] 
 ----
 
-== 通用型防护能力
+== Default Policy
+
+[source, bash]
+.*NGINX Configuration*
+----
+server {
+    listen    8101;
+    server_name ap.example.com;
+
+    status_zone status_app;
+
+    location /foo {
+        status_zone status_app_foo;
+        app_protect_enable on;
+        proxy_pass http://backend;
+    }
+}
+----
+
+* link:default-policy/app.conf[app.conf]
+* link:default-policy/NginxDefaultPolicy.json[NginxDefaultPolicy.json]
+
 
 === SQL Injection
 
@@ -171,7 +192,195 @@ $ curl http://10.1.10.195:8101/foo?../../../test
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 458779997830158493<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-== 自定义策略
+== Basic Function
+
+=== Policy Enforcement Modes
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+server {
+    listen    8001;
+    server_name ap.example.com;
+
+    status_zone status_app;
+
+    location /foo {
+        status_zone status_basic-function-transparen_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicyTransparent.json";
+        proxy_pass http://backend;
+    }
+
+}
+----
+
+* link:basic-function/basic-function-transparent.conf[basic-function-transparent.conf]
+
+[source, json]
+.*2. Policy Configuration*
+----
+{
+    "policy" : {
+        "name": "app_protect_default_policy_transparent",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "transparent"
+    }
+}
+----
+
+* link:basic-function/NginxDefaultPolicyTransparent.json[NginxDefaultPolicyTransparent.json]
+
+[source, bash]
+.*3. Test Access the application*
+----
+$ curl http://ap.example.com:8001/foo?arg=%3Cscript%3E -I
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 163
+Connection: keep-alive
+Expires: Tue, 18 Apr 2023 02:39:55 GMT
+Cache-Control: no-cache
+----
+
+=== whitelist ips
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+server {
+    listen    8002;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-whitelist-ips;
+
+    location /foo {
+        status_zone status_basic-function-whitelist-ips_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/whitelist-ips.json";
+        proxy_pass http://backend;
+    }
+
+}
+----
+
+* link:basic-function/basic-function-whitelist-ips.conf[basic-function-whitelist-ips.conf]
+
+[source, json]
+.*2. Policy Configuration*
+----
+{
+    "policy" : {
+        "name": "app_protect_whitelist-ips",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_BLACKLISTED_IP",
+                    "alarm": true,
+                    "block": true
+                }
+            ]
+        },
+        "whitelist-ips":[
+            {
+                "blockRequests": "never",
+                "neverLogRequests": false,
+                "ipAddress": "10.1.20.0",
+                "ipMask": "255.255.255.0"
+            },
+            {
+                "blockRequests": "always",
+                "ipAddress": "10.1.10.0",
+                "ipMask": "255.255.255.0"
+            }
+        ]
+    }
+}
+----
+
+* link:basic-function/whitelist-ips.json[whitelist-ips.json]
+
+[source, bash]
+.*3. Test Access the application*
+----
+$ curl http://ap.example.com:8002/foo 
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1420924589091138864<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== TD
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+
+----
+
+
+[source, bash]
+.*2. Policy Configuration*
+----
+
+----
+
+[source, bash]
+.*3. Test Access the application*
+----
+
+----
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+
+----
+
+
+[source, bash]
+.*2. Policy Configuration*
+----
+
+----
+
+[source, bash]
+.*3. Test Access the application*
+----
+
+----
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+
+----
+
+
+[source, bash]
+.*2. Policy Configuration*
+----
+
+----
+
+[source, bash]
+.*3. Test Access the application*
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
+
+[source, bash]
+.**
+----
+
+----
 
 === 文件类型防护
 
