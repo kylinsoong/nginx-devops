@@ -311,81 +311,261 @@ $ curl http://ap.example.com:8002/foo
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1420924589091138864<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
-=== TD
+=== HTTP Compliance
 
 [source, bash]
 .*1. NGINX Configuration*
 ----
+server {
+    listen    8003;
+    server_name ap.example.com;
 
+    status_zone status_basic-function-http-protocols;
+
+    location /foo {
+        status_zone status_basic-function-http-protocols_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/http-protocols.json";
+        proxy_pass http://backend;
+    }
+}
 ----
 
+* link:basic-function/basic-function-http-protocols.conf[basic-function-http-protocols.conf]
 
-[source, bash]
+
+[source, json]
 .*2. Policy Configuration*
 ----
-
+{
+    "policy": {
+        "name": "policy_http-protocols",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_HTTP_PROTOCOL",
+                    "alarm": true,
+                    "block": true
+                }
+            ],
+            "http-protocols": [
+                {
+                    "description": "Header name with no header value",
+                    "enabled": true
+                },
+                {
+                    "description": "Chunked request with Content-Length header",
+                    "enabled": true
+                },
+                {
+                    "description": "Check maximum number of parameters",
+                    "enabled": true,
+                    "maxParams": 5
+                },
+                {
+                    "description": "Check maximum number of headers",
+                    "enabled": true,
+                    "maxHeaders": 20
+                },
+                {
+                    "description": "Body in GET or HEAD requests",
+                    "enabled": true
+                },
+                {
+                    "description": "Bad multipart/form-data request parsing",
+                    "enabled": true
+                },
+                {
+                    "description": "Bad multipart parameters parsing",
+                    "enabled": true
+                },
+                {
+                    "description": "Unescaped space in URL",
+                    "enabled": true
+                }
+            ]
+        }
+    }
+}
 ----
+
+* basic-function/http-protocols.json[http-protocols.json]
 
 [source, bash]
 .*3. Test Access the application*
 ----
+$ curl -X GET http://ap.example.com:8003/foo -d '{"a": "123"}'
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9494561180607330346<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 
+$ curl "http://ap.example.com:8003/foo?a=1&b=2&c=3&d=4&f=5&e=6" 
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7236449093212069700<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
+
+=== Allowed Methods
 
 [source, bash]
 .*1. NGINX Configuration*
 ----
+server {
+    listen    8004;
+    server_name ap.example.com;
 
+    status_zone status_basic-function-allow-methods;
+
+    location /foo {
+        status_zone status_basic-function-allow-methods_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/allow-methods.json";
+        proxy_pass http://backend;
+    }
+}
 ----
 
+* link:basic-function/basic-function-allow-methods.conf[basic-function-allow-methods.conf]
 
-[source, bash]
+[source, json]
 .*2. Policy Configuration*
 ----
-
+{
+    "policy": {
+        "name": "allow-methods",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_METHOD",
+                    "alarm": true,
+                    "block": true
+                }
+            ]
+        },
+        "methods": [
+            {
+                "name": "GET"
+            },
+            {
+                "name": "POST"
+            },
+            {
+                "name": "HEAD"
+            },
+            {
+                "name": "PATCH"
+            },
+            {
+                "name": "DELETE"
+            },
+            {
+                "name": "OPTIONS"
+            }
+        ]
+    }
+}
 ----
+
+* link:basic-function/allow-methods.json[allow-methods.json]
 
 [source, bash]
 .*3. Test Access the application*
 ----
-
+$ curl -X PURGE http://ap.example.com:8004/foo 
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 9494561180607330856<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
+
+=== Data Guard - Masking
 
 [source, bash]
 .*1. NGINX Configuration*
 ----
+server {
+    listen    8005;
+    server_name ap.example.com;
 
+    status_zone status_basic-function-data-guard;
+
+    location /foo {
+        status_zone status_basic-function-data-guard_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/data-guard.json";
+        proxy_pass http://backend;
+    }
+}
 ----
 
+* link:basic-function/basic-function-data-guard.conf[basic-function-data-guard.conf]
 
-[source, bash]
+[source, json]
 .*2. Policy Configuration*
 ----
-
+{
+    "policy": {
+        "name": "policy_data-guard",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_DATA_GUARD",
+                    "alarm": true,
+                    "block": false
+                }
+            ]
+        },
+        "data-guard": {
+            "enabled": true,
+            "maskData": true,
+            "creditCardNumbers": true,
+            "usSocialSecurityNumbers": true,
+            "enforcementMode": "ignore-urls-in-list",
+            "enforcementUrls": []
+        }
+    }
+}
 ----
+
+* link:basic-function/data-guard.json[data-guard.json]
 
 [source, bash]
 .*3. Test Access the application*
 ----
-
+$ curl "http://ap.example.com:8005/foo?uid=aa943f3b895a1cffcc2686ec45ea6ea6&id=123-45-6789"
+Server address: 172.17.0.2:8080
+Server name: 7ff64897648f
+Date: 18/Apr/2023:09:54:11 +0000
+URI: /foo?uid=aa943f3b895a1cffcc2686ec45ea6ea6&id=*******6789
+Request ID: 7b971fca24e6769faf89b112b77e0dc8
 ----
+
+=== File Types
 
 [source, bash]
-.**
+.*1. NGINX Configuration*
+----
+server {
+    listen    8006;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-filetypes;
+
+    location /foo {
+        status_zone status_basic-function-filetypes_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/filetype.json" ;
+        proxy_pass http://backend;
+    }
+}
 ----
 
-----
+* link:basic-function/basic-function-filetypes.conf[basic-function-filetypes.conf]
 
-[source, bash]
-.**
-----
-
-----
-
-=== 文件类型防护
-
-[source, bash]
-.*1. 创建 /etc/app_protect/conf/filetype.json 文件*
+[source, json]
+.*2. Policy Configuration*
 ----
 {
     "name": "external_resources_file_types",
@@ -434,22 +614,65 @@ $ curl http://ap.example.com:8002/foo
 }
 ----
 
-[source, bash]
-.*2. 配置 NGINX*
-----
-    location /foo {
-        status_zone status_app_foo;
-        app_protect_enable on;
-        app_protect_policy_file "/etc/app_protect/conf/filetype.json" ;
-        proxy_pass http://backend;
-    }
-----
+* link:basic-function/filetype.json[filetype.json]
 
 [source, bash]
-.*3. 测试*
+.*3. Test Access the application*
 ----
-$ curl http://10.1.10.195:8101/foo?../../../test ; echo
-<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17432556761964223971<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+$ curl http://ap.example.com:8006/foo?../../../test
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1795473679286067210<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
+----
+
+=== Blocking Page Customization
+
+[source, bash]
+.*1. NGINX Configuration*
+----
+server {
+    listen    8007;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-custompage;
+
+    location /foo {
+        status_zone status_basic-function-custompage_foo;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/custompage.json" ;
+        proxy_pass http://backend;
+    }
+}
+----
+
+* link:basic-function/basic-function-custompage.conf[basic-function-custompage.conf]
+
+[source, json]
+.*2. Policy Configuration*
+----
+ {
+    "policy": {
+        "name": "blocking_page",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "response-pages": [
+            {
+                "responseContent": "<html><head><title>\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd</title></head><body>\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd\uff0c\u8bf7\u8054\u7cfb\u7ba1\u7406\u5458\u3002<br>\u7ba1\u7406\u5458\u8054\u7cfb\u65b9\u5f0f\uff1a\u7535\u8bdd\uff1a188 8888 8888\uff0c\u90ae\u4ef6\uff1aadmin@acme.com<br><br>\u60a8\u7684\u652f\u6301 ID \u662f\uff1a <%TS.request.ID()%><br><br><a href='javascript:history.back();'>[\u70b9\u51fb\u8fd4\u56de\u5230\u521d\u59cb\u9875\u9762]</a></body></html>",
+                "responseHeader": "HTTP/1.1 200 OK\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nConnection: close",
+                "responseActionType": "custom",
+                "responsePageType": "default"
+            }
+        ]
+    }
+}
+----
+
+* basic-function/custompage.json[custompage.json]
+
+[source, bash]
+.*3. Test Access the application*
+----
+$ curl http://ap.example.com:8007/foo?a=%3Cscript%3E
+<html><head><title>您的请求被拒绝</title></head><body>您的请求被拒绝，请联系管理员。<br>管理员联系方式：电话：188 8888 8888，邮件：admin@acme.com<br><br>您的支持 ID 是： 17214049392884189884<br><br><a href='javascript:history.back();'>[点击返回到初始页面]</a></body></html>
 ----
 
 == Microservice Application Protection
