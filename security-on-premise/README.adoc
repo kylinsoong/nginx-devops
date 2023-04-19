@@ -13,7 +13,6 @@ docker run -itd --rm --name app-http -p 8080:8080 cloudadc/cafe:1.0
 
 NOTE: Use the `ip addr add 10.1.10.172/24 dev ens33` to add multiple IP addresses to single Linux network interface.
 
-
 === 安装
 
 [source, bash]
@@ -114,7 +113,7 @@ systemctl start nginx
 [source, bash]
 .*2. 访问 foo*
 ----
-$ curl "http://10.1.10.195:8101/foo?a="<script>"&b=1234"
+$ curl "http://ap.example.com:8101/foo?a="<script>"&b=1234"
 
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023060088<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
@@ -122,7 +121,7 @@ $ curl "http://10.1.10.195:8101/foo?a="<script>"&b=1234"
 [source, bash]
 .*3. 访问 bar*
 ----
-$ curl "http://10.1.10.195:8101/bar?a=<script>&b=1234"
+$ curl "http://ap.example.com:8101/bar?a=<script>&b=1234"
 <br>F5 Demo App
 
     Request URI: /bar?a=<script>&b=1234
@@ -132,9 +131,9 @@ $ curl "http://10.1.10.195:8101/bar?a=<script>&b=1234"
     Server Port: 8080
     Server Hostname: 10.1.10.181
 
-    Client IP: 10.1.10.195
+    Client IP: ap.example.com
     Client Port: 36154
-    Client Hostname: 10.1.10.195
+    Client Hostname: ap.example.com
 
     Session: 872FD68450D1948D778F0604A11DA9FC
 
@@ -172,7 +171,7 @@ server {
 
 [source, bash]
 ----
-$ curl http://10.1.10.195:8101/foo?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+
+$ curl http://ap.example.com:8101/foo?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023062128<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -180,7 +179,7 @@ $ curl http://10.1.10.195:8101/foo?hfsagrs=-1+union+select+user%2Cpassword+from+
 
 [source, bash]
 ----
-$ curl http://10.1.10.195:8101/foo?a="<script>"
+$ curl http://ap.example.com:8101/foo?a="<script>"
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 1386739387023062638<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html
 ----
 
@@ -188,7 +187,7 @@ $ curl http://10.1.10.195:8101/foo?a="<script>"
 
 [source, bash]
 ----
-$ curl http://10.1.10.195:8101/foo?../../../test
+$ curl http://ap.example.com:8101/foo?../../../test
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 458779997830158493<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -693,7 +692,7 @@ $ curl http://ap.example.com:8007/foo?a=%3Cscript%3E
 .*Test*
 ----
 // normal request
-$ curl http://10.1.10.195:8108/foo/test345
+$ curl http://ap.example.com:8108/foo/test345
 Server address: 172.17.0.2:8080
 Server name: f25377244e7c
 Date: 14/Mar/2023:03:12:41 +0000
@@ -701,7 +700,7 @@ URI: /foo/test345
 Request ID: 46f465862262b61ab6903b8539a873b2
 
 // risk request
-$ curl http://10.1.10.195:8108/foo/test123
+$ curl http://ap.example.com:8108/foo/test123
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7231362286722259098<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -721,7 +720,7 @@ $ curl http://10.1.10.195:8108/foo/test123
 .*Test*
 ----
 // normal request
-$ curl http://10.1.10.195:8109/foo/test -X GET
+$ curl http://ap.example.com:8109/foo/test -X GET
 Server address: 172.17.0.2:8080
 Server name: f25377244e7c
 Date: 14/Mar/2023:03:24:36 +0000
@@ -729,7 +728,7 @@ URI: /foo/test
 Request ID: c71d7200e7ceb9baadc952880d3886f4
 
 // risk request
-$ curl http://10.1.10.195:8109/foo/test -X DELETE
+$ curl http://ap.example.com:8109/foo/test -X DELETE
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 7231362286722261648<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -749,7 +748,7 @@ $ curl http://10.1.10.195:8109/foo/test -X DELETE
 .*Test*
 ----
 // normal request
-$ curl http://10.1.10.195:8110/foo/test
+$ curl http://ap.example.com:8110/foo/test
 Server address: 172.17.0.2:8080
 Server name: f25377244e7c
 Date: 14/Mar/2023:03:42:49 +0000
@@ -757,7 +756,7 @@ URI: /foo/test
 Request ID: 5db73250b5aa912944c7976044c04179
 
 // risk request
-$ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110/foo/test
+$ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://ap.example.com:8110/foo/test
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 17170494753228555214<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -776,7 +775,7 @@ $ curl -H "X-Forwarded-For: select * from t where 1 =1 " http://10.1.10.195:8110
 [source, bash]
 .*Test*
 ----
-$ curl -H "Host: localhost" http://10.1.10.195:8111/foo/test
+$ curl -H "Host: localhost" http://ap.example.com:8111/foo/test
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404772574<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -795,7 +794,7 @@ $ curl -H "Host: localhost" http://10.1.10.195:8111/foo/test
 [source, bash]
 .*Test*
 ----
-$ curl http://10.1.10.195:8112/foo/uploads/11.jsp
+$ curl http://ap.example.com:8112/foo/uploads/11.jsp
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106457781<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -814,7 +813,7 @@ $ curl http://10.1.10.195:8112/foo/uploads/11.jsp
 [source, bash]
 .*Test*
 ----
-$ curl "http://10.1.10.195:8113/foo?user=admin&password=default"
+$ curl "http://ap.example.com:8113/foo?user=admin&password=default"
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106459311<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -833,7 +832,7 @@ $ curl "http://10.1.10.195:8113/foo?user=admin&password=default"
 [source, bash]
 .*Test*
 ----
-$ curl http://10.1.10.195:8114/foo/test.db
+$ curl http://ap.example.com:8114/foo/test.db
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404771045<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -852,7 +851,7 @@ $ curl http://10.1.10.195:8114/foo/test.db
 [source, bash]
 .*Test*
 ----
-$ curl http://10.1.10.195:8115/foo/test.php
+$ curl http://ap.example.com:8115/foo/test.php
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 13307705552404771555<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -871,7 +870,7 @@ $ curl http://10.1.10.195:8115/foo/test.php
 [source, bash]
 .*Test*
 ----
-$ curl http://10.1.10.195:8116/foo/redis-admin/redis
+$ curl http://ap.example.com:8116/foo/redis-admin/redis
 <html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br><br>Your support ID is: 8188505589106461351<br><br><a href='javascript:history.back();'>[Go Back]</a></body></html>
 ----
 
@@ -919,20 +918,30 @@ Modify the `/etc/app_protect/conf/NginxApiSecurityPolicy.json`, either set the *
 [source, bash]
 .*Test PUT Method*
 ----
-$ curl http://10.1.10.195:8301/fruits/ -X PUT
+$ curl http://ap.example.com:8301/fruits/ -X PUT
 {"supportID": "8359298969457788494"}
 ----
 
 [source, bash]
-.**
+.*Test Illegal Parameter Type*
 ----
+$ curl -s -X GET http://ap.example.com:8301/fruits/1000001 | jq
+{
+  "id": 1000001,
+  "name": "Cherry",
+  "color": "purple",
+  "weight": 1.1
+}
 
+$ curl http://ap.example.com:8301/fruits/1000001a
+{"supportID": "359518515106664610"}
 ----
 
 [source, bash]
-.**
+.*Test Not Allowed Path*
 ----
-
+$ curl http://ap.example.com:8301/fruits/apple
+{"supportID": "12700781576205154700"}
 ----
 
 == Binary Content filter
@@ -970,7 +979,7 @@ server {
 [source, bash]
 .*3. Test*
 ----
-$ echo "ADDRESS=10.1.10.195:8401" > grpc-binary-content-filer/address 
+$ echo "ADDRESS=ap.example.com:8401" > grpc-binary-content-filer/address 
 
 $ docker run --env-file ./grpc-binary-content-filer/address cloudadc/grpc-go-greeting:0.1 greeter_client "This should be blocked <script>evil_script()</script>" 
 2023/03/15 10:46:39 could not greet: rpc error: code = 7 desc = Blocked by NGINX App Protect, Your support ID is 3607562325608046964
@@ -1054,7 +1063,7 @@ server {
 .*4. Test*
 ----
 // normal request
-$ curl -H "Authorization: Bearer `cat jwt-validation/api.security.jwt`" http://10.1.10.195:8106/foo/test?uid=bbc123456
+$ curl -H "Authorization: Bearer `cat jwt-validation/api.security.jwt`" http://ap.example.com:8106/foo/test?uid=bbc123456
 Server address: 172.17.0.2:8080
 Server name: 90b887d7843e
 Date: 15/Mar/2023:07:39:00 +0000
@@ -1062,7 +1071,7 @@ URI: /foo/test?uid=bbc123456
 Request ID: 1100f4eebf0df7dd0167a668aa73c74d
 
 // risk request
-$ curl -H "Authorization: Bearer abcded" http://10.1.10.195:8106/foo/test?uid=bbc123456 -I
+$ curl -H "Authorization: Bearer abcded" http://ap.example.com:8106/foo/test?uid=bbc123456 -I
 HTTP/1.1 401 Unauthorized
 Server: nginx/1.23.2
 Date: Wed, 15 Mar 2023 07:41:30 GMT
@@ -1107,7 +1116,7 @@ server {
 .*3. Test*
 ----
 // normal request
-$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123456
+$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://ap.example.com:8107/foo/test?uid=bbc123456
 Server address: 172.17.0.2:8080
 Server name: 90b887d7843e
 Date: 15/Mar/2023:08:15:23 +0000
@@ -1115,7 +1124,7 @@ URI: /foo/test?uid=bbc123456
 Request ID: 7d35c94bf02956c7785147357b2f5799
 
 // risk request
-$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://10.1.10.195:8107/foo/test?uid=bbc123 ; echo
+$ curl -H "Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`" http://ap.example.com:8107/foo/test?uid=bbc123 ; echo
 uid not align with security token governance uid
 ----
 
@@ -1198,9 +1207,9 @@ server {
 [source, bash]
 .*3. Test*
 ----
-curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" http://10.1.10.195:8105/foo/test?uid=bbc123456
+curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" http://ap.example.com:8105/foo/test?uid=bbc123456
 
-curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://10.1.10.195:8105/foo/test?uid=bbc123456
+curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://ap.example.com:8105/foo/test?uid=bbc123456
 ----
 
 == Performance Testing
