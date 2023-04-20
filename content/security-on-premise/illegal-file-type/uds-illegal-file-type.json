@@ -1,0 +1,24 @@
+{
+  "signatures": [
+    {
+      "accuracy": "medium",
+      "attackType": {
+        "name": "Other Application Activity"
+      },
+      "description": "Medium accuracy user defined signature with tag",
+      "name": "Illegal File Type",
+      "risk": "medium",
+      "rule": "re2:\"/\\.(php|asp|aspx)$/U\"; nocase; objonly;",
+      "signatureType": "request",
+      "systems": [
+        {
+          "name": "Microsoft Windows"
+        },
+        {
+          "name": "Unix/Linux"
+        }
+      ]
+    }
+  ],
+  "tag": "illegal-file-type"
+}

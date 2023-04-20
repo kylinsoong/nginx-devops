@@ -1,0 +1,884 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API SIX · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../SEC.html" />
+    
+    
+    <link rel="prev" href="cache.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    QUICK START
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../DEV.html">
+            
+                <a href="../DEV.html">
+            
+                    
+                    DEVELOPMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    API GATEWAY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    CONTENT CACHE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="APISIX.html">
+            
+                <a href="APISIX.html">
+            
+                    
+                    API SIX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../SEC.html">
+            
+                <a href="../SEC.html">
+            
+                    
+                    SECURITY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../security-on-premise/">
+            
+                <a href="../security-on-premise/">
+            
+                    
+                    ON-PREM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../security/">
+            
+                <a href="../security/">
+            
+                    
+                    CONTAINER
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >API SIX</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="api-gateway">API Gateway</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_apisix">APISIX</a>
+<ul class="sectlevel2">
+<li><a href="#_install">Install</a></li>
+<li><a href="#_expose_api">Expose API</a></li>
+<li><a href="#_protect_api">Protect API</a></li>
+<li><a href="#_observe_api">Observe API</a></li>
+<li><a href="#_cache_api_responses">Cache API responses</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_apisix">APISIX</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install">Install</h3>
+<div class="listingblock">
+<div class="title"><strong>Install via Docker</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git <span class="hljs-built_in">clone</span> https://github.com/apache/apisix-docker.git
+<span class="hljs-built_in">cd</span> apisix-docker/example
+
+$ docker-compose -p docker-apisix up <span class="hljs-_">-d</span>
+Starting docker-apisix_web2_1             ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_etcd_1             ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_web1_1             ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_apisix-dashboard_1 ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_grafana_1          ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_prometheus_1       ... <span class="hljs-keyword">done</span>
+Starting docker-apisix_apisix_1           ... <span class="hljs-keyword">done</span>
+
+docker run <span class="hljs-_">-d</span> -p 9411:9411 openzipkin/zipkin</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Review the forwarded port</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ docker ps
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS              PORTS                                                                                                      NAMES
+505f0f78a9e3   apache/apisix:3.0.0-debian            <span class="hljs-string">&quot;/docker-entrypoint.&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:9080-&gt;9080/tcp, 0.0.0.0:9091-9092-&gt;9091-9092/tcp, 0.0.0.0:9180-&gt;9180/tcp, 0.0.0.0:9443-&gt;9443/tcp   docker-apisix_apisix_1
+a63ab0371486   grafana/grafana:7.3.7                 <span class="hljs-string">&quot;/run.sh&quot;</span>                7 hours ago   Up About a minute   0.0.0.0:3000-&gt;3000/tcp                                                                                     docker-apisix_grafana_1
+5a55bc3db0d3   nginx:1.19.0-alpine                   <span class="hljs-string">&quot;/docker-entrypoint.&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:9081-&gt;80/tcp                                                                                       docker-apisix_web1_1
+92593051ed37   prom/prometheus:v2.25.0               <span class="hljs-string">&quot;/bin/prometheus --c&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:9090-&gt;9090/tcp                                                                                     docker-apisix_prometheus_1
+2614d1ecab09   nginx:1.19.0-alpine                   <span class="hljs-string">&quot;/docker-entrypoint.&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:9082-&gt;80/tcp                                                                                       docker-apisix_web2_1
+89eedf60d85c   apache/apisix-dashboard:2.13-alpine   <span class="hljs-string">&quot;/usr/local/apisix-d&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:9000-&gt;9000/tcp                                                                                     docker-apisix_apisix-dashboard_1
+121<span class="hljs-built_in">cd</span>74f273d   bitnami/etcd:3.4.15                   <span class="hljs-string">&quot;/opt/bitnami/script&#x2026;&quot;</span>   7 hours ago   Up About a minute   0.0.0.0:2379-&gt;2379/tcp, 2380/tcp                                                                           docker-apisix_etcd_1</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">PORT</th>
+<th class="tableblock halign-left valign-top">NOTE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2379</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dashboard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9081</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9082</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web 2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grafana</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prometheus</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9180</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin API</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9080</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9091-9092</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9443</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">*Check the services/routes/updateam</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> services routes upstreams ; <span class="hljs-keyword">do</span> curl <span class="hljs-string">&quot;http://127.0.0.1:9180/apisix/admin/<span class="hljs-variable">$i</span>/&quot;</span> -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> ; <span class="hljs-keyword">done</span>
+{<span class="hljs-string">&quot;list&quot;</span>:[],<span class="hljs-string">&quot;total&quot;</span>:0}
+{<span class="hljs-string">&quot;list&quot;</span>:[],<span class="hljs-string">&quot;total&quot;</span>:0}
+{<span class="hljs-string">&quot;list&quot;</span>:[],<span class="hljs-string">&quot;total&quot;</span>:0}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Login into dashboard</strong></p>
+</div>
+<div class="paragraph">
+<p>Login into dashboard via <code>http://localhost:9000/</code>, use <code>admin</code> as username, <code>admin</code> as password.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_expose_api">Expose API</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Create upstream</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl <span class="hljs-string">&quot;http://127.0.0.1:9180/apisix/admin/upstreams/1&quot;</span> -H <span class="hljs-string">&quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;type&quot;: &quot;roundrobin&quot;,
+  &quot;nodes&quot;: {
+    &quot;httpbin.org:80&quot;: 1
+  }
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following API can be used to query/delete upstream:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Query: curl -s &quot;http://127.0.0.1:9180/apisix/admin/upstreams/1&quot; -H &quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot;</p>
+</li>
+<li>
+<p>Delete: curl &quot;http://127.0.0.1:9180/apisix/admin/upstreams/1&quot; -H &quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot; -X DELETE</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Create Route</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl <span class="hljs-string">&quot;http://127.0.0.1:9180/apisix/admin/routes/1&quot;</span> -H <span class="hljs-string">&quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;methods&quot;: [&quot;GET&quot;],
+  &quot;host&quot;: &quot;example.com&quot;,
+  &quot;uri&quot;: &quot;/anything/*&quot;,
+  &quot;upstream_id&quot;: &quot;1&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following API can be used to query/delete routes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Query: curl &quot;http://127.0.0.1:9180/apisix/admin/routes/1&quot; -H &quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot;</p>
+</li>
+<li>
+<p>Delete: curl &quot;http://127.0.0.1:9180/apisix/admin/routes/1&quot; -H &quot;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&quot; -X DELETE</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl -i -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span> -H <span class="hljs-string">&quot;Host: example.com&quot;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protect_api">Protect API</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Create Route with rate limit</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl -i http://127.0.0.1:9180/apisix/admin/routes/2 -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+    &quot;uri&quot;: &quot;/anything/*&quot;,
+    &quot;plugins&quot;: {
+        &quot;limit-count&quot;: {
+            &quot;count&quot;: 2,
+            &quot;time_window&quot;: 60,
+            &quot;rejected_code&quot;: 503,
+            &quot;key_type&quot;: &quot;var&quot;,
+            &quot;key&quot;: &quot;remote_addr&quot;
+        }
+    },
+  &quot;upstream_id&quot;: &quot;1&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..3} ; <span class="hljs-keyword">do</span> curl -I -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span> ; <span class="hljs-keyword">done</span>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 417
+Connection: keep-alive
+X-RateLimit-Limit: 2
+X-RateLimit-Remaining: 1
+Date: Thu, 17 Nov 2022 08:17:53 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>
+Server: APISIX/3.0.0
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 417
+Connection: keep-alive
+X-RateLimit-Limit: 2
+X-RateLimit-Remaining: 0
+Date: Thu, 17 Nov 2022 08:17:55 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>
+Server: APISIX/3.0.0
+
+HTTP/1.1 503 Service Temporarily Unavailable
+Date: Thu, 17 Nov 2022 08:17:55 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 269
+Connection: keep-alive
+Server: APISIX/3.0.0</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Due to exceed the max limit count of 2 request in 1 minutes, the 3rd request get 503.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_observe_api">Observe API</h3>
+<div class="sect3">
+<h4 id="_log">Log</h4>
+<div class="listingblock">
+<div class="title"><strong>1. Create Route</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://127.0.0.1:9180/apisix/admin/routes/2 -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;plugins&quot;: {
+    &quot;http-logger&quot;: {
+      &quot;uri&quot;: &quot;http://mockbin.org/bin/54371e43-38dd-4b5f-ad71-fde82cecf1c5&quot;
+    },
+    &quot;limit-count&quot;: {
+      &quot;count&quot;: 100,
+      &quot;time_window&quot;: 60,
+      &quot;rejected_code&quot;: 503,
+      &quot;key_type&quot;: &quot;var&quot;,
+      &quot;key&quot;: &quot;remote_addr&quot;
+    }
+  },
+  &quot;upstream_id&quot;: &quot;1&quot;,
+  &quot;uri&quot;: &quot;/anything/*&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Make some test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..100} ; <span class="hljs-keyword">do</span> curl -I -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span> -H <span class="hljs-string">&quot;Host: test.logger.com&quot;</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Check from http logger</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/apisix-obs-logger.png" alt="apisix obs logger.png"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prometheus">Prometheus</h4>
+<div class="listingblock">
+<div class="title"><strong>1. Create Route</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://127.0.0.1:9180/apisix/admin/routes/2 -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;plugins&quot;: {
+    &quot;prometheus&quot;: {},
+    &quot;http-logger&quot;: {
+      &quot;uri&quot;: &quot;http://mockbin.org/bin/54371e43-38dd-4b5f-ad71-fde82cecf1c5&quot;
+    },
+    &quot;limit-count&quot;: {
+      &quot;count&quot;: 100,
+      &quot;time_window&quot;: 60,
+      &quot;rejected_code&quot;: 503,
+      &quot;key_type&quot;: &quot;var&quot;,
+      &quot;key&quot;: &quot;remote_addr&quot;
+    }
+  },
+  &quot;upstream_id&quot;: &quot;1&quot;,
+  &quot;uri&quot;: &quot;/anything/*&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Make some test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..100} ; <span class="hljs-keyword">do</span> curl -I -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span>  ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Check the Prometheus</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/apisix-obs-prometheus.png" alt="apisix obs prometheus.png"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grafana">Grafana</h4>
+<div class="listingblock">
+<div class="title"><strong>1. Make some test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..100} ; <span class="hljs-keyword">do</span> curl -I -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span>  ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2. Review Grafana Dashboard</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/apisix-obs-grafana.png" alt="apisix obs grafana.png"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_zipkin">Zipkin</h4>
+<div class="listingblock">
+<div class="title"><strong>1. Create Route</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://127.0.0.1:9180/apisix/admin/routes/2 -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;plugins&quot;: {
+    &quot;zipkin&quot;: {
+      &quot;endpoint&quot;: &quot;http://127.0.0.1:9411/api/v2/spans&quot;,
+      &quot;sample_ratio&quot;: 1
+    },
+    &quot;prometheus&quot;: {},
+    &quot;http-logger&quot;: {
+      &quot;uri&quot;: &quot;http://mockbin.org/bin/54371e43-38dd-4b5f-ad71-fde82cecf1c5&quot;
+    },
+    &quot;limit-count&quot;: {
+      &quot;count&quot;: 100,
+      &quot;time_window&quot;: 60,
+      &quot;rejected_code&quot;: 503,
+      &quot;key_type&quot;: &quot;var&quot;,
+      &quot;key&quot;: &quot;remote_addr&quot;
+    }
+  },
+  &quot;upstream_id&quot;: &quot;1&quot;,
+  &quot;uri&quot;: &quot;/anything/*&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Make one test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span>  http://127.0.0.1:9080/anything/foo?arg=10 | jq
+{
+  <span class="hljs-string">&quot;args&quot;</span>: {
+    <span class="hljs-string">&quot;arg&quot;</span>: <span class="hljs-string">&quot;10&quot;</span>
+  },
+  <span class="hljs-string">&quot;data&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;files&quot;</span>: {},
+  <span class="hljs-string">&quot;form&quot;</span>: {},
+  <span class="hljs-string">&quot;headers&quot;</span>: {
+    <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;*/*&quot;</span>,
+    <span class="hljs-string">&quot;Host&quot;</span>: <span class="hljs-string">&quot;127.0.0.1&quot;</span>,
+    <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;curl/7.64.1&quot;</span>,
+    <span class="hljs-string">&quot;X-Amzn-Trace-Id&quot;</span>: <span class="hljs-string">&quot;Root=1-6375fb9e-160ed73c536682a8569a564b&quot;</span>,
+    <span class="hljs-string">&quot;X-B3-Parentspanid&quot;</span>: <span class="hljs-string">&quot;57f5548509edb515&quot;</span>,
+    <span class="hljs-string">&quot;X-B3-Sampled&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
+    <span class="hljs-string">&quot;X-B3-Spanid&quot;</span>: <span class="hljs-string">&quot;4eb94314ed6669e1&quot;</span>,
+    <span class="hljs-string">&quot;X-B3-Traceid&quot;</span>: <span class="hljs-string">&quot;da48ba8d025ce51281056f7d958cfae4&quot;</span>,
+    <span class="hljs-string">&quot;X-Forwarded-Host&quot;</span>: <span class="hljs-string">&quot;127.0.0.1&quot;</span>
+  },
+  <span class="hljs-string">&quot;json&quot;</span>: null,
+  <span class="hljs-string">&quot;method&quot;</span>: <span class="hljs-string">&quot;GET&quot;</span>,
+  <span class="hljs-string">&quot;origin&quot;</span>: <span class="hljs-string">&quot;172.19.0.1, 111.223.104.76&quot;</span>,
+  <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;http://127.0.0.1/anything/foo?arg=10&quot;</span>
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>X-B3-Parentspanid</code>, <code>X-B3-Sampled</code>, <code>X-B3-Spanid</code>, <code>X-B3-Traceid</code> be appened to HTTP Headers.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>3 Check with the Zipkin</strong></p>
+</div>
+<div class="paragraph">
+<p>Login into <a href="http://127.0.0.1:9411/zipkin/" class="bare" target="_blank">http://127.0.0.1:9411/zipkin/</a> for tracing via either <code>X-B3-Traceid</code>, or others.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cache_api_responses">Cache API responses</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Create Route</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://127.0.0.1:9180/apisix/admin/routes/2 -H <span class="hljs-string">&apos;X-API-KEY: edd1c9f034335f136f87ad84b625c8f1&apos;</span> -X PUT <span class="hljs-_">-d</span> <span class="hljs-string">&apos;
+{
+  &quot;plugins&quot;: {
+    &quot;proxy-cache&quot;: {
+      &quot;cache_key&quot;: [
+        &quot;$uri&quot;,
+        &quot;-cache-id&quot;
+      ],
+      &quot;cache_bypass&quot;: [
+        &quot;$arg_bypass&quot;
+      ],
+      &quot;cache_method&quot;: [
+        &quot;GET&quot;
+      ],
+      &quot;cache_http_status&quot;: [
+        200
+      ],
+      &quot;hide_cache_headers&quot;: true,
+      &quot;no_cache&quot;: [
+        &quot;$arg_test&quot;
+      ]
+    },
+    &quot;zipkin&quot;: {
+      &quot;endpoint&quot;: &quot;http://127.0.0.1:9411/api/v2/spans&quot;,
+      &quot;sample_ratio&quot;: 1
+    },
+    &quot;prometheus&quot;: {},
+    &quot;http-logger&quot;: {
+      &quot;uri&quot;: &quot;http://mockbin.org/bin/54371e43-38dd-4b5f-ad71-fde82cecf1c5&quot;
+    },
+    &quot;limit-count&quot;: {
+      &quot;count&quot;: 100,
+      &quot;time_window&quot;: 60,
+      &quot;rejected_code&quot;: 503,
+      &quot;key_type&quot;: &quot;var&quot;,
+      &quot;key&quot;: &quot;remote_addr&quot;
+    }
+  },
+  &quot;upstream_id&quot;: &quot;1&quot;,
+  &quot;uri&quot;: &quot;/anything/*&quot;
+}&apos;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test Response Cache</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..3} ; <span class="hljs-keyword">do</span> sleep 0.5 ; curl -I -X GET <span class="hljs-string">&quot;http://127.0.0.1:9080/anything/foo?arg=10&quot;</span>  ; <span class="hljs-keyword">done</span>
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 99
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>
+Server: APISIX/3.0.0
+Apisix-Cache-Status: MISS
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 98
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>
+Server: APISIX/3.0.0
+Apisix-Cache-Status: HIT
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 588
+Connection: keep-alive
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 97
+Date: Thu, 17 Nov 2022 10:24:58 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>
+Server: APISIX/3.0.0
+Apisix-Cache-Status: HIT</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Refer to Response Header <code>Apisix-Cache-Status</code>, the 1st response is <code>MISS</code>, the 2nd and 3rd response is <code>HIT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title"><strong>TODO</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">TODO</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="cache.html" class="navigation navigation-prev " aria-label="Previous page: CONTENT CACHE">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../SEC.html" class="navigation navigation-next " aria-label="Next page: SECURITY">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"API SIX","level":"1.3.2","depth":2,"next":{"title":"SECURITY","level":"1.4","depth":1,"path":"SEC.adoc","ref":"SEC.adoc","articles":[{"title":"ON-PREM","level":"1.4.1","depth":2,"path":"security-on-premise/README.adoc","ref":"security-on-premise/README.adoc","articles":[]},{"title":"CONTAINER","level":"1.4.2","depth":2,"path":"security/README.adoc","ref":"security/README.adoc","articles":[]}]},"previous":{"title":"CONTENT CACHE","level":"1.3.1","depth":2,"path":"api-gateway/cache.adoc","ref":"api-gateway/cache.adoc","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"GUID":"na39","OCP_USER_ID":"ksoong-redhat.com","copyrightYear":"2023","copyrightHolder":"Kylin Soong"},"plugins":["collapsible-menu","donate","-sharing","sharing-plus","splitter","back-to-top-button","edit-link"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy Kylin Soong 2023","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"collapsible-menu":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"http://ksoong.org/docs/content/images/alipay.png","alipayText":"支付宝捐赠","button":"赞赏","title":"","wechat":"http://ksoong.org/docs/content/images/wechat.png","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"weibo":true,"linkedin":true,"google":true,"facebook":true,"all":["facebook","google","linkedin","weibo"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/kylinsoong/nginx-devops/blob/gh-pages"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"api-gateway/APISIX.adoc","mtime":"2023-03-20T08:46:55.938Z","type":"asciidoc"},"gitbook":{"version":"3.2.3","time":"2023-04-20T04:48:01.277Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-collapsible-menu/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

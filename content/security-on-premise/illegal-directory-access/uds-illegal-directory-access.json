@@ -1,0 +1,24 @@
+{
+  "signatures": [
+    {
+      "accuracy": "medium",
+      "attackType": {
+        "name": "Abuse of Functionality"
+      },
+      "description": "Medium accuracy user defined signature with tag",
+      "name": "Illegal Directory Access",
+      "risk": "medium",
+      "rule": "re2:\"/\\/images\\/|\\/media\\/|\\/uploads\\/|\\/pic\\/|\\/img\\/|\\/tmp\\/|\\/pictures\\//U\"; nocase; objonly; re2:\"/\\.(php|asp|aspx|jsp|jspx)$/U\"; nocase; objonly;",
+      "signatureType": "request",
+      "systems": [
+        {
+          "name": "Microsoft Windows"
+        },
+        {
+          "name": "Unix/Linux"
+        }
+      ]
+    }
+  ],
+  "tag": "illegal-directory-access"
+}

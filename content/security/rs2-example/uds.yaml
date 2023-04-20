@@ -1,0 +1,16 @@
+apiVersion: appprotect.f5.com/v1beta1
+kind: APUserSig
+metadata:
+  name: example-sigs
+  namespace: rs2-example
+spec:
+  signatures:
+  - accuracy: medium
+    attackType:
+      name: Brute Force Attack
+    description: Medium accuracy user defined signature with tag
+    name: RS2 Example
+    risk: medium
+    rule: valuecontent:"url=http"; plaintextonly;
+    signatureType: request
+  tag: rs2-example

@@ -1,0 +1,24 @@
+{
+  "signatures": [
+    {
+      "accuracy": "medium",
+      "attackType": {
+        "name": "Brute Force Attack"
+      },
+      "description": "Medium accuracy user defined signature with tag",
+      "name": "Illegal Request Method",
+      "risk": "medium",
+      "rule": "re2:\"/^(CONNECT|DELETE|TRACE|COPYMOVE|PUT)\\s+/\"; nocase;",
+      "signatureType": "request",
+      "systems": [
+        {
+          "name": "Microsoft Windows"
+        },
+        {
+          "name": "Unix/Linux"
+        }
+      ]
+    }
+  ],
+  "tag": "illegal-request-method"
+}

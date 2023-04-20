@@ -1,0 +1,36 @@
+{
+  "policy": {
+    "signature-requirements": [
+      {
+        "tag": "three-uds-policy"
+      }
+    ],
+    "signature-sets": [
+      {
+        "name": "three-uds-policy",
+        "block": true,
+        "signatureSet": {
+          "filter": {
+            "tagValue": "three-uds-policy",
+            "tagFilter": "eq"
+          }
+        }
+      }
+    ],
+    "applicationLanguage": "utf-8",
+    "blocking-settings": {
+      "violations": [
+        {
+          "alarm": true,
+          "block": false,
+          "name": "VIOL_DATA_GUARD"
+        }
+      ]
+    },
+    "enforcementMode": "blocking",
+    "name": "three-uds-policy",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+
+        =     -    The URI must match the specified pattern exactly.
+        ^~    -    The URI must begin with the specified pattern.
+        None  -    The URI must begin with the specified pattern.
+        ~     -    The URI must be a case-sensitive match to the specified regular expression.
+        ~*    -    The URI must be a case-insensitive match to the specified regular expression.
+        @     -    Defines a named location block.
+
+        ()    -    Match group or evaluate the content of ().
+        []    -    Match any char inside []. 
+        {}    -    Match a specific number of occurrence. eg, [0-9]{3} match 342 but not 32, {2,4} match length of 2, 3 and 4.
+
+        |     -    Or.
+        ?     -    Check for zero or one occurrence of the previous char, eg jpe?g.
+        .     -    Any char.
+        *     -    Match zero, one or more occurrence of the previous char.
+        .*    -    Match zero, one or more occurrence of any char.
+        +     -    Match one or more occurrence of the previous char.
+        !     -    Not (negative look ahead).
+
+        \     -    Escape the next char.
+        /     -    The forward slash / is used to match any sub location, including none example location /.
+
+        ^     -    Match the beginning of the text (opposite of $). By itself, ^ is a shortcut for all paths (since they all have a beginning).
+        $     -    The expression must be at the end of the evaluated text(no char/text after the match), $ is usually used at the end of a regex location expression.
+

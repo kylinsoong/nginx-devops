@@ -1,0 +1,37 @@
+{
+    "policy": {
+        "name": "policy_allow-methods",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_METHOD",
+                    "alarm": true,
+                    "block": true
+                }
+            ]
+        },
+        "methods": [
+            {
+                "name": "GET"
+            },
+            {
+                "name": "POST"
+            },
+            {
+                "name": "HEAD"
+            },
+            {
+                "name": "PATCH"
+            },
+            {
+                "name": "DELETE"
+            },
+            {
+                "name": "OPTIONS"
+            }
+        ]
+    }
+}

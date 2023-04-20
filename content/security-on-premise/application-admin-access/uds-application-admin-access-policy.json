@@ -1,0 +1,36 @@
+{
+  "policy": {
+    "signature-requirements": [
+      {
+        "tag": "application-admin-access"
+      }
+    ],
+    "signature-sets": [
+      {
+        "name": "application-admin-access",
+        "block": true,
+        "signatureSet": {
+          "filter": {
+            "tagValue": "application-admin-access",
+            "tagFilter": "eq"
+          }
+        }
+      }
+    ],
+    "applicationLanguage": "utf-8",
+    "blocking-settings": {
+      "violations": [
+        {
+          "alarm": true,
+          "block": false,
+          "name": "VIOL_DATA_GUARD"
+        }
+      ]
+    },
+    "enforcementMode": "blocking",
+    "name": "application-admin-access",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    }
+  }
+}

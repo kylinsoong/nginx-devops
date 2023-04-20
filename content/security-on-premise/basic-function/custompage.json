@@ -1,0 +1,16 @@
+ {
+    "policy": {
+        "name": "blocking_page",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "response-pages": [
+            {
+                "responseContent": "<html><head><title>\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd</title></head><body>\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd\uff0c\u8bf7\u8054\u7cfb\u7ba1\u7406\u5458\u3002<br>\u7ba1\u7406\u5458\u8054\u7cfb\u65b9\u5f0f\uff1a\u7535\u8bdd\uff1a188 8888 8888\uff0c\u90ae\u4ef6\uff1aadmin@acme.com<br><br>\u60a8\u7684\u652f\u6301 ID \u662f\uff1a <%TS.request.ID()%><br><br><a href='javascript:history.back();'>[\u70b9\u51fb\u8fd4\u56de\u5230\u521d\u59cb\u9875\u9762]</a></body></html>",
+                "responseHeader": "HTTP/1.1 200 OK\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nConnection: close",
+                "responseActionType": "custom",
+                "responsePageType": "default"
+            }
+        ]
+    }
+}

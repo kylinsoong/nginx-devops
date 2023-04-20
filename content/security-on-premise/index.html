@@ -1,0 +1,2059 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>ON-PREM · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../security/" />
+    
+    
+    <link rel="prev" href="../SEC.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    QUICK START
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../DEV.html">
+            
+                <a href="../DEV.html">
+            
+                    
+                    DEVELOPMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../api-gateway/">
+            
+                <a href="../api-gateway/">
+            
+                    
+                    API GATEWAY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../api-gateway/cache.html">
+            
+                <a href="../api-gateway/cache.html">
+            
+                    
+                    CONTENT CACHE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../api-gateway/APISIX.html">
+            
+                <a href="../api-gateway/APISIX.html">
+            
+                    
+                    API SIX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../SEC.html">
+            
+                <a href="../SEC.html">
+            
+                    
+                    SECURITY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    ON-PREM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../security/">
+            
+                <a href="../security/">
+            
+                    
+                    CONTAINER
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >ON-PREM</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="protect-application-with-nginxon-premise">Protect Application with NGINX(On-premise)</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#__">&#x5B89;&#x88C5;&#x4E0E;&#x90E8;&#x7F72;</a>
+<ul class="sectlevel2">
+<li><a href="#___2">&#x628A;&#x673A;&#x51C6;&#x5907;</a></li>
+<li><a href="#___3">&#x5B89;&#x88C5;</a></li>
+<li><a href="#___4">&#x914D;&#x7F6E;</a></li>
+<li><a href="#___5">&#x6D4B;&#x8BD5;</a></li>
+</ul>
+</li>
+<li><a href="#_default_policy">Default Policy</a>
+<ul class="sectlevel2">
+<li><a href="#_sql_injection">SQL Injection</a></li>
+<li><a href="#_cross_site_scripting">Cross Site Scripting</a></li>
+<li><a href="#___6">&#x76EE;&#x5F55;&#x904D;&#x5386;&#x9632;&#x62A4;&#x6548;&#x679C;</a></li>
+</ul>
+</li>
+<li><a href="#_basic_function">Basic Function</a>
+<ul class="sectlevel2">
+<li><a href="#_policy_enforcement_modes">Policy Enforcement Modes</a></li>
+<li><a href="#_whitelist_ips">whitelist ips</a></li>
+<li><a href="#_http_compliance">HTTP Compliance</a></li>
+<li><a href="#_allowed_methods">Allowed Methods</a></li>
+<li><a href="#_data_guard_masking">Data Guard - Masking</a></li>
+<li><a href="#_file_types">File Types</a></li>
+<li><a href="#_blocking_page_customization">Blocking Page Customization</a></li>
+</ul>
+</li>
+<li><a href="#_microservice_application_protection">Microservice Application Protection</a>
+<ul class="sectlevel2">
+<li><a href="#_filter_by_content">Filter by Content</a></li>
+<li><a href="#_illegal_request_method">Illegal Request Method</a></li>
+<li><a href="#_xff_injection">XFF Injection</a></li>
+<li><a href="#_host_localhost">Host Localhost</a></li>
+<li><a href="#_illegal_directory_access">Illegal Directory Access</a></li>
+<li><a href="#_weak_password">Weak Password</a></li>
+<li><a href="#_illegal_file_extension">Illegal File Extension</a></li>
+<li><a href="#_illegal_file_type">Illegal File Type</a></li>
+<li><a href="#_application_admin_access">Application Admin Access</a></li>
+</ul>
+</li>
+<li><a href="#_openapi_whitelist_policy">OpenAPI Whitelist Policy</a>
+<ul class="sectlevel2">
+<li><a href="#_openapi_doc">OpenAPI doc</a></li>
+<li><a href="#_whitelist_policy_configuration">Whitelist Policy Configuration</a></li>
+<li><a href="#_test_whitelist_policy">Test Whitelist Policy</a></li>
+</ul>
+</li>
+<li><a href="#_binary_content_filter">Binary Content filter</a>
+<ul class="sectlevel2">
+<li><a href="#_grpc">gRPC</a></li>
+<li><a href="#_dubbo">Dubbo</a></li>
+</ul>
+</li>
+<li><a href="#_api_security_authentication">API Security Authentication</a>
+<ul class="sectlevel2">
+<li><a href="#_jwt_validation">JWT Validation</a></li>
+<li><a href="#_jwt_dual_factor_authentication">JWT Dual Factor Authentication</a></li>
+<li><a href="#_jwt_rate_limiting">JWT Rate Limiting</a></li>
+</ul>
+</li>
+<li><a href="#_performance_testing">Performance Testing</a>
+<ul class="sectlevel2">
+<li><a href="#_prepare_the_topology">Prepare the Topology</a></li>
+<li><a href="#_nginx_configuration">NGINX Configuration</a></li>
+<li><a href="#_implement_performance_test">Implement Performance Test</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="__">&#x5B89;&#x88C5;&#x4E0E;&#x90E8;&#x7F72;</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="___2">&#x628A;&#x673A;&#x51C6;&#x5907;</h3>
+<div class="listingblock">
+<div class="title"><strong>&#x529F;&#x80FD;&#x6D4B;&#x8BD5;&#x628A;&#x673A;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -itd --rm --name app-http -p 8080:8080 cloudadc/cafe:1.0</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Use the <code>ip addr add 10.1.10.172/24 dev ens33</code> to add multiple IP addresses to single Linux network interface.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___3">&#x5B89;&#x88C5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Install NGINX</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yum localinstall nginx-plus-28-1.el7.ngx.x86_64.rpm</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Install Dependencies(perl-thrift, jq)</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yum install epel-release -y
+yum install perl-thrift -y
+yum install jq -y</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Install NGINX app protect</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yum install `ls`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rpm lists as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">app-protect-28+4.100.1-1.el7.ngx.x86_64.rpm
+app-protect-attack-signatures-2023.01.19-1.el7.ngx.x86_64.rpm
+app-protect-common-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-compiler-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-engine-10.208.1-1.el7.ngx.x86_64.rpm
+app-protect-plugin-4.100.1-1.el7.ngx.x86_64.rpm
+app-protect-threat-campaigns-2023.01.24-1.el7.ngx.x86_64.rpm
+nginx-plus-module-appprotect-28+4.100.1-1.el7.ngx.x86_64.rpm</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>4. vetify the installed rpms</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-comment"># rpm -qa | grep app-protect</span>
+app-protect-28+4.100.1-1.el7.ngx.x86_64
+app-protect-common-10.208.1-1.el7.ngx.el7.centos.x86_64
+app-protect-engine-10.208.1-1.el7.ngx.el7.centos.x86_64
+app-protect-threat-campaigns-2023.01.24-1.el7.ngx.x86_64
+app-protect-attack-signatures-2023.01.19-1.el7.ngx.x86_64
+app-protect-compiler-10.208.1-1.el7.ngx.x86_64
+app-protect-plugin-4.100.1-1.el7.ngx.x86_64
+
+<span class="hljs-comment"># rpm -qa | grep nginx</span>
+nginx-plus-28-1.el7.ngx.x86_64
+nginx-plus-module-appprotect-28+4.100.1-1.el7.ngx.x86_64</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___4">&#x914D;&#x7F6E;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. nginx.conf &#x4E2D;&#x6DFB;&#x52A0;&#x52A8;&#x6001;&#x6A21;&#x5757;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">load_module modules/ngx_http_app_protect_module.so;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. &#x5728; http/server/location &#x4E0A;&#x4E0B;&#x6587;&#x5F00;&#x542F;&#x5E94;&#x7528;&#x9632;&#x62A4;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">app_protect_<span class="hljs-built_in">enable</span> on;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. &#x5728; http/server/location &#x4E0A;&#x4E0B;&#x6587;&#x5F00;&#x542F;&#x65E5;&#x5FD7;&#xFF08;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF09;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">app_protect_security_<span class="hljs-built_in">log</span>_<span class="hljs-built_in">enable</span> on;
+app_protect_security_<span class="hljs-built_in">log</span> <span class="hljs-string">&quot;/etc/app_protect/conf/log_default.json&quot;</span> /var/<span class="hljs-built_in">log</span>/app_protect/security.log;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>4. &#x542F;&#x52A8;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">systemctl start nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___5">&#x6D4B;&#x8BD5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. &#x5728; location &#x4E0A;&#x4E0B;&#x6587;&#x5F00;&#x542F;&#x5E94;&#x7528;&#x9632;&#x62A4;</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">    location /foo {
+        status_zone status_app_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        proxy_pass http://backend;
+    }
+
+    location /bar {
+        status_zone status_app_bar;
+        proxy_pass http://backend;
+    }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. &#x8BBF;&#x95EE; foo</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-string">&quot;http://ap.example.com:8101/foo?a=&quot;</span>&lt;script&gt;<span class="hljs-string">&quot;&amp;b=1234&quot;</span>
+
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 1386739387023060088&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. &#x8BBF;&#x95EE; bar</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-string">&quot;http://ap.example.com:8101/bar?a=&lt;script&gt;&amp;b=1234&quot;</span>
+&lt;br&gt;F5 Demo App
+
+    Request URI: /bar?a=&lt;script&gt;&amp;b=1234
+    Protocol: HTTP/1.0
+
+    Server IP: 10.1.10.181
+    Server Port: 8080
+    Server Hostname: 10.1.10.181
+
+    Client IP: ap.example.com
+    Client Port: 36154
+    Client Hostname: ap.example.com
+
+    Session: 872FD68450D1948D778F0604A11DA9FC
+
+    X-Forwarded-For: null
+
+    Cookies:
+
+    Request Headers: host: [backend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_default_policy">Default Policy</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title"><strong>NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8101;
+    server_name ap.example.com;
+
+    status_zone status_app;
+
+    location /foo {
+        status_zone status_app_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="default-policy/app.conf">app.conf</a></p>
+</li>
+<li>
+<p><a href="default-policy/NginxDefaultPolicy.json">NginxDefaultPolicy.json</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_sql_injection">SQL Injection</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8101/foo?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 1386739387023062128&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cross_site_scripting">Cross Site Scripting</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8101/foo?a=<span class="hljs-string">&quot;&lt;script&gt;&quot;</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 1386739387023062638&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="___6">&#x76EE;&#x5F55;&#x904D;&#x5386;&#x9632;&#x62A4;&#x6548;&#x679C;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8101/foo?../../../<span class="hljs-built_in">test</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 458779997830158493&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_function">Basic Function</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_policy_enforcement_modes">Policy Enforcement Modes</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8001;
+    server_name ap.example.com;
+
+    status_zone status_app;
+
+    location /foo {
+        status_zone status_basic-function-transparen_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/NginxDefaultPolicyTransparent.json&quot;</span>;
+        proxy_pass http://backend;
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-transparent.conf">basic-function-transparent.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;policy&quot;</span> : {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;app_protect_default_policy_transparent&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;transparent&quot;</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/NginxDefaultPolicyTransparent.json">NginxDefaultPolicyTransparent.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8001/foo?arg=%3Cscript%3E -I
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 163
+Connection: keep-alive
+Expires: Tue, 18 Apr 2023 02:39:55 GMT
+Cache-Control: no-cache</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whitelist_ips">whitelist ips</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8002;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-whitelist-ips;
+
+    location /foo {
+        status_zone status_basic-function-whitelist-ips_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/whitelist-ips.json&quot;</span>;
+        proxy_pass http://backend;
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-whitelist-ips.conf">basic-function-whitelist-ips.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;policy&quot;</span> : {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;app_protect_whitelist-ips&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+        <span class="hljs-string">&quot;blocking-settings&quot;</span>: {
+            <span class="hljs-string">&quot;violations&quot;</span>: [
+                {
+                    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;VIOL_BLACKLISTED_IP&quot;</span>,
+                    <span class="hljs-string">&quot;alarm&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;block&quot;</span>: <span class="hljs-literal">true</span>
+                }
+            ]
+        },
+        <span class="hljs-string">&quot;whitelist-ips&quot;</span>:[
+            {
+                <span class="hljs-string">&quot;blockRequests&quot;</span>: <span class="hljs-string">&quot;never&quot;</span>,
+                <span class="hljs-string">&quot;neverLogRequests&quot;</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-string">&quot;ipAddress&quot;</span>: <span class="hljs-string">&quot;10.1.20.0&quot;</span>,
+                <span class="hljs-string">&quot;ipMask&quot;</span>: <span class="hljs-string">&quot;255.255.255.0&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;blockRequests&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,
+                <span class="hljs-string">&quot;ipAddress&quot;</span>: <span class="hljs-string">&quot;10.1.10.0&quot;</span>,
+                <span class="hljs-string">&quot;ipMask&quot;</span>: <span class="hljs-string">&quot;255.255.255.0&quot;</span>
+            }
+        ]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/whitelist-ips.json">whitelist-ips.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8002/foo
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 1420924589091138864&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_compliance">HTTP Compliance</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8003;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-http-protocols;
+
+    location /foo {
+        status_zone status_basic-function-http-protocols_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/http-protocols.json&quot;</span>;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-http-protocols.conf">basic-function-http-protocols.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;policy&quot;</span>: {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;policy_http-protocols&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+        <span class="hljs-string">&quot;blocking-settings&quot;</span>: {
+            <span class="hljs-string">&quot;violations&quot;</span>: [
+                {
+                    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;VIOL_HTTP_PROTOCOL&quot;</span>,
+                    <span class="hljs-string">&quot;alarm&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;block&quot;</span>: <span class="hljs-literal">true</span>
+                }
+            ],
+            <span class="hljs-string">&quot;http-protocols&quot;</span>: [
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Header name with no header value&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Chunked request with Content-Length header&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Check maximum number of parameters&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;maxParams&quot;</span>: <span class="hljs-number">5</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Check maximum number of headers&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;maxHeaders&quot;</span>: <span class="hljs-number">20</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Body in GET or HEAD requests&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Bad multipart/form-data request parsing&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Bad multipart parameters parsing&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                },
+                {
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Unescaped space in URL&quot;</span>,
+                    <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>
+                }
+            ]
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>basic-function/http-protocols.json[http-protocols.json]</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl -X GET http://ap.example.com:8003/foo <span class="hljs-_">-d</span> <span class="hljs-string">&apos;{&quot;a&quot;: &quot;123&quot;}&apos;</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 9494561180607330346&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;
+
+$ curl <span class="hljs-string">&quot;http://ap.example.com:8003/foo?a=1&amp;b=2&amp;c=3&amp;d=4&amp;f=5&amp;e=6&quot;</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 7236449093212069700&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_allowed_methods">Allowed Methods</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8004;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-allow-methods;
+
+    location /foo {
+        status_zone status_basic-function-allow-methods_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/allow-methods.json&quot;</span>;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-allow-methods.conf">basic-function-allow-methods.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;policy&quot;</span>: {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;allow-methods&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+        <span class="hljs-string">&quot;blocking-settings&quot;</span>: {
+            <span class="hljs-string">&quot;violations&quot;</span>: [
+                {
+                    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;VIOL_METHOD&quot;</span>,
+                    <span class="hljs-string">&quot;alarm&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;block&quot;</span>: <span class="hljs-literal">true</span>
+                }
+            ]
+        },
+        <span class="hljs-string">&quot;methods&quot;</span>: [
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;GET&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POST&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;HEAD&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;PATCH&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;DELETE&quot;</span>
+            },
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;OPTIONS&quot;</span>
+            }
+        ]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/allow-methods.json">allow-methods.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl -X PURGE http://ap.example.com:8004/foo
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 9494561180607330856&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_guard_masking">Data Guard - Masking</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8005;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-data-guard;
+
+    location /foo {
+        status_zone status_basic-function-data-guard_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/data-guard.json&quot;</span>;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-data-guard.conf">basic-function-data-guard.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;policy&quot;</span>: {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;policy_data-guard&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+        <span class="hljs-string">&quot;blocking-settings&quot;</span>: {
+            <span class="hljs-string">&quot;violations&quot;</span>: [
+                {
+                    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;VIOL_DATA_GUARD&quot;</span>,
+                    <span class="hljs-string">&quot;alarm&quot;</span>: <span class="hljs-literal">true</span>,
+                    <span class="hljs-string">&quot;block&quot;</span>: <span class="hljs-literal">false</span>
+                }
+            ]
+        },
+        <span class="hljs-string">&quot;data-guard&quot;</span>: {
+            <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">&quot;maskData&quot;</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">&quot;creditCardNumbers&quot;</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">&quot;usSocialSecurityNumbers&quot;</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;ignore-urls-in-list&quot;</span>,
+            <span class="hljs-string">&quot;enforcementUrls&quot;</span>: []
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/data-guard.json">data-guard.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-string">&quot;http://ap.example.com:8005/foo?uid=aa943f3b895a1cffcc2686ec45ea6ea6&amp;id=123-45-6789&quot;</span>
+Server address: 172.17.0.2:8080
+Server name: 7ff64897648f
+Date: 18/Apr/2023:09:54:11 +0000
+URI: /foo?uid=aa943f3b895a1cffcc2686ec45ea6ea6&amp;id=*******6789
+Request ID: 7b971fca24e6769faf89b112b77e0dc8</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_file_types">File Types</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8006;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-filetypes;
+
+    location /foo {
+        status_zone status_basic-function-filetypes_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/filetype.json&quot;</span> ;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-filetypes.conf">basic-function-filetypes.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;external_resources_file_types&quot;</span>,
+    <span class="hljs-string">&quot;template&quot;</span>: {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span>
+    },
+    <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+    <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+    <span class="hljs-string">&quot;blocking-settings&quot;</span>: {
+        <span class="hljs-string">&quot;violations&quot;</span>: [
+            {
+                <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;VIOL_FILETYPE&quot;</span>,
+                <span class="hljs-string">&quot;alarm&quot;</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">&quot;block&quot;</span>: <span class="hljs-literal">true</span>
+            }
+        ]
+    },
+    <span class="hljs-string">&quot;filetypes&quot;</span>: [
+    {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;*&quot;</span>,
+        <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;wildcard&quot;</span>,
+        <span class="hljs-string">&quot;allowed&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;checkPostDataLength&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">&quot;postDataLength&quot;</span>: <span class="hljs-number">4096</span>,
+        <span class="hljs-string">&quot;checkRequestLength&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">&quot;requestLength&quot;</span>: <span class="hljs-number">8192</span>,
+        <span class="hljs-string">&quot;checkUrlLength&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;urlLength&quot;</span>: <span class="hljs-number">2048</span>,
+        <span class="hljs-string">&quot;checkQueryStringLength&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;queryStringLength&quot;</span>: <span class="hljs-number">2048</span>,
+        <span class="hljs-string">&quot;responseCheck&quot;</span>: <span class="hljs-literal">false</span>
+    },
+    {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;pat&quot;</span>,
+        <span class="hljs-string">&quot;allowed&quot;</span>: <span class="hljs-literal">false</span>
+    },
+    {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;mat&quot;</span>,
+        <span class="hljs-string">&quot;allowed&quot;</span>: <span class="hljs-literal">false</span>
+    },
+    {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;txt&quot;</span>,
+        <span class="hljs-string">&quot;allowed&quot;</span>: <span class="hljs-literal">false</span>
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/filetype.json">filetype.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8006/foo?../../../<span class="hljs-built_in">test</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 1795473679286067210&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_blocking_page_customization">Blocking Page Customization</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    8007;
+    server_name ap.example.com;
+
+    status_zone status_basic-function-custompage;
+
+    location /foo {
+        status_zone status_basic-function-custompage_foo;
+        app_protect_<span class="hljs-built_in">enable</span> on;
+        app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/custompage.json&quot;</span> ;
+        proxy_pass http://backend;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="basic-function/basic-function-custompage.conf">basic-function-custompage.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Policy Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json"> {
+    <span class="hljs-string">&quot;policy&quot;</span>: {
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;blocking_page&quot;</span>,
+        <span class="hljs-string">&quot;template&quot;</span>: { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;POLICY_TEMPLATE_NGINX_BASE&quot;</span> },
+        <span class="hljs-string">&quot;applicationLanguage&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,
+        <span class="hljs-string">&quot;enforcementMode&quot;</span>: <span class="hljs-string">&quot;blocking&quot;</span>,
+        <span class="hljs-string">&quot;response-pages&quot;</span>: [
+            {
+                <span class="hljs-string">&quot;responseContent&quot;</span>: <span class="hljs-string">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\u60a8\u7684\u8bf7\u6c42\u88ab\u62d2\u7edd\uff0c\u8bf7\u8054\u7cfb\u7ba1\u7406\u5458\u3002&lt;br&gt;\u7ba1\u7406\u5458\u8054\u7cfb\u65b9\u5f0f\uff1a\u7535\u8bdd\uff1a188 8888 8888\uff0c\u90ae\u4ef6\uff1aadmin@acme.com&lt;br&gt;&lt;br&gt;\u60a8\u7684\u652f\u6301 ID \u662f\uff1a &lt;%TS.request.ID()%&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&apos;javascript:history.back();&apos;&gt;[\u70b9\u51fb\u8fd4\u56de\u5230\u521d\u59cb\u9875\u9762]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>,
+                <span class="hljs-string">&quot;responseHeader&quot;</span>: <span class="hljs-string">&quot;HTTP/1.1 200 OK\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nConnection: close&quot;</span>,
+                <span class="hljs-string">&quot;responseActionType&quot;</span>: <span class="hljs-string">&quot;custom&quot;</span>,
+                <span class="hljs-string">&quot;responsePageType&quot;</span>: <span class="hljs-string">&quot;default&quot;</span>
+            }
+        ]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>basic-function/custompage.json[custompage.json]</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test Access the application</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8007/foo?a=%3Cscript%3E
+&lt;html&gt;&lt;head&gt;&lt;title&gt;&#x60A8;&#x7684;&#x8BF7;&#x6C42;&#x88AB;&#x62D2;&#x7EDD;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&#x60A8;&#x7684;&#x8BF7;&#x6C42;&#x88AB;&#x62D2;&#x7EDD;&#xFF0C;&#x8BF7;&#x8054;&#x7CFB;&#x7BA1;&#x7406;&#x5458;&#x3002;&lt;br&gt;&#x7BA1;&#x7406;&#x5458;&#x8054;&#x7CFB;&#x65B9;&#x5F0F;&#xFF1A;&#x7535;&#x8BDD;&#xFF1A;188 8888 8888&#xFF0C;&#x90AE;&#x4EF6;&#xFF1A;admin@acme.com&lt;br&gt;&lt;br&gt;&#x60A8;&#x7684;&#x652F;&#x6301; ID &#x662F;&#xFF1A; 17214049392884189884&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[&#x70B9;&#x51FB;&#x8FD4;&#x56DE;&#x5230;&#x521D;&#x59CB;&#x9875;&#x9762;]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_microservice_application_protection">Microservice Application Protection</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_filter_by_content">Filter by Content</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;content:\&quot;test123\&quot;; nocase;&quot;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="filter-by-content/uds-filter-content.json">uds-filter-content.json</a></p>
+</li>
+<li>
+<p><a href="filter-by-content/uds-filter-content-policy.json">uds-filter-content-policy.json</a></p>
+</li>
+<li>
+<p><a href="filter-by-content/uds-filter-content.conf">uds-filter-content.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">// normal request
+$ curl http://ap.example.com:8108/foo/<span class="hljs-built_in">test</span>345
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:12:41 +0000
+URI: /foo/<span class="hljs-built_in">test</span>345
+Request ID: 46f465862262b61ab6903b8539a873b2
+
+// risk request
+$ curl http://ap.example.com:8108/foo/<span class="hljs-built_in">test</span>123
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 7231362286722259098&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_illegal_request_method">Illegal Request Method</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/^(CONNECT|DELETE|TRACE|COPYMOVE|PUT)\\s+/\&quot;; nocase;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="illegal-request-method/uds-illegal-request-method.json">uds-illegal-request-method.json</a></p>
+</li>
+<li>
+<p><a href="illegal-request-method/uds-illegal-request-method-policy.json">uds-illegal-request-method-policy.json</a></p>
+</li>
+<li>
+<p><a href="illegal-request-method/illegal-request-method.conf">illegal-request-method.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">// normal request
+$ curl http://ap.example.com:8109/foo/<span class="hljs-built_in">test</span> -X GET
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:24:36 +0000
+URI: /foo/<span class="hljs-built_in">test</span>
+Request ID: c71d7200e7ceb9baadc952880d3886f4
+
+// risk request
+$ curl http://ap.example.com:8109/foo/<span class="hljs-built_in">test</span> -X DELETE
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 7231362286722261648&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_xff_injection">XFF Injection</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/X-Forwarded-For:.*?\\s+(select|update|union|wait|sleep|insert|chr|char|substr|substring)/\&quot;; nocase;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="xff-injection/uds-xff-injection.json">uds-xff-injection.json</a></p>
+</li>
+<li>
+<p><a href="xff-injection/uds-xff-injection-policy.json">uds-xff-injection-policy.json</a></p>
+</li>
+<li>
+<p><a href="xff-injection/xff-injection.conf">xff-injection.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">// normal request
+$ curl http://ap.example.com:8110/foo/<span class="hljs-built_in">test</span>
+Server address: 172.17.0.2:8080
+Server name: f25377244e7c
+Date: 14/Mar/2023:03:42:49 +0000
+URI: /foo/<span class="hljs-built_in">test</span>
+Request ID: 5db73250b5aa912944c7976044c04179
+
+// risk request
+$ curl -H <span class="hljs-string">&quot;X-Forwarded-For: select * from t where 1 =1 &quot;</span> http://ap.example.com:8110/foo/<span class="hljs-built_in">test</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 17170494753228555214&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_host_localhost">Host Localhost</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;uricontent:\&quot;/test\&quot;; nocase; objonly;&quot;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="host-validation/uds-host-validation.json">uds-host-validation.json</a></p>
+</li>
+<li>
+<p><a href="host-validation/uds-host-validation-policy.json">uds-host-validation-policy.json</a></p>
+</li>
+<li>
+<p><a href="host-validation/host-validation.conf">host-validation.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl -H <span class="hljs-string">&quot;Host: localhost&quot;</span> http://ap.example.com:8111/foo/<span class="hljs-built_in">test</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 13307705552404772574&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_illegal_directory_access">Illegal Directory Access</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/\\/images\\/|\\/media\\/|\\/uploads\\/|\\/pic\\/|\\/img\\/|\\/tmp\\/|\\/pictures\\//U\&quot;; nocase; objonly; re2:\&quot;/\\.(php|asp|aspx|jsp|jspx)$/U\&quot;; nocase; objonly;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="illegal-directory-access/uds-illegal-directory-access.json">uds-illegal-directory-access.json</a></p>
+</li>
+<li>
+<p><a href="illegal-directory-access/uds-illegal-directory-access-policy.json">uds-illegal-directory-access-policy.json</a></p>
+</li>
+<li>
+<p><a href="illegal-directory-access/illegal-directory-access.conf">illegal-directory-access.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8112/foo/uploads/11.jsp
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 8188505589106457781&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_weak_password">Weak Password</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/=(123456|default|admin888|123123|password)/\&quot;; nocase; re2:\&quot;/=admin/\&quot;; nocase;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="week-passwd/uds-week-passwd.json">uds-week-passwd.json</a></p>
+</li>
+<li>
+<p><a href="week-passwd/uds-week-passwd-policy.json">uds-week-passwd-policy.json</a></p>
+</li>
+<li>
+<p><a href="week-passwd/week-passwd.conf">week-passwd.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-string">&quot;http://ap.example.com:8113/foo?user=admin&amp;password=default&quot;</span>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 8188505589106459311&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_illegal_file_extension">Illegal File Extension</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/(\\.pkcs12|\\.svn|\\.htaccess|\\.old|\\.sql|\\.bak|\\.tar|\\.pem|\\.pwd|\\.mdb|\\.der|\\.swp|\\.env|\\.yml|\\.db|\\.class|\\.dmp|\\.war|\\.idea|\\.log|\\.gz|\\.git|\\.vimrc|\\.sh|\\.DS_Store|\\.history|\\.project|\\.cgi|\\.conf|\\.pfx|\\.p12|\\.bash_history|\\.swo|\\.pl|\\.core|\\.pyc|\\.raw|\\.viminfo|\\.bp|\\.save|robots.txt)$/U\&quot;; nocase; objonly;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="illegal-file-extension/uds-illegal-file-extension.json">uds-illegal-file-extension.json</a></p>
+</li>
+<li>
+<p><a href="illegal-file-extension/uds-illegal-file-extension-policy.json">uds-illegal-file-extension-policy.json</a></p>
+</li>
+<li>
+<p><a href="illegal-file-extension/illegal-file-extension.conf">illegal-file-extension.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8114/foo/test.db
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 13307705552404771045&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_illegal_file_type">Illegal File Type</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/\\.(php|asp|aspx)$/U\&quot;; nocase; objonly;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="illegal-file-type/uds-illegal-file-type.json">uds-illegal-file-type.json</a></p>
+</li>
+<li>
+<p><a href="illegal-file-type/uds-illegal-file-type-policy.json">uds-illegal-file-type-policy.json</a></p>
+</li>
+<li>
+<p><a href="illegal-file-type/illegal-file-type.conf">illegal-file-type.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8115/foo/test.php
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 13307705552404771555&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_application_admin_access">Application Admin Access</h3>
+<div class="listingblock">
+<div class="title"><strong>Key Policy</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;rule&quot;</span>: <span class="hljs-string">&quot;re2:\&quot;/\\/redis-admin\\/|\\/axis2-web\\/|\\/axis2-admin\\/|\\/manager\\/html|\\/host-manager\\/html|\\/console\\/j_security_check|\\/ibm\\/console|\\/wp-content\\/|\\/wp-admin\\/|\\/wp-conf\\//U\&quot;; nocase; objonly;&quot;</span>,</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="application-admin-access/uds-application-admin-access.json">uds-application-admin-access.json</a></p>
+</li>
+<li>
+<p><a href="application-admin-access/uds-application-admin-access-policy.json">uds-application-admin-access-policy.json</a></p>
+</li>
+<li>
+<p><a href="application-admin-access/application-admin-access.conf">application-admin-access.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8116/foo/redis-admin/redis
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Request Rejected&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The requested URL was rejected. Please consult with your administrator.&lt;br&gt;&lt;br&gt;Your support ID is: 8188505589106461351&lt;br&gt;&lt;br&gt;&lt;a href=<span class="hljs-string">&apos;javascript:history.back();&apos;</span>&gt;[Go Back]&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openapi_whitelist_policy">OpenAPI Whitelist Policy</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_openapi_doc">OpenAPI doc</h3>
+<div class="paragraph">
+<p><span class="image"><img src="openapi-whitelist-policy/api-fruits.png" alt="api fruits.png"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="openapi-whitelist-policy/openapi-fruits.json">openapi-fruits.json</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The openapi come from <code>cloudadc/fruits:0.0.1</code>, if you run fruits on localhost:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -itd --rm --name app-fruits -p 8090:8080 cloudadc/fruits:0.0.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then you openapi doc can be find at <a href="http://127.0.0.1:8090/v3/api-docs" class="bare" target="_blank">http://127.0.0.1:8090/v3/api-docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whitelist_policy_configuration">Whitelist Policy Configuration</h3>
+<div class="paragraph">
+<p>Modify the <code>/etc/app_protect/conf/NginxApiSecurityPolicy.json</code>, either set the <strong>open-api-files</strong> point to openapi doc as http protocol, or as file protocol.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">      <span class="hljs-string">&quot;open-api-files&quot;</span> : [
+        {
+          <span class="hljs-string">&quot;link&quot;</span>: <span class="hljs-string">&quot;file:///etc/app_protect/conf/openapi-fruits.json&quot;</span>
+        }
+      ],</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">      <span class="hljs-string">&quot;open-api-files&quot;</span> : [
+        {
+          <span class="hljs-string">&quot;link&quot;</span>: <span class="hljs-string">&quot;http://127.0.0.1:8090/v3/api-docs&quot;</span>
+        }
+      ],</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_whitelist_policy">Test Whitelist Policy</h3>
+<div class="listingblock">
+<div class="title"><strong>Test PUT Method</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8301/fruits/ -X PUT
+{<span class="hljs-string">&quot;supportID&quot;</span>: <span class="hljs-string">&quot;8359298969457788494&quot;</span>}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test Illegal Parameter Type</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> -X GET http://ap.example.com:8301/fruits/1000001 | jq
+{
+  <span class="hljs-string">&quot;id&quot;</span>: 1000001,
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Cherry&quot;</span>,
+  <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;purple&quot;</span>,
+  <span class="hljs-string">&quot;weight&quot;</span>: 1.1
+}
+
+$ curl http://ap.example.com:8301/fruits/1000001a
+{<span class="hljs-string">&quot;supportID&quot;</span>: <span class="hljs-string">&quot;359518515106664610&quot;</span>}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test Not Allowed Path</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://ap.example.com:8301/fruits/apple
+{<span class="hljs-string">&quot;supportID&quot;</span>: <span class="hljs-string">&quot;12700781576205154700&quot;</span>}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_binary_content_filter">Binary Content filter</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_grpc">gRPC</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Start gRPC Server</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -itd --rm --name grpc-server <span class="hljs-_">-e</span> PORT=8009 -p 8009:8009 <span class="hljs-_">-d</span> cloudadc/grpc-go-greeting:0.1 greeter_server</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen 8401 http2;
+    status_zone status_grpcgreeting;
+
+    location / {
+       status_zone status_grpcgreeting;
+       app_protect_<span class="hljs-built_in">enable</span> on;
+       app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/grpc-greeting.json&quot;</span>;
+       grpc_pass 10.1.10.171:8009;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="grpc-binary-content-filer/fgreeting.conf">greeting.conf</a></p>
+</li>
+<li>
+<p><a href="grpc-binary-content-filer/grpc-greeting.json">grpc-greeting.json</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ADDRESS=ap.example.com:8401&quot;</span> &gt; grpc-binary-content-filer/address
+
+$ docker run --env-file ./grpc-binary-content-filer/address cloudadc/grpc-go-greeting:0.1 greeter_client <span class="hljs-string">&quot;This should be blocked &lt;script&gt;evil_script()&lt;/script&gt;&quot;</span>
+2023/03/15 10:46:39 could not greet: rpc error: code = 7 desc = Blocked by NGINX App Protect, Your support ID is 3607562325608046964</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dubbo">Dubbo</h3>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_security_authentication">API Security Authentication</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_jwt_validation">JWT Validation</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Generate JWK</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./jwkgen.sh nginxjwtauthenticationbykylin</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-validation/api.security.jwk">api.security.jwk</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The above command geneted a <code>api.security.jwk</code>, more details about JWK refer to <a href="https://datatracker.ietf.org/doc/html/rfc7517" class="bare" target="_blank">https://datatracker.ietf.org/doc/html/rfc7517</a>, JWK usually can be accessed from a Zero-trust gateway, or IDP server. In this section we configured JWK on local file system. the generated <code>api.security.jwk</code> will be copy to NGINX Host.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>2. Generate JWT</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="jwt-validation/api.security.jwt.png" alt="api.security.jwt.png"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More details about JWT refer to <a href="https://datatracker.ietf.org/doc/html/rfc7519" class="bare" target="_blank">https://datatracker.ietf.org/doc/html/rfc7519</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-validation/api.security.jwt">api.security.jwt</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To view the jwt payload run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">CONTENT=$(cat jwt-validation/api.security.jwt);  IFS=<span class="hljs-string">&apos;.&apos;</span> ; <span class="hljs-built_in">read</span> -r header payload signature &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$CONTENT</span>&quot;</span> ; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$payload</span> | base64 --decode</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The referrenced payload looks as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;API Security Authention&quot;</span>,
+  <span class="hljs-string">&quot;sub&quot;</span>: <span class="hljs-string">&quot;ACME Corp. inc&quot;</span>,
+  <span class="hljs-string">&quot;iss&quot;</span>: <span class="hljs-string">&quot;ACME Corp&quot;</span>,
+  <span class="hljs-string">&quot;iat&quot;</span>: <span class="hljs-number">1678862106</span>,
+  <span class="hljs-string">&quot;exp&quot;</span>: <span class="hljs-number">1708862106</span>,
+  <span class="hljs-string">&quot;uid&quot;</span>: <span class="hljs-string">&quot;bbc123456&quot;</span>
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 8106;
+  status_zone status_jwt_validation;
+  location / {
+    status_zone status_jwt_validation;
+    auth_jwt <span class="hljs-string">&quot;API Realm&quot;</span>;
+    auth_jwt_key_file api.security.jwk;
+    proxy_pass http://backend;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-validation/jwt-validation.conf">jwt-validation.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>4. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">// normal request
+$ curl -H <span class="hljs-string">&quot;Authorization: Bearer `cat jwt-validation/api.security.jwt`&quot;</span> http://ap.example.com:8106/foo/<span class="hljs-built_in">test</span>?uid=bbc123456
+Server address: 172.17.0.2:8080
+Server name: 90b887d7843e
+Date: 15/Mar/2023:07:39:00 +0000
+URI: /foo/<span class="hljs-built_in">test</span>?uid=bbc123456
+Request ID: 1100f4eebf0df7dd0167a668aa73c74d
+
+// risk request
+$ curl -H <span class="hljs-string">&quot;Authorization: Bearer abcded&quot;</span> http://ap.example.com:8106/foo/<span class="hljs-built_in">test</span>?uid=bbc123456 -I
+HTTP/1.1 401 Unauthorized
+Server: nginx/1.23.2
+Date: Wed, 15 Mar 2023 07:41:30 GMT
+Content-Type: text/html
+Content-Length: 179
+Connection: keep-alive
+WWW-Authenticate: Bearer realm=<span class="hljs-string">&quot;API Realm&quot;</span>,error=<span class="hljs-string">&quot;invalid_token&quot;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jwt_dual_factor_authentication">JWT Dual Factor Authentication</h3>
+<div class="paragraph">
+<p><strong>1. The JWT Token Payload defined a user id as authentication factor</strong></p>
+</div>
+<div class="paragraph">
+<p><a href="jwt-validation/api.security.jwt">api.security.jwt</a></p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">js_import main from jwt.js;
+js_<span class="hljs-built_in">set</span> <span class="hljs-variable">$jwt_claim_uid</span> main.jwt_payload_uid;
+
+server {
+  listen 8107;
+  status_zone status_jwt_dual-factor-authentication;
+  location / {
+    status_zone status_jwt_dual-factor-authentication_location;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$jwt_claim_uid</span> != <span class="hljs-variable">$arg_uid</span>) {
+        <span class="hljs-built_in">return</span> 401 <span class="hljs-string">&quot;uid not align with security token governance uid&quot;</span>;
+    }
+
+    proxy_pass http://backend;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-dual-factor-authentication/jwt-dual-factor-authentication.conf">jwt-dual-factor-authentication.conf</a></p>
+</li>
+<li>
+<p><a href="jwt-dual-factor-authentication/jwt.js">jwt.js</a></p>
+</li>
+<li>
+<p><a href="jwt-dual-factor-authentication/api.security.jwt">api.security.jwt</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">// normal request
+$ curl -H <span class="hljs-string">&quot;Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`&quot;</span> http://ap.example.com:8107/foo/<span class="hljs-built_in">test</span>?uid=bbc123456
+Server address: 172.17.0.2:8080
+Server name: 90b887d7843e
+Date: 15/Mar/2023:08:15:23 +0000
+URI: /foo/<span class="hljs-built_in">test</span>?uid=bbc123456
+Request ID: 7d35c94bf02956c7785147357b2f5799
+
+// risk request
+$ curl -H <span class="hljs-string">&quot;Authorization: Bearer `cat jwt-dual-factor-authentication/api.security.jwt`&quot;</span> http://ap.example.com:8107/foo/<span class="hljs-built_in">test</span>?uid=bbc123 ; <span class="hljs-built_in">echo</span>
+uid not align with security token governance uid</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jwt_rate_limiting">JWT Rate Limiting</h3>
+<div class="listingblock">
+<div class="title"><strong>1. JWT Token</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ CONTENT=$(cat jwt-rate-limit/premium.jwt);  IFS=<span class="hljs-string">&apos;.&apos;</span> ; <span class="hljs-built_in">read</span> -r header payload signature &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$CONTENT</span>&quot;</span> ; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$payload</span> | base64 --decode
+{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;API Security Authention&quot;</span>,
+  <span class="hljs-string">&quot;sub&quot;</span>: <span class="hljs-string">&quot;ACME Corp. inc&quot;</span>,
+  <span class="hljs-string">&quot;iss&quot;</span>: <span class="hljs-string">&quot;ACME Corp&quot;</span>,
+  <span class="hljs-string">&quot;iat&quot;</span>: 1678862106,
+  <span class="hljs-string">&quot;exp&quot;</span>: 1708862106,
+  <span class="hljs-string">&quot;tier&quot;</span>: <span class="hljs-string">&quot;premium&quot;</span>
+}
+
+$ CONTENT=$(cat jwt-rate-limit/standard.jwt);  IFS=<span class="hljs-string">&apos;.&apos;</span> ; <span class="hljs-built_in">read</span> -r header payload signature &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$CONTENT</span>&quot;</span> ; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$payload</span> | base64 --decode
+{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;API Security Authention&quot;</span>,
+  <span class="hljs-string">&quot;sub&quot;</span>: <span class="hljs-string">&quot;ACME Corp. inc&quot;</span>,
+  <span class="hljs-string">&quot;iss&quot;</span>: <span class="hljs-string">&quot;ACME Corp&quot;</span>,
+  <span class="hljs-string">&quot;iat&quot;</span>: 1678862106,
+  <span class="hljs-string">&quot;exp&quot;</span>: 1708862106,
+  <span class="hljs-string">&quot;tier&quot;</span>: <span class="hljs-string">&quot;standard&quot;</span>
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-rate-limit/premium.jwt">premium.jwt</a></p>
+</li>
+<li>
+<p><a href="jwt-rate-limit/standard.jwt">standard.jwt</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-built_in">log</span>_format jwt <span class="hljs-string">&apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span>
+               <span class="hljs-string">&apos;$status $body_bytes_sent &quot;$http_referer&quot; &quot;$http_user_agent&quot; &apos;</span>
+               <span class="hljs-string">&apos;$jwt_claim_tier $jwt_header_alg $jwt_claim_sub $jwt_payload&apos;</span>;
+
+<span class="hljs-built_in">limit</span>_req_zone <span class="hljs-variable">$binary_remote_addr</span><span class="hljs-variable">$jwt_claim_tier</span><span class="hljs-variable">$jwt_claim_sub</span> zone=standard_zone:10m rate=1r/s;
+<span class="hljs-built_in">limit</span>_req_zone <span class="hljs-variable">$binary_remote_addr</span><span class="hljs-variable">$jwt_claim_tier</span><span class="hljs-variable">$jwt_claim_sub</span> zone=premium_zone:10m rate=1000r/s;
+
+map <span class="hljs-variable">$jwt_claim_tier</span> <span class="hljs-variable">$rewrite_path_url</span> {
+    standard <span class="hljs-string">&quot;/standard&quot;</span>;
+    premium  <span class="hljs-string">&quot;/premium&quot;</span>;
+    default  <span class="hljs-string">&quot;/all&quot;</span>;
+}
+
+server {
+  listen 8105;
+  status_zone status_jwt-rate-limit;
+
+  location /foo {
+
+    access_<span class="hljs-built_in">log</span> /var/<span class="hljs-built_in">log</span>/nginx/access_jwt.log jwt;
+
+    status_zone status_jwt-rate-limit_foo;
+
+    auth_jwt <span class="hljs-string">&quot;Fruit API&quot;</span>;
+    auth_jwt_key_file api.security.jwk;
+
+    rewrite ^.*$ <span class="hljs-variable">$rewrite_path_url</span> ;
+  }
+
+  location = /premium {
+
+    access_<span class="hljs-built_in">log</span> /var/<span class="hljs-built_in">log</span>/nginx/access_jwt.log jwt;
+
+    <span class="hljs-built_in">limit</span>_req zone=premium_zone burst=5 nodelay;
+    proxy_pass http://backend;
+  }
+
+  location = /standard {
+
+    access_<span class="hljs-built_in">log</span> /var/<span class="hljs-built_in">log</span>/nginx/access_jwt.log jwt;
+
+    <span class="hljs-built_in">limit</span>_req zone=standard_zone burst=5 nodelay;
+    proxy_pass http://backend;
+  }
+
+  location = /all {
+
+    access_<span class="hljs-built_in">log</span> /var/<span class="hljs-built_in">log</span>/nginx/access_jwt.log jwt;
+
+    proxy_pass http://backend;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jwt-rate-limit/jwt-rate-limit.conf">jwt-rate-limit.conf</a></p>
+</li>
+<li>
+<p><a href="jwt-rate-limit/extracttier.js">extracttier.js</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..5} ; <span class="hljs-keyword">do</span> curl -H <span class="hljs-string">&quot;Authorization: Bearer `cat jwt-rate-limit/premium.jwt`&quot;</span> <span class="hljs-_">-s</span> -o /dev/null -w <span class="hljs-string">&quot;%{http_code}&quot;</span> http://ap.example.com:8105/foo/<span class="hljs-built_in">test</span> ;<span class="hljs-built_in">echo</span> ; <span class="hljs-keyword">done</span>
+200
+200
+200
+200
+200
+
+$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..5} ; <span class="hljs-keyword">do</span> curl -H <span class="hljs-string">&quot;Authorization: Bearer `cat jwt-rate-limit/standard.jwt`&quot;</span> <span class="hljs-_">-s</span> -o /dev/null -w <span class="hljs-string">&quot;%{http_code}&quot;</span> http://ap.example.com:8105/foo/<span class="hljs-built_in">test</span> ;<span class="hljs-built_in">echo</span> ; <span class="hljs-keyword">done</span>
+200
+503
+503
+503
+503</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_performance_testing">Performance Testing</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prepare_the_topology">Prepare the Topology</h3>
+<div class="paragraph">
+<p><span class="image"><img src="perf/nap-perf-topology.png" alt="nap perf topology.png"></span></p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Start Backend</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -itd --rm --name app-http -p 8080:8080 cloudadc/cafe:1.0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Count the CPU Usage and Max Active Connections</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..1000} ; <span class="hljs-keyword">do</span> CPU=$(top -b -n 1 | head -n 4 | grep Cpu | awk <span class="hljs-string">&apos;{print $2}&apos;</span>); NUM=$(netstat -antulop | wc <span class="hljs-_">-l</span>); <span class="hljs-built_in">echo</span> <span class="hljs-variable">$CPU</span>, <span class="hljs-variable">$NUM</span> ; sleep 10 ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nginx_configuration">NGINX Configuration</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backend {
+  zone upstream_backend 64k;
+  <span class="hljs-comment">#server 192.168.23.10:80;</span>
+  server 192.168.22.66:8080;
+  server 192.168.22.67:8080;
+  server 192.168.22.68:8080;
+}
+
+<span class="hljs-comment">#app_protect_enable on;</span>
+<span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/NginxDefaultPolicy.json&quot;;</span>
+
+<span class="hljs-comment">#app_protect_user_defined_signatures &quot;/etc/app_protect/conf/uds-illegal-file-type.json&quot;;</span>
+<span class="hljs-comment">#app_protect_user_defined_signatures &quot;/etc/app_protect/conf/uds-three.json&quot;;</span>
+app_protect_user_defined_signatures <span class="hljs-string">&quot;/etc/app_protect/conf/uds-five.json&quot;</span>;
+<span class="hljs-comment">#app_protect_user_defined_signatures &quot;/etc/app_protect/conf/uds-seven.json&quot;;</span>
+
+server {
+  listen 8080;
+  status_zone server_backend;
+
+  <span class="hljs-comment">#app_protect_enable on;</span>
+  <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/NginxDefaultPolicy.json&quot;;</span>
+
+  location / {
+    status_zone location_backend;
+
+    app_protect_<span class="hljs-built_in">enable</span> on;
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/uds-illegal-file-type-policy.json&quot;;</span>
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/uds-three-policy.json&quot;;</span>
+    app_protect_policy_file <span class="hljs-string">&quot;/etc/app_protect/conf/uds-five-policy.json&quot;</span>;
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/uds-seven-policy.json&quot;;</span>
+
+
+    <span class="hljs-comment">#app_protect_enable on;</span>
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/NginxDefaultPolicy.json&quot;;</span>
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/NginxStrictPolicy.json&quot;;</span>
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/datagurd-policy.json&quot;;</span>
+    <span class="hljs-comment">#app_protect_policy_file &quot;/etc/app_protect/conf/uds-seven-policy.json&quot;;</span>
+
+    proxy_pass http://backend;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="perf/uds-three.json">perf/uds-three.json</a></p>
+</li>
+<li>
+<p><a href="perf/uds-three-policy.json">perf/uds-three-policy.json</a></p>
+</li>
+<li>
+<p><a href="perf/uds-five.json">perf/uds-five.json</a></p>
+</li>
+<li>
+<p><a href="perf/uds-five-policy.json">perf/uds-five-policy.json</a></p>
+</li>
+<li>
+<p><a href="perf/uds-seven.json">perf/uds-seven.json</a></p>
+</li>
+<li>
+<p><a href="perf/uds-seven-policy.json">perf/uds-seven-policy.json</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implement_performance_test">Implement Performance Test</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..4} ; <span class="hljs-keyword">do</span> docker run --rm cloudadc/wrk:0.1 -t 4 -c 200 <span class="hljs-_">-d</span> 120s http://192.168.22.117:8080/uesr/<span class="hljs-built_in">test</span> ; sleep 100 ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../SEC.html" class="navigation navigation-prev " aria-label="Previous page: SECURITY">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../security/" class="navigation navigation-next " aria-label="Next page: CONTAINER">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"ON-PREM","level":"1.4.1","depth":2,"next":{"title":"CONTAINER","level":"1.4.2","depth":2,"path":"security/README.adoc","ref":"security/README.adoc","articles":[]},"previous":{"title":"SECURITY","level":"1.4","depth":1,"path":"SEC.adoc","ref":"SEC.adoc","articles":[{"title":"ON-PREM","level":"1.4.1","depth":2,"path":"security-on-premise/README.adoc","ref":"security-on-premise/README.adoc","articles":[]},{"title":"CONTAINER","level":"1.4.2","depth":2,"path":"security/README.adoc","ref":"security/README.adoc","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"GUID":"na39","OCP_USER_ID":"ksoong-redhat.com","copyrightYear":"2023","copyrightHolder":"Kylin Soong"},"plugins":["collapsible-menu","donate","-sharing","sharing-plus","splitter","back-to-top-button","edit-link"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy Kylin Soong 2023","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"collapsible-menu":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"http://ksoong.org/docs/content/images/alipay.png","alipayText":"支付宝捐赠","button":"赞赏","title":"","wechat":"http://ksoong.org/docs/content/images/wechat.png","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"weibo":true,"linkedin":true,"google":true,"facebook":true,"all":["facebook","google","linkedin","weibo"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/kylinsoong/nginx-devops/blob/gh-pages"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"security-on-premise/README.adoc","mtime":"2023-04-20T02:52:33.644Z","type":"asciidoc"},"gitbook":{"version":"3.2.3","time":"2023-04-20T04:48:01.277Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-collapsible-menu/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

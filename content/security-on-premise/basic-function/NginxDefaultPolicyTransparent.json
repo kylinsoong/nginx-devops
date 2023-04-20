@@ -1,0 +1,8 @@
+{
+    "policy" : {
+        "name": "app_protect_default_policy_transparent",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "transparent"
+    }
+}

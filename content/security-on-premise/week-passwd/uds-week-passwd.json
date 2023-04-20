@@ -1,0 +1,24 @@
+{
+  "signatures": [
+    {
+      "accuracy": "medium",
+      "attackType": {
+        "name": "Other Application Attacks"
+      },
+      "description": "Medium accuracy user defined signature with tag",
+      "name": "Weak password",
+      "risk": "medium",
+      "rule": "re2:\"/=(123456|default|admin888|123123|password)/\"; nocase; re2:\"/=admin/\"; nocase;",
+      "signatureType": "request",
+      "systems": [
+        {
+          "name": "Microsoft Windows"
+        },
+        {
+          "name": "Unix/Linux"
+        }
+      ]
+    }
+  ],
+  "tag": "week-passwd"
+}

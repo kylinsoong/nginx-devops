@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://backendapi",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Fruit",
+      "description": "The Fruit API"
+    }
+  ],
+  "paths": {
+    "/fruits/": {
+      "get": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "Get all fruits",
+        "description": "Return all fruits in repositories",
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Fruit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "Add fruit",
+        "description": "Add a fruit to repository",
+        "operationId": "addFruit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fruit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "Update fruit",
+        "description": "Update exit fruit in repository",
+        "operationId": "updateFruit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fruit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/fruits/{id}": {
+      "get": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "Get fruit by id",
+        "description": "Returns fruit for id specified.",
+        "operationId": "getFruit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Fruit id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fruit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "delete fruit by id",
+        "description": "Delete fruit for id specified.",
+        "operationId": "deleteFruit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Fruit id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Fruit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

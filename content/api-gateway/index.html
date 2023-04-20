@@ -1,0 +1,1528 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API GATEWAY · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="cache.html" />
+    
+    
+    <link rel="prev" href="../DEV.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    QUICK START
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../DEV.html">
+            
+                <a href="../DEV.html">
+            
+                    
+                    DEVELOPMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    API GATEWAY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    CONTENT CACHE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="APISIX.html">
+            
+                <a href="APISIX.html">
+            
+                    
+                    API SIX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../SEC.html">
+            
+                <a href="../SEC.html">
+            
+                    
+                    SECURITY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../security-on-premise/">
+            
+                <a href="../security-on-premise/">
+            
+                    
+                    ON-PREM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../security/">
+            
+                <a href="../security/">
+            
+                    
+                    CONTAINER
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >API GATEWAY</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="api-gateway">API Gateway</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_server">server</a>
+<ul class="sectlevel2">
+<li><a href="#_listen_ip_ip">listen &#x6307;&#x4EE4;&#x5206;&#x522B;&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x3001;IP&#x3001;&#x53CA;IP:&#x7AEF;&#x53E3;&#x7684;&#x5DEE;&#x5F02;</a></li>
+<li><a href="#_defaut_server">defaut_server</a></li>
+<li><a href="#_host_name_based_route">Host Name Based Route</a></li>
+<li><a href="#_host_name_based_route_catch_all_multi">Host Name Based Route(catch-all, multi)</a></li>
+<li><a href="#_host_name_based_route_wildcard_regular_expressions">Host Name Based Route(wildcard, regular expressions)</a></li>
+<li><a href="#_https">HTTPS &#x670D;&#x52A1;&#x7684;&#x76D1;&#x542C;</a></li>
+<li><a href="#_ipv6">IPv6 &#x670D;&#x52A1;&#x76D1;&#x542C;</a></li>
+<li><a href="#_grpc">gRPC &#x670D;&#x52A1;&#x76D1;&#x542C;</a></li>
+<li><a href="#_tcp">TCP &#x670D;&#x52A1;&#x76D1;&#x542C;</a></li>
+<li><a href="#_udp">UDP &#x670D;&#x52A1;&#x76D1;&#x542C;</a></li>
+</ul>
+</li>
+<li><a href="#_location">location</a>
+<ul class="sectlevel2">
+<li><a href="#_regular_expression_syntax">Regular Expression Syntax</a></li>
+</ul>
+</li>
+<li><a href="#_service_type">Service Type</a>
+<ul class="sectlevel2">
+<li><a href="#_http">HTTP</a></li>
+<li><a href="#_grpc_2">gRPC</a></li>
+<li><a href="#_tcp_2">TCP</a></li>
+<li><a href="#_udp_2">UDP</a></li>
+</ul>
+</li>
+<li><a href="#_health_check">Health Check</a>
+<ul class="sectlevel2">
+<li><a href="#_http_2">HTTP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_http_3">HTTP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_http_4">HTTP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;(&#x81EA;&#x5B9A;&#x4E49;&#x8FD4;&#x56DE;&#x5185;&#x5BB9;)</a></li>
+<li><a href="#_grpc_3">gRPC &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_tcp_3">TCP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_tcp_4">TCP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_udp_3">UDP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+<li><a href="#_udp_4">UDP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</a></li>
+</ul>
+</li>
+<li><a href="#_request_persistence">Request Persistence</a></li>
+<li><a href="#_lb_algorithms">LB Algorithms</a></li>
+<li><a href="#_source_ip_preserve">Source IP Preserve</a></li>
+<li><a href="#_api_gateway">API Gateway</a>
+<ul class="sectlevel2">
+<li><a href="#_content_caching">Content Caching</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_server">server</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_listen_ip_ip">listen &#x6307;&#x4EE4;&#x5206;&#x522B;&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x3001;IP&#x3001;&#x53CA;IP:&#x7AEF;&#x53E3;&#x7684;&#x5DEE;&#x5F02;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. NGINX Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    9001;
+}
+
+server {
+    listen    10.1.10.195:9001;
+}
+
+server {
+    listen    10.1.10.195;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/listen.conf">listen.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. NGINX Listen list</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-comment"># netstat -antulop | grep nginx</span>
+tcp        0      0 0.0.0.0:9001            0.0.0.0:*               LISTEN      1719/nginx: master   off (0.00/0/0)
+tcp        0      0 10.1.10.195:80          0.0.0.0:*               LISTEN      1719/nginx: master   off (0.00/0/0)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl http://example.com:9001</span>
+10.1.10.195:9001
+
+~]<span class="hljs-comment"># curl http://10.1.10.195:9001</span>
+10.1.10.195:9001</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>4. Conclusion</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration</th>
+<th class="tableblock halign-left valign-top">Listen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listen 9001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0.0.0:9001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listen 10.1.10.195:9001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.1.10.195:9001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listen 10.1.10.195</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.1.10.195:80</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>If both <code>listen 9001</code> and <code>listen 10.1.10.195:9001</code> exist, the NGINX listen on <code>0.0.0.0:9001</code>.</p>
+</li>
+<li>
+<p>IP has high priority than PORT</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defaut_server">defaut_server</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen 9002;
+    server_name <span class="hljs-string">&quot;bar.com&quot;</span>;
+}
+
+server {
+    listen 9002;
+    server_name <span class="hljs-string">&quot;foo.com&quot;</span>;
+}
+
+server {
+    listen 9003;
+    server_name <span class="hljs-string">&quot;bar.com&quot;</span>;
+}
+
+server {
+    listen 9003 default_server;
+    server_name <span class="hljs-string">&quot;foo.com&quot;</span>;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/defaut_server.conf">defaut_server.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl http://example.com:9002</span>
+from 9002 bar.com
+
+~]<span class="hljs-comment"># curl http://example.com:9003</span>
+from 9003 foo.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>default_server</code> are used only can be used while <code>listen</code> and <code>server_name</code> can not route HTTP request.</p>
+</li>
+<li>
+<p>If <code>listen</code> and <code>server_name</code> can not route HTTP request, and no <code>default_server</code>, the first server block will be used.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_host_name_based_route">Host Name Based Route</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    9004;
+    server_name <span class="hljs-string">&quot;foo.example.com&quot;</span>;
+}
+
+server {
+    listen    9004;
+    server_name <span class="hljs-string">&quot;bar.example.com&quot;</span>;
+}
+
+server {
+    listen    9004;
+    server_name <span class="hljs-string">&quot;zoo.example.com&quot;</span>;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/server_name.conf">server_name.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl  -H &quot;Host: foo.example.com&quot; http://10.1.10.195:9004</span>
+from foo.example.com
+
+~]<span class="hljs-comment"># curl  -H &quot;Host: bar.example.com&quot; http://10.1.10.195:9004</span>
+from bar.example.com
+
+~]<span class="hljs-comment"># curl  -H &quot;Host: zoo.example.com&quot; http://10.1.10.195:9004</span>
+from zoo.example.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>server_name</code> match HTTP Request Header <code>Host</code>, which can be used as Host Based Route.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_host_name_based_route_catch_all_multi">Host Name Based Route(catch-all, multi)</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    9005;
+    server_name _;
+}
+
+server {
+    listen    9005;
+    server_name  a.example.com  b.example.com  c.example.com  *.example.com;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/server_name_empty.conf">server_name_empty.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># for i in a b c d ; do curl  -H &quot;Host: $i.example.com&quot; http://10.1.10.195:9005 ; echo ; done</span>
+from multi, a.example.com
+from multi, b.example.com
+from multi, c.example.com
+from multi, d.example.com
+
+~]<span class="hljs-comment"># for i in a b c d ; do curl  -H &quot;Host: $i.example.org&quot; http://10.1.10.195:9005 ; echo ; done</span>
+from catch-all, a.example.org
+from catch-all, b.example.org
+from catch-all, c.example.org
+from catch-all, d.example.org</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>server_name</code> can match multiple host, the &quot;_&quot; catch all.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_host_name_based_route_wildcard_regular_expressions">Host Name Based Route(wildcard, regular expressions)</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    9006;
+    server_name *.example.com;
+}
+
+server {
+    listen    9006;
+    server_name test.*;
+}
+
+server {
+    listen    9006;
+    server_name  ~^(?&lt;user&gt;.+)\.example\.net$;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/server_name_regular.conf">server_name_regular.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl  -H &quot;Host: test.com&quot; http://10.1.10.195:9006</span>
+from test.*, test.com
+
+~]<span class="hljs-comment"># curl  -H &quot;Host: test.example.com&quot; http://10.1.10.195:9006</span>
+from *.example.com, test.example.com
+
+~]<span class="hljs-comment"># curl  -H &quot;Host: test.example.net&quot; http://10.1.10.195:9006</span>
+from test.*, test.example.net
+
+~]<span class="hljs-comment"># curl  -H &quot;Host: user1.example.net&quot; http://10.1.10.195:9006</span>
+from regular expressions names, user1.example.net</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>starting with wildcard has high priority than ending with</p>
+</li>
+<li>
+<p>wildcard has high priority than regular expression</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_https">HTTPS &#x670D;&#x52A1;&#x7684;&#x76D1;&#x542C;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configurtion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen              9007 ssl;
+    server_name         example.com;
+    ssl_certificate     gw-server.d/crt/example.com.crt;
+    ssl_certificate_key gw-server.d/crt/example.com.key;
+    ssl_password_file   gw-server.d/crt/example.com.pass;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/listen-ssl.conf">listen-ssl.conf</a></p>
+</li>
+<li>
+<p><a href="gw-server.d/crt/example.com.crt">example.com.crt</a></p>
+</li>
+<li>
+<p><a href="gw-server.d/crt/example.com.key">example.com.key</a></p>
+</li>
+<li>
+<p><a href="gw-server.d/crt/example.com.pass">example.com.pass</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl --cacert example.com.crt https://example.com:9007</span>
+from 9007 ssl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NGINX can be used SSL offload.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ipv6">IPv6 &#x670D;&#x52A1;&#x76D1;&#x542C;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+    listen    [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008 ipv6only=on;
+    server_name example.com;
+}
+
+server {
+    listen    9009;
+    listen    [::]:9009;
+    server_name example.com;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-server.d/listen-ipv6.conf">listen-ipv6.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># curl -g -6 http://[fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008</span>
+from [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9008
+
+~]<span class="hljs-comment"># curl -g -6 http://[fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9009</span>
+from [fd15:4ba5:5a2b:1003:9d08:1036:986e:b1f9]:9009
+
+~]<span class="hljs-comment"># curl http://10.1.10.195:9009</span>
+from 10.1.10.195:9009</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Conclusion</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Nginx can listen on specific nic ipv6 address</p>
+</li>
+<li>
+<p>Nginx can listen on dual-stack(IPv4, Ipv6) on all L3 IP address from all L2 nics.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_grpc">gRPC &#x670D;&#x52A1;&#x76D1;&#x542C;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9041 http2;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/grpc.conf">gw-type.d/grpc.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># echo &quot;ADDRESS=10.1.10.195:9041&quot; &gt; address</span>
+~]<span class="hljs-comment"># docker run --env-file ./address cloudadc/grpc-go-greeting:0.1 greeter_client &quot;NGINX&quot;</span>
+2023/03/31 02:52:18 Greeting: Hello NGINX</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tcp">TCP &#x670D;&#x52A1;&#x76D1;&#x542C;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Backend</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -r
+ttcp -r</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9042;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/stream/tcp.conf">gw-type.d/stream/tcp.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -t -p 9042 10.1.10.195</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_udp">UDP &#x670D;&#x52A1;&#x76D1;&#x542C;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Backend</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -r -u
+ttcp -r -u</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9042 udp;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/stream/udp.conf">gw-type.d/stream/udp.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -t -u -p 9042 10.1.10.195</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_location">location</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_regular_expression_syntax">Regular Expression Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">        =     -    The URI must match the specified pattern exactly.
+        ^~    -    The URI must begin with the specified pattern.
+        None  -    The URI must begin with the specified pattern.
+        ~     -    The URI must be a <span class="hljs-keyword">case</span>-sensitive match to the specified regular expression.
+        ~*    -    The URI must be a <span class="hljs-keyword">case</span>-insensitive match to the specified regular expression.
+        @     -    Defines a named location block.
+
+        ()    -    Match group or evaluate the content of ().
+        []    -    Match any char inside [].
+        {}    -    Match a specific number of occurrence. eg, [0-9]{3} match 342 but not 32, {2,4} match length of 2, 3 and 4.
+
+        |     -    Or.
+        ?     -    Check <span class="hljs-keyword">for</span> zero or one occurrence of the previous char, eg jpe?g.
+        .     -    Any char.
+        *     -    Match zero, one or more occurrence of the previous char.
+        .*    -    Match zero, one or more occurrence of any char.
+        +     -    Match one or more occurrence of the previous char.
+        !     -    Not (negative look ahead).
+
+        \     -    Escape the next char.
+        /     -    The forward slash / is used to match any sub location, including none example location /.
+
+        ^     -    Match the beginning of the text (opposite of $). By itself, ^ is a shortcut <span class="hljs-keyword">for</span> all paths (since they all have a beginning).
+        $     -    The expression must be at the end of the evaluated text(no char/text after the match), $ is usually used at the end of a regex location expression.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_type">Service Type</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_http">HTTP</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendHTTP {
+  zone upstream_backendHTTP 64k;
+  server 10.1.20.203:8080;
+  server 10.1.20.204:8080;
+}
+
+server {
+  listen 9040;
+  status_zone server_backendHTTP;
+  location / {
+    status_zone location_backendHTTP;
+    proxy_pass http://backendHTTP;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/http.conf">gw-type.d/http.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://10.1.10.195:9040/<span class="hljs-built_in">test</span> -I
+HTTP/1.1 200 OK
+Server: nginx/1.23.2
+Date: Fri, 31 Mar 2023 02:36:27 GMT
+Content-Type: text/plain
+Content-Length: 147
+Connection: keep-alive
+Expires: Fri, 31 Mar 2023 02:36:26 GMT
+Cache-Control: no-cache</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_grpc_2">gRPC</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendgRPC {
+  zone upstream_backendgRPC 64k;
+  server 10.1.20.203:8009;
+  server 10.1.20.204:8009;
+}
+
+server {
+  listen 9041 http2;
+  status_zone server_backendgRPC;
+  location / {
+    status_zone location_backendgRPC;
+    grpc_pass grpc://backendgRPC;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/grpc.conf">gw-type.d/grpc.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">~]<span class="hljs-comment"># echo &quot;ADDRESS=10.1.10.195:9041&quot; &gt; address</span>
+~]<span class="hljs-comment"># docker run --env-file ./address cloudadc/grpc-go-greeting:0.1 greeter_client &quot;NGINX&quot;</span>
+2023/03/31 02:52:18 Greeting: Hello NGINX</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tcp_2">TCP</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Backend</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -r
+ttcp -r</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendTCP {
+  zone upstream_backendTCP 64k;
+  server 10.1.20.203:5001;
+  server 10.1.20.204:5001;
+}
+
+server {
+  listen 9042;
+  status_zone server_backendTCP;
+  proxy_pass  backendTCP;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/stream/tcp.conf">gw-type.d/stream/tcp.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -t -p 9042 10.1.10.195</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_udp_2">UDP</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Backend</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -r -u
+ttcp -r -u</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Configurtaion</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendUDP {
+  zone upstream_backendUDP 64k;
+  server 10.1.20.203:5001;
+  server 10.1.20.204:5001;
+}
+
+server {
+  listen 9042 udp;
+  status_zone server_backendUDP;
+  proxy_pass  backendUDP;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-type.d/stream/udp.conf">gw-type.d/stream/udp.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ttcp -t -u -p 9042 10.1.10.195</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_health_check">Health Check</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_http_2">HTTP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendHTTP1 {
+  zone upstream_backendHTTP1 64k;
+  server 10.1.20.203:8080 max_fails=3 fail_timeout=3s;
+  server 10.1.20.204:8080 max_fails=3 fail_timeout=3s;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/http1.conf">gw-health.d/http1.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10} ; <span class="hljs-keyword">do</span> curl http://10.1.10.195:9051/<span class="hljs-built_in">test</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_3">HTTP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9052;
+  location / {
+    health_check interval=10 passes=2 fails=3;
+    proxy_pass http://backendHTTP2;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/http2.conf">gw-health.d/http2.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10} ; <span class="hljs-keyword">do</span> curl http://10.1.10.195:9052/<span class="hljs-built_in">test</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Verify</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/http/upstreams/backendHTTP2 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 29,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 29,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_4">HTTP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;(&#x81EA;&#x5B9A;&#x4E49;&#x8FD4;&#x56DE;&#x5185;&#x5BB9;)</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">match server_ok {
+    status 200-399;
+    body ~ <span class="hljs-string">&quot;health&quot;</span>;
+}
+
+server {
+  listen 9053;
+  location / {
+    health_check interval=10 passes=2 fails=3 uri=/health match=server_ok;
+    proxy_pass http://backendHTTP3;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="gw-health.d/http3.conf">gw-health.d/http3.conf</a></p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10} ; <span class="hljs-keyword">do</span> curl http://10.1.10.195:9053/<span class="hljs-built_in">test</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Verify</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/http/upstreams/backendHTTP3 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 49,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 49,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_grpc_3">gRPC &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9054 http2;
+  location / {
+    health_check <span class="hljs-built_in">type</span>=grpc grpc_status=12;
+    grpc_pass grpc://backendgRPC1;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/grpc.conf">gw-health.d/grpc.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/http/upstreams/backendgRPC1 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:8009&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 33,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:8009&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 33,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tcp_3">TCP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendTCP1 {
+  zone upstream_backendTCP1 64k;
+  server 10.1.20.203:8080 max_fails=2 fail_timeout=30s slow_start=30s;
+  server 10.1.20.204:8080 max_fails=2 fail_timeout=30s slow_start=30s;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/stream/tcp1.conf">gw-health.d/stream/tcp1.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10} ; <span class="hljs-keyword">do</span> curl http://10.1.10.195:9055/<span class="hljs-built_in">test</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tcp_4">TCP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9056;
+  status_zone server_backendTCP2;
+  proxy_pass  backendTCP2;
+  health_check interval=10 passes=2 fails=3;
+  health_check_timeout 5s;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/stream/tcp2.conf">gw-health.d/stream/tcp2.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Test</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10} ; <span class="hljs-keyword">do</span> curl http://10.1.10.195:9056/<span class="hljs-built_in">test</span> ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>3. Verify</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/stream/upstreams/backendTCP2 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 31,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:8080&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 31,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_udp_3">UDP &#x88AB;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">upstream backendUDP1 {
+  zone upstream_backendUDP1 64k;
+  server 10.1.20.203:5001 max_fails=2 fail_timeout=30s;
+  server 10.1.20.204:5001 max_fails=2 fail_timeout=30s;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/stream/udp1.conf">gw-health.d/stream/udp1.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Check</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP1 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:5001&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 0,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:5001&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 0,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_udp_4">UDP &#x4E3B;&#x52A8;&#x5065;&#x5EB7;&#x68C0;&#x67E5;</h3>
+<div class="listingblock">
+<div class="title"><strong>1. Configuration</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">server {
+  listen 9058 udp;
+  status_zone server_backendUDP2;
+  proxy_pass  backendUDP2;
+  health_check interval=20 passes=2 fails=2 udp;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="gw-health.d/stream/udp2.conf">gw-health.d/stream/udp2.conf</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>2. Check</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl <span class="hljs-_">-s</span> http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP2 -H <span class="hljs-string">&apos;accept: application/json&apos;</span> | jq <span class="hljs-string">&apos;.peers[] | {server, state, health_checks}&apos;</span>
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.203:5001&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 6,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+{
+  <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;10.1.20.204:5001&quot;</span>,
+  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;up&quot;</span>,
+  <span class="hljs-string">&quot;health_checks&quot;</span>: {
+    <span class="hljs-string">&quot;checks&quot;</span>: 6,
+    <span class="hljs-string">&quot;fails&quot;</span>: 0,
+    <span class="hljs-string">&quot;unhealthy&quot;</span>: 0,
+    <span class="hljs-string">&quot;last_passed&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_request_persistence">Request Persistence</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lb_algorithms">LB Algorithms</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_source_ip_preserve">Source IP Preserve</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">**</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_gateway">API Gateway</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_content_caching">Content Caching</h3>
+<div class="paragraph">
+<p><a href="cache.html">Content Caching</a></p>
+</div>
+</div>
+</div>
+</div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../DEV.html" class="navigation navigation-prev " aria-label="Previous page: DEVELOPMENT">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="cache.html" class="navigation navigation-next " aria-label="Next page: CONTENT CACHE">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"API GATEWAY","level":"1.3","depth":1,"next":{"title":"CONTENT CACHE","level":"1.3.1","depth":2,"path":"api-gateway/cache.adoc","ref":"api-gateway/cache.adoc","articles":[]},"previous":{"title":"DEVELOPMENT","level":"1.2","depth":1,"path":"DEV.adoc","ref":"DEV.adoc","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"GUID":"na39","OCP_USER_ID":"ksoong-redhat.com","copyrightYear":"2023","copyrightHolder":"Kylin Soong"},"plugins":["collapsible-menu","donate","-sharing","sharing-plus","splitter","back-to-top-button","edit-link"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy Kylin Soong 2023","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"collapsible-menu":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"http://ksoong.org/docs/content/images/alipay.png","alipayText":"支付宝捐赠","button":"赞赏","title":"","wechat":"http://ksoong.org/docs/content/images/wechat.png","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"weibo":true,"linkedin":true,"google":true,"facebook":true,"all":["facebook","google","linkedin","weibo"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/kylinsoong/nginx-devops/blob/gh-pages"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"api-gateway/README.adoc","mtime":"2023-04-04T05:21:36.022Z","type":"asciidoc"},"gitbook":{"version":"3.2.3","time":"2023-04-20T04:48:01.277Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-collapsible-menu/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

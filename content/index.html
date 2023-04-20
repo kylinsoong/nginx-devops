@@ -1,0 +1,1074 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>QUICK START · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="DEV.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter active" data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    QUICK START
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="DEV.html">
+            
+                <a href="DEV.html">
+            
+                    
+                    DEVELOPMENT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="api-gateway/">
+            
+                <a href="api-gateway/">
+            
+                    
+                    API GATEWAY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="api-gateway/cache.html">
+            
+                <a href="api-gateway/cache.html">
+            
+                    
+                    CONTENT CACHE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="api-gateway/APISIX.html">
+            
+                <a href="api-gateway/APISIX.html">
+            
+                    
+                    API SIX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="SEC.html">
+            
+                <a href="SEC.html">
+            
+                    
+                    SECURITY
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security-on-premise/">
+            
+                <a href="security-on-premise/">
+            
+                    
+                    ON-PREM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="security/">
+            
+                <a href="security/">
+            
+                    
+                    CONTAINER
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >QUICK START</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="nginx-devops-demo">Nginx DevOps Demo</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_build_run">Build &amp; Run</a></li>
+<li><a href="#_variables">Variables</a></li>
+<li><a href="#_logging">Logging</a>
+<ul class="sectlevel2">
+<li><a href="#_apm">APM</a></li>
+</ul>
+</li>
+<li><a href="#_proxy_redirect">proxy_redirect</a></li>
+<li><a href="#_regular_expression">Regular Expression</a></li>
+<li><a href="#_security">Security</a>
+<ul class="sectlevel2">
+<li><a href="#_http_authentication_basic">HTTP Authentication Basic</a></li>
+<li><a href="#_client_authorization">Client Authorization</a></li>
+<li><a href="#_ssl">SSL</a></li>
+<li><a href="#_jwt">JWT</a></li>
+<li><a href="#_api_web_security_waf">API/Web security(WAF)</a></li>
+</ul>
+</li>
+<li><a href="#_websocket">WebSocket</a></li>
+<li><a href="#_advanced_concepts">Advanced Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_lua_vs_njs">Lua Vs NJS</a></li>
+<li><a href="#_nginx_vs_apisix">NGINX Vs APISIX</a></li>
+<li><a href="#_a_b_test">A/B Test</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_build_run">Build &amp; Run</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title"><strong>Build</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker build -t nginx-devops-demo .
+docker tag nginx-devops-demo:latest cloudadc/nginx-devops-demo:1.0.9
+docker push cloudadc/nginx-devops-demo:1.0.9</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Run</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -it --rm --name auth-server cloudadc/auth-server:0.1.4
+docker run -it --rm --name backend-1 <span class="hljs-_">-e</span> APP_REDIRECT_ABSOLUTE_PATH=<span class="hljs-string">&quot;false&quot;</span> cloudadc/backend:0.1.4
+docker run -it --rm --name backend-2 <span class="hljs-_">-e</span> APP_REDIRECT_ABSOLUTE_PATH=<span class="hljs-string">&quot;true&quot;</span>  cloudadc/backend:0.1.4
+docker run -it --rm --name <span class="hljs-built_in">test</span> --link backend-1 --link backend-2 --link auth-server  -p 8001-8020:8001-8020 cloudadc/nginx-devops-demo:1.0.9</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_variables">Variables</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">variables</th>
+<th class="tableblock halign-left valign-top">demonstration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>$request</p>
+</li>
+<li>
+<p>$remote_addr</p>
+</li>
+<li>
+<p>$remote_port</p>
+</li>
+<li>
+<p>$server_addr</p>
+</li>
+<li>
+<p>$server_port</p>
+</li>
+<li>
+<p>$http_cookie</p>
+</li>
+<li>
+<p>$http_x_forward_for</p>
+</li>
+<li>
+<p>$http_user_agent</p>
+</li>
+<li>
+<p>$host</p>
+</li>
+<li>
+<p>$hostname</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="title"><strong>HTTP Request Headers</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://127.0.0.1:8006/webroot/httpHeaders
+
+            request: GET /webroot/httpHeaders HTTP/1.1
+               host: 10.1.10.202
+           hostname: lb-2
+
+        client addr: 172.17.0.1:58450
+        server addr: 172.17.0.3:8006
+
+             cookie:
+                xff:
+         user agent: curl/7.64.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>$upstream_addr</p>
+</li>
+<li>
+<p>$upstream_port</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The Nginx default not define the parameters for Upstream Server Port, the Map are used to extract upstream server port, If upstream has multiple server, each with differrent port, this settings are much useful.</p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test via curl -v</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://127.0.0.1:8006/webroot/<span class="hljs-built_in">test</span>_upstream_port -v
+...
+&lt; backend: 172.17.0.2:8080
+&lt; backport: 8080</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>check the access log</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>172.17.0.2:8080 - 8080</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>$request_time</p>
+</li>
+<li>
+<p>$upstream_response_time</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code>request_time</code> represents the request processing time in seconds with a milliseconds resolution; time elapsed between the first bytes were read from the client and the log write after the last bytes were sent to the client.</p>
+</li>
+<li>
+<p><code>upstream_response_time</code> keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test via curl</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..3} ; <span class="hljs-keyword">do</span> curl http://localhost:8006/webroot/<span class="hljs-built_in">test</span>_request_response_<span class="hljs-built_in">times</span> ; <span class="hljs-built_in">echo</span>; <span class="hljs-keyword">done</span>
+&lt;h1&gt; Content Page.. !&lt;/h1&gt;
+&lt;h1&gt; Content Page.. !&lt;/h1&gt;
+&lt;h1&gt; Content Page.. !&lt;/h1&gt;
+
+request_time: 10.002, upstream_response_time: 10.001
+request_time: 10.007, upstream_response_time: 10.008
+request_time: 10.008, upstream_response_time: 10.008</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>$bytes_sent</p>
+</li>
+<li>
+<p>$body_bytes_sent</p>
+</li>
+<li>
+<p>$content_length</p>
+</li>
+<li>
+<p>$request_length</p>
+</li>
+<li>
+<p>$upstream_response_length</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="title"><strong>Test via curl</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..3} ; <span class="hljs-keyword">do</span> curl http://localhost:8006/webroot/<span class="hljs-built_in">test</span>_request_response_size ; <span class="hljs-built_in">echo</span>; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Check logs</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723
+bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723
+bytes_sent: 2027, body_bytes_sent: 1723, content_length: -, request_length: 114, upstream_response_length: 1723</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging">Logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NGINX Logging usually used to monitor the traffic pass through the NGINX, usually Logging are tightly bound with variables, the following are some basic scenarios for Logging and variables.</p>
+</div>
+<div class="sect2">
+<h3 id="_apm">APM</h3>
+<div class="listingblock">
+<div class="title"><strong>log_format</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-built_in">log</span>_format apm <span class="hljs-string">&apos; &quot;$time_local&quot; client=$remote_addr &apos;</span>
+                <span class="hljs-string">&apos;method=$request_method request=&quot;$request&quot; &apos;</span>
+                <span class="hljs-string">&apos;request_length=$request_length &apos;</span>
+                <span class="hljs-string">&apos;status=$status bytes_sent=$bytes_sent &apos;</span>
+                <span class="hljs-string">&apos;body_bytes_sent=$body_bytes_sent &apos;</span>
+                <span class="hljs-string">&apos;referer=$http_referer &apos;</span>
+                <span class="hljs-string">&apos;user_agent=&quot;$http_user_agent&quot; &apos;</span>
+                <span class="hljs-string">&apos;upstream_addr=$upstream_addr &apos;</span>
+                <span class="hljs-string">&apos;upstream_status=$upstream_status &apos;</span>
+                <span class="hljs-string">&apos;request_time=$request_time &apos;</span>
+                <span class="hljs-string">&apos;upstream_response_time=$upstream_response_time &apos;</span>
+                <span class="hljs-string">&apos;upstream_connect_time=$upstream_connect_time &apos;</span>
+                <span class="hljs-string">&apos;upstream_header_time=$upstream_header_time&apos;</span>;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test via curl</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..3} ; <span class="hljs-keyword">do</span> curl http://localhost:8006/webroot/<span class="hljs-built_in">test</span>_<span class="hljs-built_in">log</span>_apm ; <span class="hljs-keyword">done</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>logging sample</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"><span class="hljs-string">&quot;21/Oct/2022:13:41:24 +0800&quot;</span> client=127.0.0.1 method=GET request=<span class="hljs-string">&quot;GET /webroot/test_log_apm HTTP/1.1&quot;</span> request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent=<span class="hljs-string">&quot;curl/7.29.0&quot;</span> upstream_addr=10.1.10.181:8080 upstream_status=200 request_time=0.003 upstream_response_time=0.004 upstream_connect_time=0.001 upstream_header_time=0.004
+<span class="hljs-string">&quot;21/Oct/2022:13:41:24 +0800&quot;</span> client=127.0.0.1 method=GET request=<span class="hljs-string">&quot;GET /webroot/test_log_apm HTTP/1.1&quot;</span> request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent=<span class="hljs-string">&quot;curl/7.29.0&quot;</span> upstream_addr=10.1.10.182:8080 upstream_status=200 request_time=0.010 upstream_response_time=0.010 upstream_connect_time=0.001 upstream_header_time=0.010
+<span class="hljs-string">&quot;21/Oct/2022:13:41:24 +0800&quot;</span> client=127.0.0.1 method=GET request=<span class="hljs-string">&quot;GET /webroot/test_log_apm HTTP/1.1&quot;</span> request_length=98 status=200 bytes_sent=2027 body_bytes_sent=1723 referer=- user_agent=<span class="hljs-string">&quot;curl/7.29.0&quot;</span> upstream_addr=10.1.10.181:8080 upstream_status=200 request_time=0.004 upstream_response_time=0.004 upstream_connect_time=0.000 upstream_header_time=0.004</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proxy_redirect">proxy_redirect</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Scenarios</th>
+<th class="tableblock halign-left valign-top">Demonstration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Sever redirect to <a href="http://$host/path" class="bare" target="_blank">http://$host/path</a></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="title"><strong>Test via curl</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://localhost:8007/gluebanking/login.html -L</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above request:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>request <code>/gluebanking/login.html</code> arrive to nginx, nginx forward /gluebanking/login.html` to server</p>
+</li>
+<li>
+<p>server redirect to <code>http://host/gluebanking/login_jump.html</code></p>
+</li>
+<li>
+<p>nginx receive the response, nginx update response header, change the Location from <code>http://host/gluebanking/login_jump.html</code> to <code>http://host:8007/gluebanking/login_jump.html</code></p>
+</li>
+<li>
+<p>client receive nginx response, due to 302, client re-request to <code>/gluebanking/login_jump.html</code></p>
+</li>
+<li>
+<p>nginx receive <code>/gluebanking/login_jump.html</code>, forward to server</p>
+</li>
+<li>
+<p>server redirect to <code>http://host/gluebanking/welcomemanage/welcomeset</code></p>
+</li>
+<li>
+<p>nginx receive the response, nginx update response header, change the Location from <code>http://host/gluebanking/welcomemanage/welcomeset</code> to <code>http://host:8087/gluebanking/welcomemanage/welcomeset</code></p>
+</li>
+<li>
+<p>client receive nginx response, due to 302, client re-request to <code>/gluebanking/welcomemanage/welcomeset</code>, nginx forward request to server</p>
+</li>
+<li>
+<p>server response, nginx receive the response ans send response to client.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Three alternatives configuration can be used:</p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Option 1</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">location /gluebanking  {
+    proxy_pass http://backend-1:8080;
+    proxy_http_version 1.1;
+    proxy_<span class="hljs-built_in">set</span>_header Host <span class="hljs-variable">$host</span>;
+    proxy_redirect http://<span class="hljs-variable">$host</span>/ http://<span class="hljs-variable">$host</span>:<span class="hljs-variable">$server_port</span>/ ;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Option 2</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">location /gluebanking  {
+    proxy_pass http://backend-1:8080;
+    proxy_http_version 1.1;
+    proxy_<span class="hljs-built_in">set</span>_header Host <span class="hljs-variable">$host</span>;
+    proxy_redirect http://<span class="hljs-variable">$host</span>/ / ;
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Sever redirect to <a href="http://$host/path" class="bare" target="_blank">http://$host/path</a></p>
+</li>
+<li>
+<p>nginx expose customized url path</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This section use the same backend as above gluebanking, in this section we will use customized url <code>fine</code> to replace backend <code>gluebanking</code></p>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Example 1</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">curl http://localhost:8007/fine/login.html -L</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>this configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">location /fine  {
+    proxy_pass http://backend-1:8080/gluebanking;
+    proxy_http_version 1.1;
+    proxy_<span class="hljs-built_in">set</span>_header Host <span class="hljs-variable">$host</span>;
+    proxy_redirect http://<span class="hljs-variable">$host</span>/gluebanking /fine ;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>/fine</code> will be replace to <code>/gluebanking</code> while the request go into backend server</p>
+</li>
+<li>
+<p>the <code>http://$host/gluebanking</code> will be update to <code>http://$host:8007/fine</code> while nginx response from backend server</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Example 2</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finebi -L
+&lt;h1&gt;BI Login Page.. !&lt;/h1&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Example 3</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl --resolve example.com:8007:127.0.0.1 http://example.com:8007/finerpt -L
+&lt;h1&gt;BI Login Page.. !&lt;/h1&gt;</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Sever redirect to <a href="http://$host:$port/path" class="bare" target="_blank">http://$host:$port/path</a></p>
+</li>
+<li>
+<p>nginx expose customized url path</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="title"><strong>Test via curl</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://localhost:8007/nice/login.html -L
+&lt;br&gt;    &lt;h2&gt;Welcome&lt;/h2&gt;&lt;br&gt;This is /gluebanking/welcomemanage/welcomeset page</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>the configuration like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">location /nice  {
+    proxy_pass http://backend-2:8080/gluebanking;
+    proxy_http_version 1.1;
+    proxy_<span class="hljs-built_in">set</span>_header Host <span class="hljs-variable">$host</span>;
+    proxy_redirect http://<span class="hljs-variable">$host</span>:8080/gluebanking /nice ;
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_regular_expression">Regular Expression</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title"><strong>Regular Expression Syntax</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://localhost:8008/regexp
+
+        =     -    The URI must match the specified pattern exactly.
+        ^~    -    The URI must begin with the specified pattern.
+        None  -    The URI must begin with the specified pattern.
+        ~     -    The URI must be a <span class="hljs-keyword">case</span>-sensitive match to the specified regular expression.
+        ~*    -    The URI must be a <span class="hljs-keyword">case</span>-insensitive match to the specified regular expression.
+        @     -    Defines a named location block.
+
+        ()    -    Match group or evaluate the content of ().
+        []    -    Match any char inside [].
+        {}    -    Match a specific number of occurrence. eg, [0-9]{3} match 342 but not 32, {2,4} match length of 2, 3 and 4.
+
+        |     -    Or.
+        ?     -    Check <span class="hljs-keyword">for</span> zero or one occurrence of the previous char, eg jpe?g.
+        .     -    Any char.
+        *     -    Match zero, one or more occurrence of the previous char.
+        .*    -    Match zero, one or more occurrence of any char.
+        +     -    Match one or more occurrence of the previous char.
+        !     -    Not (negative look ahead).
+
+        \     -    Escape the next char.
+        /     -    The forward slash / is used to match any sub location, including none example location /.
+
+        ^     -    Match the beginning of the text (opposite of $). By itself, ^ is a shortcut <span class="hljs-keyword">for</span> all paths (since they all have a beginning).
+        $     -    The expression must be at the end of the evaluated text(no char/text after the match), $ is usually used at the end of a regex location expression.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>Test vis bash script</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./regexpTest.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security">Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_http_authentication_basic">HTTP Authentication Basic</h3>
+<div class="paragraph">
+<p>The <code>ngx_http_auth_basic_module</code> module allows limiting access to resources by validating the user name and password using the &quot;HTTP Basic Authentication&quot; protocol.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html" class="bare" target="_blank">https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> admin:admin kylin:default ; <span class="hljs-keyword">do</span> curl -u <span class="hljs-string">&quot;<span class="hljs-variable">$i</span>&quot;</span> http://localhost:8009/sec/base_auth ; <span class="hljs-keyword">done</span>
+Authentication Success,    Request Headers: authorization: [Basic YWRtaW46YWRtaW4=] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*]
+Authentication Success,    Request Headers: authorization: [Basic a3lsaW46ZGVmYXVsdA==] host: [secBackend] connection: [close] user-agent: [curl/7.64.1] accept: [*/*]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_client_authorization">Client Authorization</h3>
+<div class="paragraph">
+<p>The <code>ngx_http_auth_request_module</code> module implements client authorization based on the result of a subrequest. If the subrequest returns a 2xx response code, the access is allowed. If it returns 401 or 403, the access is denied with the corresponding error code. Any other response code returned by the subrequest is considered an error.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://nginx.org/en/docs/http/ngx_http_auth_request_module.html" class="bare" target="_blank">https://nginx.org/en/docs/http/ngx_http_auth_request_module.html</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_app_with_idp">App with IDP</h4>
+<div class="paragraph">
+<p>In production environment, especially legacy application, the application itself has Authentication &amp; Authorization ability, like use DB to keep username/password, JAAS or spring security based application layer mechanism.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/ngx-client-auth.png" alt="ngx client auth.png"></span></p>
+</div>
+<div class="paragraph">
+<p>NGINX Client Authorization can enhance the Authorization, which implement Authorization on NGINX before the request arrive the App, add more logic on proxy layer.</p>
+</div>
+<div class="paragraph">
+<p>The Key Configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">   location /secret {
+      auth_request /auth;
+      auth_request_<span class="hljs-built_in">set</span> <span class="hljs-variable">$user</span> <span class="hljs-variable">$upstream_http_x_forwarded_user</span>;
+      proxy_<span class="hljs-built_in">set</span>_header X-User <span class="hljs-variable">$user</span>;
+      add_header Set-Cookie <span class="hljs-variable">$user</span>;
+      proxy_pass http://backend-1:8080;
+   }
+
+   location /auth {
+      internal;
+      proxy_pass http://backend-1:8080;
+      proxy_pass_request_body off;
+      proxy_<span class="hljs-built_in">set</span>_header Content-Length <span class="hljs-string">&quot;&quot;</span>;
+      proxy_<span class="hljs-built_in">set</span>_header X-Original-URI <span class="hljs-variable">$request_uri</span>;
+      proxy_<span class="hljs-built_in">set</span>_header X-Original-Remote-Addr <span class="hljs-variable">$remote_addr</span>;
+      proxy_<span class="hljs-built_in">set</span>_header X-Original-Host <span class="hljs-variable">$host</span>;
+   }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test via curl</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://localhost:8009/secret
+username=admin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the log output</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">2022-10-26 03:10:14.781  INFO 1 --- [0.0-8080-exec-1] io.cloudadc.backend.foo.FooController    : authing user
+2022-10-26 03:10:14.799  INFO 1 --- [0.0-8080-exec-2] io.cloudadc.backend.foo.FooController    : current user is username=admin</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_app_use_centralized_idp">App use centralized IDP</h4>
+<div class="paragraph">
+<p>In some scenario, the app use a centralized IDP, which the request be forward to centralized IDP for Authentication &amp; Authorization, in this scenario also can use Client Authorization to enhance the whole</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/nginx-client-auth-idp.png" alt="nginx client auth idp.png"></span></p>
+</div>
+<div class="paragraph">
+<p>The Key Configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">   location /foo {
+      auth_request /authorize;
+
+      auth_request_<span class="hljs-built_in">set</span> <span class="hljs-variable">$user</span> <span class="hljs-variable">$upstream_http_x_forwarded_user</span>;
+      auth_request_<span class="hljs-built_in">set</span> <span class="hljs-variable">$ups_status</span> <span class="hljs-variable">$upstream_http_x_forwarded_status</span>;
+
+      proxy_<span class="hljs-built_in">set</span>_header X-Forwarded-User <span class="hljs-variable">$user</span>;
+      proxy_<span class="hljs-built_in">set</span>_header X-Forwarded-Status <span class="hljs-variable">$ups_status</span>;
+
+      proxy_pass http://backend-1:8080;
+   }
+
+   location /authorize {
+      internal;
+      proxy_<span class="hljs-built_in">set</span>_header Host <span class="hljs-variable">$host</span>;
+      proxy_pass_request_body off;
+      proxy_<span class="hljs-built_in">set</span>_header Content-Length <span class="hljs-string">&quot;&quot;</span>;
+      proxy_pass http://auth-server:8080;
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test via curl</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl http://localhost:8009/foo
+&lt;br&gt;F5 Demo App
+
+    Request URI: /foo
+    Protocol: HTTP/1.0
+
+    Server IP: 172.17.0.3
+    Server Port: 8080
+    Server Hostname: 1db99ccd6d63
+
+    Client IP: 172.17.0.5
+    Client Port: 33118
+    Client Hostname: 172.17.0.5
+
+    Session: 38134017B3A0BE81C236C285DFC15A1E
+
+    X-Forwarded-For: null
+
+    Cookies:
+
+    Request Headers: x-forwarded-user: [anonymousUser] host: [backend-1:8080] connection: [close] x-forwarded-status: [200] user-agent: [curl/7.64.1] accept: [*/*]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ssl">SSL</h3>
+<div class="paragraph">
+<p><a href="DEV.html#ssl">SSL</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jwt">JWT</h3>
+<div class="paragraph">
+<p><a href="DEV.html#jwt">JWT</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api_web_security_waf">API/Web security(WAF)</h3>
+<div class="paragraph">
+<p><a href="security/">API Web application firewall</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_websocket">WebSocket</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>1. Open broswer access the <a href="http://localhost:8010/client.html" class="bare" target="_blank">http://localhost:8010/client.html</a></strong></p>
+</div>
+<div class="paragraph">
+<p><strong>2. Modify connection section, add url ws://localhost:8010/rlzy/ws and click the Connect button</strong></p>
+</div>
+<div class="paragraph">
+<p>you should see the following log output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">2022-10-13 10:07:53.739  INFO 1 --- [0.0-8080-exec-6] i.c.b.websocket.MyTextWebSocketHandler   : Connection Established: StandardWebSocketSession[id=c26c08ae-3b75-35fa-28e3-32255bbea63d, uri=ws://localhost/rlzy/ws]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/nginx-ws-demo.png" alt="nginx ws demo.png"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>3. add some text and click send button</strong></p>
+</div>
+<div class="paragraph">
+<p>you should see the following log output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">2022-10-13 10:02:30.130  INFO 1 --- [0.0-8080-exec-3] i.c.b.websocket.MyTextWebSocketHandler   : aa7fdce6-0b05-7a8f<span class="hljs-_">-e</span>967-7670f565374e received: [Hello]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_concepts">Advanced Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_lua_vs_njs">Lua Vs NJS</h3>
+<div class="paragraph">
+<p><a href="lua/README.adoc">Lua Hello Vs NJS Hello</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nginx_vs_apisix">NGINX Vs APISIX</h3>
+<div class="paragraph">
+<p><a href="api-gateway/">How APISIX build a modern API Gatway via NGINX</a>?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_b_test">A/B Test</h3>
+<div class="paragraph">
+<p><a href="DEV.html#ab-test">AB Test</a></p>
+</div>
+</div>
+</div>
+</div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="DEV.html" class="navigation navigation-next navigation-unique" aria-label="Next page: DEVELOPMENT">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"QUICK START","level":"1.1","depth":1,"next":{"title":"DEVELOPMENT","level":"1.2","depth":1,"path":"DEV.adoc","ref":"DEV.adoc","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{"GUID":"na39","OCP_USER_ID":"ksoong-redhat.com","copyrightYear":"2023","copyrightHolder":"Kylin Soong"},"plugins":["collapsible-menu","donate","-sharing","sharing-plus","splitter","back-to-top-button","edit-link"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy Kylin Soong 2023","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"collapsible-menu":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"http://ksoong.org/docs/content/images/alipay.png","alipayText":"支付宝捐赠","button":"赞赏","title":"","wechat":"http://ksoong.org/docs/content/images/wechat.png","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"weibo":true,"linkedin":true,"google":true,"facebook":true,"all":["facebook","google","linkedin","weibo"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/kylinsoong/nginx-devops/blob/gh-pages"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"README.adoc","mtime":"2022-12-18T06:01:23.750Z","type":"asciidoc"},"gitbook":{"version":"3.2.3","time":"2023-04-20T04:48:01.277Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-collapsible-menu/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

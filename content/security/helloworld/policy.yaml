@@ -1,0 +1,69 @@
+---
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: webgoat-policy
+  namespace: webgoat
+spec:
+  policy:
+    name: webgoat-policy-kic
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    general:
+      trustXff: true
+      allowedResponseCodes:
+        - 400
+        - 401
+        - 403
+        - 404
+        - 502
+        - 499
+        - 500
+        - 413
+    signatures:
+      - signatureId: 200021132
+        enabled: false
+    bot-defense:
+      settings:
+        isEnabled: true
+      mitigations:
+        signatures:
+          - name: curl
+            action: detect
+          - name: Postman
+            action: detect
+        anomalies:
+          - name: Invalid HTTP Headers
+            action: ignore
+          - name: Suspicious HTTP Headers
+            action: ignore
+
+---
+apiVersion: appprotect.f5.com/v1beta1
+kind: APLogConf
+metadata:
+  name: logconf-elk
+  namespace: webgoat
+spec:
+  filter:
+    request_type: illegal
+  content:
+    format: default
+    max_message_size: 64k
+    max_request_size: any
+---
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: webgoat-waf-policy
+  namespace: webgoat
+spec:
+  waf:
+    enable: true
+    apPolicy: "webgoat-policy"
+    securityLog:
+      enable: true
+      apLogConf: "logconf-elk"
+      logDest: "syslog:server=192.168.200.212:5144"
