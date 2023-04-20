@@ -1087,16 +1087,29 @@ Server name: 8dbb74943174
 
 == Source IP Preserve
 
-[source, bash]
-.**
-----
-
-----
+=== X-Forwarded-For
 
 [source, bash]
-.**
+.*1. Configuration*
+----
+  location / {
+    status_zone location_backendXFF;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://backendXFF;
+  }
 ----
 
+* link:gw-preserve.d/xff.conf[xff.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ curl http://10.1.10.195:9031/foo
+Server address: 172.17.0.2:8080
+Server name: 8c30db968198
+Date: 20/Apr/2023:11:57:17 +0000
+URI: /foo
+Request ID: 283cb3a13e190ed8f4433867df6db416
 ----
 
 == API Gateway
