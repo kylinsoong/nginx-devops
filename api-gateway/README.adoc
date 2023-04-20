@@ -401,6 +401,49 @@ ttcp -t -u -p 9042 10.1.10.195
 
 ----
 
+== resolver
+
+=== Load Balancing Using DNS
+
+[source, bash]
+.*1. Configuration*
+----
+http {
+    resolver 10.0.0.1 valid=300s ipv6=off;
+    resolver_timeout 10s;
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+    upstream backend {
+        zone backend 32k;
+        least_conn;
+        # ...
+        server backend1.example.com resolve;
+        server backend2.example.com resolve;
+    }
+}
+----
+
+=== set variable
+
+[source, bash]
+.*1. Configuration*
+----
+http {
+    resolver 10.0.0.1 valid=300s ipv6=off;
+    resolver_timeout 10s;
+
+    set $server "app.example.com" ;
+
+    server {
+        location / {
+            proxy_pass http://$server;     
+   }
+}
+----
+
 == Service Type
 
 === HTTP
