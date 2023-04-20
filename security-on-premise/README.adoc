@@ -958,22 +958,19 @@ docker run -itd --rm --name grpc-server -e PORT=8009 -p 8009:8009 -d cloudadc/gr
 .*2. NGINX Configuration*
 ----
 server {
-    listen    8301;
-    server_name _;
-
-    status_zone status_fruits;
+    listen 8401 http2;
+    status_zone status_grpcgreeting;
 
     location / {
-        status_zone status_fruits;
-        app_protect_enable on;
-        app_protect_policy_file "/etc/app_protect/conf/NginxApiSecurityPolicy.json";
-        proxy_pass http://backendapi;
+       status_zone status_grpcgreeting;
+       app_protect_enable on;
+       app_protect_policy_file "/etc/app_protect/conf/grpc-greeting.json";
+       grpc_pass 10.1.10.171:8009;
     }
-
 }
 ----
 
-* link:grpc-binary-content-filer/fruits.conf[fruits.conf]
+* link:grpc-binary-content-filer/fgreeting.conf[greeting.conf]
 * link:grpc-binary-content-filer/grpc-greeting.json[grpc-greeting.json]
 
 [source, bash]
@@ -1161,41 +1158,55 @@ $ CONTENT=$(cat jwt-rate-limit/standard.jwt);  IFS='.' ; read -r header payload 
 [source, bash]
 .*2. NGINX Configuration*
 ----
-js_import extracter from extracttier.js;
-js_set $jwt_claim_tier extracter.jwt_payload_tier;
+log_format jwt '$remote_addr - $remote_user [$time_local] "$request" '
+               '$status $body_bytes_sent "$http_referer" "$http_user_agent" '
+               '$jwt_claim_tier $jwt_header_alg $jwt_claim_sub $jwt_payload';
 
-limit_req_zone $binary_remote_addr zone=standard_zone:10m rate=3r/s;
-limit_req_zone $binary_remote_addr zone=premium_zone:10m rate=1000r/s;
+limit_req_zone $binary_remote_addr$jwt_claim_tier$jwt_claim_sub zone=standard_zone:10m rate=1r/s;
+limit_req_zone $binary_remote_addr$jwt_claim_tier$jwt_claim_sub zone=premium_zone:10m rate=1000r/s;
+
+map $jwt_claim_tier $rewrite_path_url {
+    standard "/standard";
+    premium  "/premium";
+    default  "/all";
+}
 
 server {
   listen 8105;
   status_zone status_jwt-rate-limit;
 
   location /foo {
+
+    access_log /var/log/nginx/access_jwt.log jwt;
+
     status_zone status_jwt-rate-limit_foo;
 
-    if ($jwt_claim_tier = "standard" ) {
-        rewrite ^.*$ /standard;
-    }
+    auth_jwt "Fruit API";
+    auth_jwt_key_file api.security.jwk;
 
-    if ($jwt_claim_tier = "premium" ) {
-        rewrite ^.*$ /premium;
-    }
-
-    rewrite ^.*$ /all;
+    rewrite ^.*$ $rewrite_path_url ;
   }
 
   location = /premium {
+
+    access_log /var/log/nginx/access_jwt.log jwt;
+
     limit_req zone=premium_zone burst=5 nodelay;
     proxy_pass http://backend;
   }
 
   location = /standard {
+
+    access_log /var/log/nginx/access_jwt.log jwt;
+
     limit_req zone=standard_zone burst=5 nodelay;
     proxy_pass http://backend;
   }
 
   location = /all {
+
+    access_log /var/log/nginx/access_jwt.log jwt;
+
     proxy_pass http://backend;
   }
 }
@@ -1207,9 +1218,19 @@ server {
 [source, bash]
 .*3. Test*
 ----
-curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" http://ap.example.com:8105/foo/test?uid=bbc123456
+$ for i in {1..5} ; do curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" -s -o /dev/null -w "%{http_code}" http://ap.example.com:8105/foo/test ;echo ; done
+200
+200
+200
+200
+200
 
-curl -H "Authorization: Bearer `cat jwt-rate-limit/premium.jwt`" http://ap.example.com:8105/foo/test?uid=bbc123456
+$ for i in {1..5} ; do curl -H "Authorization: Bearer `cat jwt-rate-limit/standard.jwt`" -s -o /dev/null -w "%{http_code}" http://ap.example.com:8105/foo/test ;echo ; done
+200
+503
+503
+503
+503
 ----
 
 == Performance Testing
