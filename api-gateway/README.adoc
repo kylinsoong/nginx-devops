@@ -852,30 +852,237 @@ $ curl -s http://10.1.10.195:8080/api/8/stream/upstreams/backendUDP2 -H 'accept:
 
 == Request Persistence
 
-[source, bash]
-.**
-----
-
-----
+=== Source Address
 
 [source, bash]
-.**
+.*1. Configuration*
+----
+upstream backend_persist_source_addr {
+    zone   backend_persist 64k;
+    ip_hash;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
 ----
 
+* link:gw-persist.d/source_addr.conf[source_addr.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9015/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+----
+
+=== Sticky cookie
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_persist_cookie {
+    zone   backend_persist 64k;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+    sticky cookie srv_id expires=1h domain=.example.com path=/;
+}
+----
+
+* link:gw-persist.d/cookie.conf[cookie.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s --cookie "srv_id=389841024adab882cf00e885942acaea; expires=Thu, 20-Apr-23 11:42:49 GMT; max-age=3600; domain=.example.com; path=/" http://10.1.10.195:9016/foo | grep name ; done
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
 ----
 
 == LB Algorithms
 
-[source, bash]
-.**
-----
-
-----
+=== Round Robin 
 
 [source, bash]
-.**
+.*1. Configuration*
+----
+upstream backend_methods_rr {
+    zone   backend_methods 64k;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
 ----
 
+* link:gw-methods.d/rr.conf[rr.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9021/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+----
+
+=== Least Connections 
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_least_conn {
+    zone   backend_methods 64k;
+    least_conn;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
+----
+
+* link:gw-methods.d/least_conn.conf[least_conn.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9022/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+----
+
+=== IP Hash 
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_ip_hash {
+    zone   backend_methods 64k;
+    ip_hash;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
+----
+
+* link:gw-methods.d/ip_hash.conf[ip_hash.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9023/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+----
+
+=== Hash
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_hash {
+    zone   backend_methods 64k;
+    hash $request_uri consistent;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
+----
+
+* link:gw-methods.d/hash.conf[hash.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9024/foo | grep name ; done
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+----
+
+=== Least Time  
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_least_time {
+    zone   backend_methods 64k;
+    least_time header;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
+----
+
+* link:gw-methods.d/least_time.conf[least_time.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9025/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8c30db968198
+----
+
+=== Random 
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_random {
+    zone   backend_methods 64k;
+    random two least_time=last_byte;
+    server 10.1.20.203:8080;
+    server 10.1.20.204:8080;
+}
+----
+
+* link:gw-methods.d/random.conf[random.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9026/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8dbb74943174
+Server name: 8dbb74943174
+Server name: 8c30db968198
+----
+
+=== Server Weights
+
+[source, bash]
+.*1. Configuration*
+----
+upstream backend_methods_weight {
+    zone   backend_methods 64k;
+    server 10.1.20.203:8080 weight=5;
+    server 10.1.20.204:8080 weight=1;
+}
+----
+
+* link:gw-methods.d/weight.conf[weight.conf]
+
+[source, bash]
+.*2. Test*
+----
+$ for i in {1..5} ; do curl -s http://10.1.10.195:9027/foo | grep name ; done
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8c30db968198
+Server name: 8dbb74943174
 ----
 
 == Source IP Preserve
