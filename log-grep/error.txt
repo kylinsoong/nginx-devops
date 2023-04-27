@@ -1,0 +1,295 @@
+src/core/ngx_thread_pool.c, NGX_LOG_ERR, thread pool  queue overflow:  tasks waiting
+src/core/ngx_cycle.c, NGX_LOG_ERR, invalid PID number %*s in
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, broken header: %*s
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, unknown PROXY protocol version:
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, header is too large
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, invalid PROXY protocol TLV
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, unknown PROXY protocol TLV
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, broken PROXY protocol TLV
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  timed out
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid response
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  did not send server or port
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  did not send password
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid server                                address:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid server                                port:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid header in response
+src/mail/ngx_mail_smtp_handler.c, NGX_LOG_ERR, could not be resolved (: )
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, no password available
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, could not send PROXY protocol header at once
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, upstream sent too long response line:
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, upstream sent invalid response:
+src/stream/ngx_stream_limit_conn_module.c, NGX_LOG_ERR, the value of the  key                            is more than 255 bytes:
+src/stream/ngx_stream_access_module.c, NGX_LOG_ERR, access forbidden by rule
+src/stream/ngx_stream_core_module.c, NGX_LOG_ERR, preread buffer full
+src/stream/ngx_stream_variables.c, NGX_LOG_ERR, cycle while evaluating variable
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no port in upstream
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no resolver defined to resolve
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, in upstream
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, invalid local address
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no live upstreams
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, upstream SSL certificate verify error: (:)
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, upstream SSL certificate does not match
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, buffered data on next upstream
+src/stream/ngx_stream_script.c, NGX_LOG_ERR, invalid size
+src/http/ngx_http_request_body.c, NGX_LOG_ERR, client sent invalid chunked body
+src/http/ngx_http_request_body.c, NGX_LOG_ERR, client intended to send too large chunked                                    body: %O+%O bytes
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ERR, too big subrequest response:
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ERR, too big subrequest response
+src/http/ngx_http_script.c, NGX_LOG_ERR, the rewritten URI has a zero length
+src/http/ngx_http_file_cache.c, NGX_LOG_ERR, thread pool  not found
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_ERR, output on closed stream
+src/http/v2/ngx_http_v2.c, NGX_LOG_ERR, client intended to send too large chunked body:                                %O bytes
+src/http/ngx_http_variables.c, NGX_LOG_ERR, invalid $limit_rate
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, client intended to send too large body: %O bytes
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while processing
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, directory index of  is forbidden
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, no handler found
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, subrequests cycle while processing
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, nested in-memory subrequest
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while internally redirecting to
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while redirect to named location
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, empty URI in redirect to named location
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, could not find named location
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, _buffer_size  is not enough for cache key,                            it should be increased to at least
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, cache  not found
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream prematurely closed connection
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent too big header
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, connection upgrade in subrequest
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent duplicate header line: : ,                        previous value: :
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent Content-Length and                        Transfer-Encoding headers at the same time
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent invalid Content-Length header:                        :
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent unknown Transfer-Encoding:
+src/http/modules/ngx_http_scgi_module.c, NGX_LOG_ERR, upstream sent invalid status
+src/http/modules/ngx_http_scgi_module.c, NGX_LOG_ERR, upstream sent invalid header: %*sx%02xd...
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, cannot PUT to a collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT with range is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT request body is unavailable
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT request body must be in a file
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, could not be created
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, DELETE with body is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, insufficient URI depth: to DELETE
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, DELETE  failed
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Depth header must be infinity
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Depth header must be 0 or infinity
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, MKCOL with body is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, MKCOL can create a collection only
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, COPY and MOVE with body are unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent no Destination header
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent no Host header
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Destination URI  is handled by                        different repository than the source URI
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Destination header:
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, both URI  and Destination URI                         should be either collections or non-collections
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Overwrite header:
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, could not be ed to collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, is collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Depth header:
+src/http/modules/ngx_http_log_module.c, NGX_LOG_ERR, testing  existence failed
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, grpcs protocol requires SSL support
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected http2 frame:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent frame for unknown stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream rejected request with error
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway with error
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected push promise frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent duplicate :status header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid :status
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected :status
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent no :status header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream prematurely closed stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent data frame                                    for unknown stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream violated stream flow control,                                    received  data frame with window
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream violated connection flow control,                                    received  data frame with window
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent frame for closed stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid                                        trailer :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent trailer without                                    end stream flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid trailer
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too short http2 frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 frame with too long                                padding:  in frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent response body larger                                    than indicated content length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent response body larger                                than indicated content length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2 frame:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent headers frame                                with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 frame with too long                            padding:  in frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent truncated http2 header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                    table index:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                    dynamic table size update:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 table index                                with continuation flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                table index:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent zero http2                                header name length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2                                header name length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid encoded header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2                                header value length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header: :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent rst stream frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent window update frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large window update
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                                with ack flag and non-zero length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too many settings frames
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                                    with too large initial window size:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame with ack flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too many ping frames
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, no connection data found for                            keepalive http2 connection
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: multipart/x-mixed-replace response
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: too big response: %O
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: too big response
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, gdImageCreateTrueColor() failed
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, gdImageCreate() failed
+src/http/modules/ngx_http_charset_filter_module.c, NGX_LOG_ERR, no charset_map between the charsets  and
+src/http/modules/ngx_http_charset_filter_module.c, NGX_LOG_ERR, unknown charset  to override
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, the $memcached_key variable is not set
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid key in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid flags in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid length in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid response:
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid trailer
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid SSI command:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid context of SSI command:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too many SSI command parameters:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, duplicate  parameter                                                in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid parameter name:                                         in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, mandatory  parameter is absent                                        in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the ... SSI command is too long
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected - symbol after                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... parameter in                                     SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol after                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol before value of                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... value of                                     parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... value of                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol after  value                                of  parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the closing bracket in                                 variable is missing
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid variable name in
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, inclusion may be either virtual= or file=
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, no parameter in include SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, set and stub cannot be used together                        in include SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, wait cannot be used with file=
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid value  in the wait parameter
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, stub= for include not found
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, can only wait for one subrequest at a time
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unknown encoding  in the echo command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the if command inside the if command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid expression in
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ERR, eval_pv() failed
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ERR, call_sv() failed: %*s
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, not well formed XML document
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlCreatePushParserCtxt() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlParseChunk() failed, error:
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlCopyDtd() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, libxml2 error: %*s
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltApplyStylesheet() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltSaveResultToString() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltSaveResultToString() returned zero-length result
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltQuoteOneUserParam(, ) failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, invalid libxslt parameter
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, unexpected status code  in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, etag mismatch in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, invalid range in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, no complete length in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, unexpected range in slice response: %O-%O
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, missing slice response
+src/http/modules/ngx_http_index_module.c, NGX_LOG_ERR, is forbidden
+src/http/modules/ngx_http_index_module.c, NGX_LOG_ERR, is not found
+src/http/modules/ngx_http_auth_basic_module.c, NGX_LOG_ERR, user  was not found in
+src/http/modules/ngx_http_auth_basic_module.c, NGX_LOG_ERR, user : password mismatch
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 trak atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 mdat atom was found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 mdat atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 atom is too small:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 atom too large:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 file truncated
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 ftyp atom is too large:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 ftyp atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 moov atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 moov atom is too large:%uL,                            you may want to increase mp4_max_buffer_size
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdat atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mvhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 mvhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 start time exceeds file duration
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 compressed moov atom (cmov) is not supported
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 tkhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 tkhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdia atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 mdhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 hdlr atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 minf atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 vmhd/smhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 dinf atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stbl atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stts atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stts atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stts atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stts samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stss atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stss atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 ctts atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 ctts atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsc atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsc atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stsc atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, zero number of entries in stsc atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, time is out mp4 stsc chunks in ,                       start ? start : end
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, zero number of samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsz atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsz atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stsz samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large mp4 start samples size in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 stsz samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large mp4 end samples size in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stco atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stco/co64 atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stco atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stco chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large chunk offset in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 stco chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 co64 atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 co64 atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 co64 chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 co64 chunks in
+src/http/modules/ngx_http_limit_req_module.c, NGX_LOG_ERR, the value of the  key                            is more than 65535 bytes:
+src/http/modules/ngx_http_auth_request_module.c, NGX_LOG_ERR, auth request unexpected status:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI record:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed FastCGI stdout
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, FastCGI sent in stderr: %*s
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed                                    FastCGI stdout
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed                                    FastCGI request
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unsupported FastCGI                                protocol version:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent invalid FastCGI                                record type:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI                                request id high byte:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI                                request id low byte:
+src/http/modules/ngx_http_userid_filter_module.c, NGX_LOG_ERR, client sent too short userid cookie
+src/http/modules/ngx_http_userid_filter_module.c, NGX_LOG_ERR, client sent invalid userid cookie
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_ERR, suwsgi protocol requires SSL support
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ERR, inflate() failed: ,
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ERR, inflate() returned  on response end
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, invalid URL prefix in
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, zero length URI to proxy
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, upstream sent no valid HTTP/1.0 header
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, upstream sent invalid chunked response
+src/http/ngx_http_parse.c, NGX_LOG_ERR, unsafe URI  was detected
+src/os/win32/ngx_files.c, NGX_LOG_ERR, ReadFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_ERR, WriteFile()  failed
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, certificate status  in the OCSP response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, no OCSP responder URL in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, invalid URL prefix in OCSP responder                         in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, in OCSP responder  in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, empty host in OCSP responder in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder timed out
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder prematurely closed connection
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder sent invalid response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder sent invalid                                    Content-Type header: %*s
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP response not successful (: )
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, certificate status not found in the OCSP response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, invalid nextUpdate time in certificate status
+src/event/ngx_event_openssl.c, NGX_LOG_ERR, password is truncated to  bytes
+src/event/ngx_event_pipe.c, NGX_LOG_ERR, kevent() reported that upstream                                    closed connection
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ERR, maximum number of descriptors                        supported by select() is

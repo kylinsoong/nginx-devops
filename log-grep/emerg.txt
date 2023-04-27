@@ -1,0 +1,112 @@
+src/core/ngx_thread_pool.c, NGX_LOG_EMERG, unknown thread pool  in :
+src/core/ngx_file.c, NGX_LOG_EMERG, the default path name  has                                        the same name as another default path,                                        but the different levels, you need to                                        redefine one of them in http section
+src/core/ngx_file.c, NGX_LOG_EMERG, the path name  in : has                                        the same name as default path, but                                        the different levels, you need to                                        define default path in http section
+src/core/ngx_file.c, NGX_LOG_EMERG, chown(, ) failed
+src/core/ngx_file.c, NGX_LOG_EMERG, chmod()  failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, gethostname() failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, fcntl(FD_CLOEXEC)  failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, zero size shared memory zone
+src/core/ngx_cycle.c, NGX_LOG_EMERG, listening socket on  failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, could not create ngx_temp_pool
+src/core/ngx_cycle.c, NGX_LOG_EMERG, shared zone  has no equal addresses:  vs
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEADDR)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEPORT_LB)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEPORT)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(IPV6_V6ONLY)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_EMERG, bind() to  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, listen() to , backlog  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, still could not bind()
+src/core/nginx.c, NGX_LOG_EMERG, invalid socket number  in  NGINX_VAR                                environment variable, ignoring the rest                                of the variable
+src/core/nginx.c, NGX_LOG_EMERG, invalid socket number  in  NGINX_VAR                        environment variable, ignoring
+src/core/nginx.c, NGX_LOG_EMERG, getpwnam( NGX_USER ) failed
+src/core/nginx.c, NGX_LOG_EMERG, getgrnam( NGX_GROUP ) failed
+src/core/nginx.c, NGX_LOG_EMERG, lock_file could not be changed, ignored
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                        increase _max_size:
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , too large                        _bucket_size:
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                            increase _bucket_size:
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                            increase _max_size:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_EMERG, no auth_http is defined for server in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                        for certificate  and                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_client_certificate for ssl_verify_client
+src/mail/ngx_mail_core_module.c, NGX_LOG_EMERG, unknown mail protocol for server in :
+src/mail/ngx_mail_core_module.c, NGX_LOG_EMERG, no listen is defined for server in :
+src/stream/ngx_stream_limit_conn_module.c, NGX_LOG_EMERG, limit_conn_zone  uses the  key                            while previously it used the  key
+src/stream/ngx_stream_core_module.c, NGX_LOG_EMERG, no handler for server in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                        for certificate  and                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, variables in                        ssl_certificate and ssl_certificate_key                        directives are not supported on this platform
+src/stream/ngx_stream_variables.c, NGX_LOG_EMERG, unknown  variable
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, no servers in upstream  in :
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, no port in upstream  in :
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, in upstream  in :
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_EMERG, no proxy_ssl_certificate_key is defined                            for certificate
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_EMERG, no proxy_ssl_trusted_certificate for proxy_ssl_verify
+src/stream/ngx_stream_upstream.c, NGX_LOG_EMERG, upstream  may not have port  in :
+src/http/ngx_http.c, NGX_LOG_EMERG, duplicate location  in :
+src/http/ngx_http.c, NGX_LOG_EMERG, invalid server name or wildcard  on
+src/http/ngx_http_file_cache.c, NGX_LOG_EMERG, cache  uses the  cache path                            while previously it used the  cache path
+src/http/ngx_http_file_cache.c, NGX_LOG_EMERG, cache  had previously different levels
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                                the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                                for certificate  and                                the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                            the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, ssl_ocsp is incompatible with                            ssl_verify_client optional_no_ca
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                                the listen ... ssl directive in :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_EMERG, no grpc_ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_EMERG, no grpc_ssl_trusted_certificate for grpc_ssl_verify
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_EMERG, require_pv() failed: %*s
+src/http/modules/ngx_http_referer_module.c, NGX_LOG_EMERG, the none or blocked referers are specified                        in the valid_referers directive                        without any valid referer
+src/http/modules/ngx_http_limit_req_module.c, NGX_LOG_EMERG, limit_req  uses the  key                            while previously it used the  key
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_EMERG, no uwsgi_ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_EMERG, no uwsgi_ssl_trusted_certificate for uwsgi_ssl_verify
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, malloc() failed
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, posix_memalign(, ) failed
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, memalign(, ) failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, pipe() failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, dup2(STDERR) failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, close() failed
+src/os/unix/ngx_process.c, NGX_LOG_EMERG, sigaction() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, setgid() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, initgroups(, ) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, prctl(PR_SET_KEEPCAPS, 1) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, setuid() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, capset() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_init() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_destroy() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_signal() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutexattr_init() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutexattr_settype                       (PTHREAD_MUTEX_ERRORCHECK) failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutex_init() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, fork() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, setsid() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, open(/dev/null) failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, dup2(STDIN) failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, dup2(STDOUT) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, GetVersionEx() failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, WSAStartup() failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, GetEnvironmentVariable(ngx_unique) failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, StartServiceCtrlDispatcher() failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, RegisterServiceCtrlHandlerEx() failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, SetServiceStatus() failed
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, invalid URL prefix in OCSP responder                             in ssl_ocsp_responder
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, in OCSP responder                                 in ssl_ocsp_responder
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, ssl_ocsp is not supported on this platform
+src/event/ngx_event_openssl.c, NGX_LOG_EMERG, SSL_CONF_cmd() is not available on this platform
+src/event/ngx_event.c, NGX_LOG_EMERG, no events section in configuration
+src/event/ngx_event.c, NGX_LOG_EMERG, worker_connections are not enough                        for  listening sockets
+src/event/ngx_event.c, NGX_LOG_EMERG, no events module found
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, eventfd() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, ioctl(eventfd, FIONBIO) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, io_setup() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, epoll_ctl(EPOLL_CTL_ADD, eventfd) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, epoll_create() failed
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_EMERG, poll is not available on this platform
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_EMERG, kqueue() failed
+src/event/modules/ngx_select_module.c, NGX_LOG_EMERG, the maximum number of files                        supported by select() is
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, port_create() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, timer_create() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, timer_settime() failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_EMERG, open(/dev/poll) failed

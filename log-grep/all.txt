@@ -1,0 +1,1014 @@
+src/misc/ngx_google_perftools_module.c, NGX_LOG_CRIT, ProfilerStart() failed
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, the configured event method cannot be used with thread pools
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, pthread_attr_init() failed
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, pthread_attr_setdetachstate() failed
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, pthread_attr_setstacksize() failed
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, pthread_create() failed
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, task # already active
+src/core/ngx_thread_pool.c, NGX_LOG_ERR, thread pool  queue overflow:  tasks waiting
+src/core/ngx_thread_pool.c, NGX_LOG_ALERT, pthread_sigmask() failed
+src/core/ngx_thread_pool.c, NGX_LOG_EMERG, unknown thread pool  in :
+src/core/ngx_log.c, NGX_LOG_ALERT, %*s
+src/core/ngx_log.c, NGX_LOG_ALERT, failed
+src/core/ngx_output_chain.c, NGX_LOG_ALERT, zero size buf in output                                t: r: f:  -  %O-%O
+src/core/ngx_output_chain.c, NGX_LOG_ALERT, negative size buf in output                                t: r: f:  -  %O-%O
+src/core/ngx_output_chain.c, NGX_LOG_ALERT, read only %z of %O from
+src/core/ngx_output_chain.c, NGX_LOG_ALERT, zero size buf in chain writer                            t: r: f:  -  %O-%O
+src/core/ngx_output_chain.c, NGX_LOG_ALERT, negative size buf in chain writer                            t: r: f:  -  %O-%O
+src/core/ngx_open_file_cache.c, NGX_LOG_ALERT, items still left in open file cache
+src/core/ngx_open_file_cache.c, NGX_LOG_ALERT, rbtree still is not empty in open file cache
+src/core/ngx_open_file_cache.c, NGX_LOG_NOTICE, fstat(O_PATH) failed with EBADF,                        switching to fstatat(AT_EMPTY_PATH)
+src/core/ngx_string.c, NGX_LOG_ALERT, memcpy  bytes
+src/core/ngx_file.c, NONE, 
+src/core/ngx_file.c, NGX_LOG_EMERG, the default path name  has                                        the same name as another default path,                                        but the different levels, you need to                                        redefine one of them in http section
+src/core/ngx_file.c, NGX_LOG_EMERG, the path name  in : has                                        the same name as default path, but                                        the different levels, you need to                                        define default path in http section
+src/core/ngx_file.c, NGX_LOG_EMERG, chown(, ) failed
+src/core/ngx_file.c, NGX_LOG_EMERG, chmod()  failed
+src/core/ngx_file.c, NGX_LOG_CRIT, to  failed
+src/core/ngx_file.c, NGX_LOG_ALERT, has read only %z of %O from
+src/core/ngx_file.c, NGX_LOG_ALERT, has written only %z of %O to
+src/core/ngx_resolver.c, NGX_LOG_ALERT, could not cancel  resolving
+src/core/ngx_resolver.c, NGX_LOG_CRIT, send() incomplete
+src/core/ngx_resolver.c, NGX_LOG_CRIT, buffer overflow
+src/core/ngx_resolver.c, NONE, invalid  DNS response  fl:%04Xi,                       tcp ? TCP : UDP
+src/core/ngx_resolver.c, NONE, unknown query class  in DNS response
+src/core/ngx_resolver.c, NONE, unknown query type  in DNS response
+src/core/ngx_resolver.c, NONE, DNS error (: ), query id:, name:%*s
+src/core/ngx_resolver.c, NONE, DNS error (: ), query id:
+src/core/ngx_resolver.c, NONE, unexpected DNS response for
+src/core/ngx_resolver.c, NONE, wrong ident  in DNS response for , expect
+src/core/ngx_resolver.c, NONE, unexpected RR class  in DNS response
+src/core/ngx_resolver.c, NONE, unexpected RR type  in DNS response
+src/core/ngx_resolver.c, NONE, no A or CNAME types in DNS response
+src/core/ngx_resolver.c, NONE, no SRV type in DNS response
+src/core/ngx_resolver.c, NONE, invalid in-addr.arpa or ip6.arpa name in DNS response
+src/core/ngx_resolver.c, NONE, no PTR type in DNS response
+src/core/ngx_resolver.c, NGX_LOG_CRIT, connect() failed
+src/core/ngx_resolver.c, NONE, connect() to  failed
+src/core/ngx_conf_file.c, NONE, %*s in command line
+src/core/ngx_conf_file.c, NONE, %*s in :
+src/core/ngx_cycle.c, NGX_LOG_EMERG, gethostname() failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, fcntl(FD_CLOEXEC)  failed
+src/core/ngx_cycle.c, NGX_LOG_EMERG, zero size shared memory zone
+src/core/ngx_cycle.c, NGX_LOG_EMERG, listening socket on  failed
+src/core/ngx_cycle.c, NGX_LOG_WARN, deleting socket
+src/core/ngx_cycle.c, NGX_LOG_EMERG, could not create ngx_temp_pool
+src/core/ngx_cycle.c, NGX_LOG_EMERG, shared zone  has no equal addresses:  vs
+src/core/ngx_cycle.c, NGX_LOG_NOTICE, signal process started
+src/core/ngx_cycle.c, NGX_LOG_ERR, invalid PID number %*s in
+src/core/ngx_shmtx.c, NGX_LOG_ALERT, sem_init() failed
+src/core/ngx_shmtx.c, NGX_LOG_ALERT, sem_destroy() failed
+src/core/ngx_shmtx.c, NGX_LOG_ALERT, sem_wait() failed while waiting on shmtx
+src/core/ngx_shmtx.c, NGX_LOG_ALERT, sem_post() failed while wake shmtx
+src/core/ngx_regex.c, NGX_LOG_ALERT, failed:  on  using
+src/core/ngx_regex.c, NGX_LOG_INFO, pcre2_jit_compile() failed:  in ,                                ignored
+src/core/ngx_regex.c, NGX_LOG_ALERT, pcre_study() failed:  in
+src/core/ngx_regex.c, NGX_LOG_INFO, JIT compiler does not support pattern:
+src/core/ngx_connection.c, NGX_LOG_CRIT, getsockname() of the inherited                            socket # failed
+src/core/ngx_connection.c, NGX_LOG_CRIT, the inherited socket # has                            an unsupported protocol family
+src/core/ngx_connection.c, NGX_LOG_CRIT, getsockopt(SO_TYPE)  failed
+src/core/ngx_connection.c, NGX_LOG_ALERT, getsockopt(SO_RCVBUF)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, getsockopt(SO_SNDBUF)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, getsockopt(SO_SETFIB)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, getsockopt(SO_REUSEPORT_LB)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, getsockopt(SO_REUSEPORT)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_NOTICE, getsockopt(TCP_FASTOPEN)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_NOTICE, getsockopt(SO_ACCEPTFILTER) for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_NOTICE, getsockopt(TCP_DEFER_ACCEPT) for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_REUSEPORT_LB)  failed,                                    ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_REUSEPORT)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEADDR)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEPORT_LB)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(SO_REUSEPORT)  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, setsockopt(IPV6_V6ONLY)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_EMERG, bind() to  failed
+src/core/ngx_connection.c, NGX_LOG_EMERG, listen() to , backlog  failed
+src/core/ngx_connection.c, NGX_LOG_NOTICE, try again to bind() after 500ms
+src/core/ngx_connection.c, NGX_LOG_EMERG, still could not bind()
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_RCVBUF, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_SNDBUF, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_KEEPALIVE, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_KEEPIDLE, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_KEEPINTVL, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_KEEPCNT, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_SETFIB, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_FASTOPEN, )  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_NODELAY)  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, listen() to , backlog  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_ACCEPTFILTER, NULL)                                for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, could not change the accept filter                                    to  for , ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(SO_ACCEPTFILTER, )                                for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(TCP_DEFER_ACCEPT, ) for  failed,                                ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(IP_RECVDSTADDR)                                for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(IP_PKTINFO)                                for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, setsockopt(IPV6_RECVPKTINFO)                                for  failed, ignored
+src/core/ngx_connection.c, NGX_LOG_ALERT, the new socket has number ,                        but only  files are available
+src/core/ngx_connection.c, NGX_LOG_ALERT, worker_connections are not enough
+src/core/ngx_connection.c, NGX_LOG_ALERT, connection already closed
+src/core/ngx_connection.c, NGX_LOG_WARN, worker_connections are not enough,                        reusing connections
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, broken header: %*s
+src/core/ngx_proxy_protocol.c, NGX_LOG_ALERT, too small buffer for PROXY protocol
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, unknown PROXY protocol version:
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, header is too large
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, invalid PROXY protocol TLV
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, unknown PROXY protocol TLV
+src/core/ngx_proxy_protocol.c, NGX_LOG_ERR, broken PROXY protocol TLV
+src/core/nginx.c, NGX_LOG_ALERT, built-in log failed
+src/core/nginx.c, NGX_LOG_NOTICE, using inherited sockets from
+src/core/nginx.c, NGX_LOG_EMERG, invalid socket number  in  NGINX_VAR                                environment variable, ignoring the rest                                of the variable
+src/core/nginx.c, NGX_LOG_EMERG, invalid socket number  in  NGINX_VAR                        environment variable, ignoring
+src/core/nginx.c, NGX_LOG_ALERT, to  failed                        before executing new binary process
+src/core/nginx.c, NGX_LOG_ALERT, back to  failed after                            an attempt to execute new binary process
+src/core/nginx.c, NGX_LOG_WARN, the number of worker_processes is not equal to                        the number of worker_cpu_affinity masks,                        using last mask for remaining worker processes
+src/core/nginx.c, NGX_LOG_EMERG, getpwnam( NGX_USER ) failed
+src/core/nginx.c, NGX_LOG_EMERG, getgrnam( NGX_GROUP ) failed
+src/core/nginx.c, NGX_LOG_EMERG, lock_file could not be changed, ignored
+src/core/nginx.c, NGX_LOG_ALERT, failed ()
+src/core/ngx_hash.c, NGX_LOG_ALERT, hf:%*s
+src/core/ngx_hash.c, NGX_LOG_ALERT, wch:%*s
+src/core/ngx_hash.c, NGX_LOG_ALERT, key:
+src/core/ngx_hash.c, NGX_LOG_ALERT, value:
+src/core/ngx_hash.c, NGX_LOG_ALERT, wct:%*s
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                        increase _max_size:
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , too large                        _bucket_size:
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                            increase _bucket_size:
+src/core/ngx_hash.c, NGX_LOG_ALERT, :
+src/core/ngx_hash.c, NGX_LOG_WARN, could not build optimal , you should increase                    either _max_size:  or _bucket_size: ;
+src/core/ngx_hash.c, NGX_LOG_EMERG, could not build , you should                            increase _max_size:
+src/core/ngx_hash.c, NGX_LOG_ALERT, : NULL
+src/core/ngx_hash.c, NGX_LOG_ALERT, wc0:
+src/core/ngx_hash.c, NGX_LOG_ALERT, wc1:
+src/core/ngx_hash.c, NGX_LOG_ALERT, wc2:
+src/core/ngx_hash.c, NGX_LOG_ALERT, wc3:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  timed out
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid response
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_INFO, client login failed:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  did not send server or port
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  did not send password
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid server                                address:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid server                                port:
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_ERR, auth http server  sent invalid header in response
+src/mail/ngx_mail_auth_http_module.c, NGX_LOG_EMERG, no auth_http is defined for server in :
+src/mail/ngx_mail_imap_handler.c, NGX_LOG_INFO, client timed out
+src/mail/ngx_mail_smtp_handler.c, NGX_LOG_ERR, could not be resolved (: )
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                        for certificate  and                        the  directive in :
+src/mail/ngx_mail_ssl_module.c, NGX_LOG_EMERG, no ssl_client_certificate for ssl_verify_client
+src/mail/ngx_mail_core_module.c, NGX_LOG_EMERG, unknown mail protocol for server in :
+src/mail/ngx_mail_core_module.c, NGX_LOG_EMERG, no listen is defined for server in :
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_INFO, upstream timed out
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_INFO, client logged in
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, no password available
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, could not send PROXY protocol header at once
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, upstream sent too long response line:
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_ERR, upstream sent invalid response:
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_INFO, shutdown timeout
+src/mail/ngx_mail_proxy_module.c, NGX_LOG_INFO, proxied session done
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, *%uA client %*s connected to
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client SSL certificate verify error: (:)
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent no required SSL certificate
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid base64 encoding in AUTH PLAIN command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid login in AUTH PLAIN command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid password in AUTH PLAIN command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid base64 encoding in AUTH LOGIN command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid base64 encoding in AUTH CRAM-MD5 command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid CRAM-MD5 hash in AUTH CRAM-MD5 command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent invalid base64 encoding in AUTH EXTERNAL command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent too long command
+src/mail/ngx_mail_handler.c, NGX_LOG_INFO, client sent too many invalid commands
+src/stream/ngx_stream_limit_conn_module.c, NGX_LOG_ERR, the value of the  key                            is more than 255 bytes:
+src/stream/ngx_stream_limit_conn_module.c, NONE, limiting connections by zone ,                               lccf->dry_run ? , dry run, :
+src/stream/ngx_stream_limit_conn_module.c, NGX_LOG_EMERG, limit_conn_zone  uses the  key                            while previously it used the  key
+src/stream/ngx_stream_access_module.c, NGX_LOG_ERR, access forbidden by rule
+src/stream/ngx_stream_handler.c, NGX_LOG_INFO, *%uA client %*s connected to ,                  c->number, c->type == SOCK_DGRAM ? udp  :
+src/stream/ngx_stream_core_module.c, NGX_LOG_ERR, preread buffer full
+src/stream/ngx_stream_core_module.c, NGX_LOG_EMERG, no handler for server in :
+src/stream/ngx_stream_geo_module.c, NGX_LOG_NOTICE, creating binary geo range base
+src/stream/ngx_stream_log_module.c, NGX_LOG_WARN, send() to syslog failed
+src/stream/ngx_stream_log_module.c, NGX_LOG_WARN, send() to syslog has written only %z of
+src/stream/ngx_stream_log_module.c, NGX_LOG_ALERT, to  was incomplete: %z of
+src/stream/ngx_stream_log_module.c, NGX_LOG_ALERT, deflateInit2() failed:
+src/stream/ngx_stream_log_module.c, NGX_LOG_ALERT, deflate(Z_FINISH) failed:
+src/stream/ngx_stream_log_module.c, NGX_LOG_ALERT, deflateEnd() failed:
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                        for certificate  and                        the listen ... ssl directive in :
+src/stream/ngx_stream_ssl_module.c, NGX_LOG_EMERG, variables in                        ssl_certificate and ssl_certificate_key                        directives are not supported on this platform
+src/stream/ngx_stream_variables.c, NGX_LOG_ALERT, unknown variable index:
+src/stream/ngx_stream_variables.c, NGX_LOG_ERR, cycle while evaluating variable
+src/stream/ngx_stream_variables.c, NGX_LOG_EMERG, unknown  variable
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, no servers in upstream  in :
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, no port in upstream  in :
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_EMERG, in upstream  in :
+src/stream/ngx_stream_upstream_round_robin.c, NGX_LOG_WARN, upstream server temporarily disabled
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no port in upstream
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no resolver defined to resolve
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ALERT, no upstream configuration
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, in upstream
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, invalid local address
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, no live upstreams
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_INFO, proxy  connected to ,                           pc->type == SOCK_DGRAM ? udp  :
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, upstream SSL certificate verify error: (:)
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, upstream SSL certificate does not match
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_INFO, udp timed out                                   , packets from/to client:/                                   , bytes from/to client:%O/%O                                   , bytes from/to upstream:%O/%O
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_INFO, disconnected on shutdown
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_INFO, udp done                       , packets from/to client:/                       , bytes from/to client:%O/%O                       , bytes from/to upstream:%O/%O
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_INFO, disconnected                   , bytes from/to client:%O/%O                   , bytes from/to upstream:%O/%O,                   from_upstream ? upstream : client
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_ERR, buffered data on next upstream
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_EMERG, no proxy_ssl_certificate_key is defined                            for certificate
+src/stream/ngx_stream_proxy_module.c, NGX_LOG_EMERG, no proxy_ssl_trusted_certificate for proxy_ssl_verify
+src/stream/ngx_stream_write_filter_module.c, NGX_LOG_ALERT, zero size buf in writer                            t: r: f:  -  %O-%O
+src/stream/ngx_stream_write_filter_module.c, NGX_LOG_ALERT, negative size buf in writer                            t: r: f:  -  %O-%O
+src/stream/ngx_stream_write_filter_module.c, NGX_LOG_ALERT, the stream output chain is empty
+src/stream/ngx_stream_write_filter_module.c, NGX_LOG_ALERT, shared connection is busy
+src/stream/ngx_stream_script.c, NGX_LOG_ERR, invalid size
+src/stream/ngx_stream_upstream.c, NGX_LOG_EMERG, upstream  may not have port  in :
+src/http/ngx_http.c, NGX_LOG_EMERG, duplicate location  in :
+src/http/ngx_http.c, NGX_LOG_EMERG, invalid server name or wildcard  on
+src/http/ngx_http.c, NGX_LOG_WARN, conflicting server name  on , ignored
+src/http/ngx_http_write_filter_module.c, NGX_LOG_ALERT, the http output chain is empty
+src/http/ngx_http_request_body.c, NGX_LOG_ALERT, negative request body rest
+src/http/ngx_http_request_body.c, NGX_LOG_ALERT, busy buffers after request body flush
+src/http/ngx_http_request_body.c, NGX_LOG_INFO, client prematurely closed connection
+src/http/ngx_http_request_body.c, NGX_LOG_ALERT, too large pipelined header after reading body
+src/http/ngx_http_request_body.c, NGX_LOG_ERR, client sent invalid chunked body
+src/http/ngx_http_request_body.c, NGX_LOG_ERR, client intended to send too large chunked                                    body: %O+%O bytes
+src/http/ngx_http_request_body.c, NGX_LOG_ALERT, duplicate last buf in save filter
+src/http/ngx_http_request_body.c, NGX_LOG_ALERT, body already in file
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ALERT, http postpone filter NULL inactive request
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ALERT, http postpone filter NULL output
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ERR, too big subrequest response:
+src/http/ngx_http_postpone_filter_module.c, NGX_LOG_ERR, too big subrequest response
+src/http/ngx_http_script.c, NGX_LOG_NOTICE, does not match
+src/http/ngx_http_script.c, NGX_LOG_NOTICE, matches
+src/http/ngx_http_script.c, NGX_LOG_NOTICE, rewritten redirect:
+src/http/ngx_http_script.c, NGX_LOG_NOTICE, rewritten data: , args:
+src/http/ngx_http_script.c, NGX_LOG_ERR, the rewritten URI has a zero length
+src/http/ngx_http_file_cache.c, NGX_LOG_EMERG, cache  uses the  cache path                            while previously it used the  cache path
+src/http/ngx_http_file_cache.c, NGX_LOG_EMERG, cache  had previously different levels
+src/http/ngx_http_file_cache.c, NGX_LOG_INFO, cache lock timeout
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  is too small
+src/http/ngx_http_file_cache.c, NGX_LOG_INFO, cache file  version mismatch
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has md5 collision
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has too long header
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has incorrect vary length
+src/http/ngx_http_file_cache.c, NGX_LOG_ERR, thread pool  not found
+src/http/ngx_http_file_cache.c, NGX_LOG_ALERT, could not allocate node
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has incorrect vary hash
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, read only %z of %z from
+src/http/ngx_http_file_cache.c, NGX_LOG_ALERT, stalled cache updating, error:
+src/http/ngx_http_file_cache.c, NGX_LOG_ALERT, ignore long locked inactive cache entry %*s, count:
+src/http/ngx_http_file_cache.c, NGX_LOG_NOTICE, http file cache:  %.3fM, bsize:
+src/http/ngx_http_request.c, NGX_LOG_INFO, client closed connection
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid host in request line
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent too long URI
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid request
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent unsafe win32 URI
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent too large request
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent too long header line: %*s...
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid header line: %*s
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid header line: %*sx%02xd...
+src/http/ngx_http_request.c, NGX_LOG_ALERT, too large header to copy
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent duplicate header line: : ,                    previous value: :
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent duplicate host header: : ,                        previous value: :
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid host header
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent HTTP/1.1 request without Host header
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent invalid Content-Length header
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent HTTP/1.0 request with                            Transfer-Encoding header
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent Content-Length and                                Transfer-Encoding headers                                at the same time
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent unknown Transfer-Encoding:
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent CONNECT method
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent TRACE method
+src/http/ngx_http_request.c, NGX_LOG_INFO, client sent plain HTTP request to HTTPS port
+src/http/ngx_http_request.c, NGX_LOG_INFO, client SSL certificate verify error:
+src/http/ngx_http_request.c, NGX_LOG_INFO, client attempted to request the server name                            different from the one that was negotiated
+src/http/ngx_http_request.c, NGX_LOG_ALERT, failed:                                 on  using
+src/http/ngx_http_request.c, NGX_LOG_ALERT, subrequest: ? logged again
+src/http/ngx_http_request.c, NGX_LOG_ALERT, http finalize non-active request: ?
+src/http/ngx_http_request.c, NGX_LOG_INFO, kevent() reported that client  closed                            keepalive connection
+src/http/ngx_http_request.c, NGX_LOG_INFO, client  closed keepalive connection
+src/http/ngx_http_request.c, NGX_LOG_ALERT, http request count is zero
+src/http/ngx_http_request.c, NGX_LOG_ALERT, http request already closed
+src/http/ngx_http_request.c, NGX_LOG_ALERT, setsockopt(SO_LINGER) failed
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response header name:
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response header value: :
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_WARN, non-absolute path  not pushed
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response trailer name:
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response trailer value: :
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_ERR, output on closed stream
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_INFO, http2 flood detected
+src/http/v2/ngx_http_v2_table.c, NGX_LOG_INFO, client sent invalid hpack table index 0
+src/http/v2/ngx_http_v2_table.c, NGX_LOG_INFO, client sent out of bound hpack table index:
+src/http/v2/ngx_http_v2_table.c, NGX_LOG_INFO, client sent invalid table size update:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, invalid connection preface
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent frame with unknown type
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent padded DATA frame                            with incorrect length: 0
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent padded DATA frame                            with incorrect length: , padding:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent DATA frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client violated connection flow control:                        received DATA frame length , available window
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client violated flow control for stream :                        received DATA frame length , available window
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent DATA frame for half-closed stream
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, http2 preread buffer overflow
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent HEADERS frame with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent HEADERS frame with empty header block
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent padded HEADERS frame                            with incorrect length: , padding:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent HEADERS frame with incorrect identifier                        , the last was
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent HEADERS frame for stream                         with incorrect dependency
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, concurrent streams exceeded
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent stream with data                        before settings were acknowledged
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent header block with too long  value,                           size_update ? size update : header index
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent header block with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent header field with too long length value
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent too large header field
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid encoded header field
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent header field with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent zero header name length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent too large header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid header:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent inappropriate frame while CONTINUATION was expected
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent CONTINUATION frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PRIORITY frame with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent too many PRIORITY frames
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PRIORITY frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PRIORITY frame for stream                         with incorrect dependency
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent RST_STREAM frame with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent RST_STREAM frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client canceled stream
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client refused stream
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client terminated stream  due to internal error
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client terminated stream  with status
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with the ACK flag                            and nonzero length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with incorrect                                INITIAL_WINDOW_SIZE value
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with incorrect                                MAX_FRAME_SIZE value
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent SETTINGS frame with incorrect                                ENABLE_PUSH value
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PUSH_PROMISE frame
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PING frame with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent PING frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent GOAWAY frame                        with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent GOAWAY frame with incorrect identifier
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent WINDOW_UPDATE frame                        with incorrect length
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent WINDOW_UPDATE frame                        with incorrect window increment 0
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client violated flow control for stream :                            received WINDOW_UPDATE frame                            with window increment                             not allowed for window %z
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client violated connection flow control:                        received WINDOW_UPDATE frame                        with window increment                         not allowed for window
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent unexpected CONTINUATION frame
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, receive buffer overrun
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, state buffer overflow:  bytes required
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, requested control frame is too large:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid header name:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent header  with                            invalid value:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent unknown pseudo-header :
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent duplicate :path header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent empty :path header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid :path header:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent duplicate :method header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent empty :method header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid method:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent duplicate :scheme header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent empty :scheme header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent invalid :scheme header:
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent no :method header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent no :scheme header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client sent no :path header
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client prematurely closed stream
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, no space in http2 body buffer
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client intended to send body data                                larger than declared
+src/http/v2/ngx_http_v2.c, NGX_LOG_ERR, client intended to send too large chunked body:                                %O bytes
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, client prematurely closed stream:                            only %O out of %O bytes of request body received
+src/http/v2/ngx_http_v2.c, NGX_LOG_ALERT, http2 negative window update
+src/http/v2/ngx_http_v2.c, NGX_LOG_INFO, kevent() reported that client  closed                            idle connection
+src/http/ngx_http_variables.c, NGX_LOG_ERR, invalid $limit_rate
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, client intended to send too large body: %O bytes
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while processing
+src/http/ngx_http_core_module.c, NGX_LOG_INFO, delaying unauthorized request
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, directory index of  is forbidden
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, no handler found
+src/http/ngx_http_core_module.c, NGX_LOG_ALERT, header already sent
+src/http/ngx_http_core_module.c, NGX_LOG_ALERT, alias cannot be used in location                         where URI was rewritten
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, subrequests cycle while processing
+src/http/ngx_http_core_module.c, NGX_LOG_CRIT, request reference counter overflow                        while processing
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, nested in-memory subrequest
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while internally redirecting to
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, rewrite or internal redirection cycle                        while redirect to named location
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, empty URI in redirect to named location
+src/http/ngx_http_core_module.c, NGX_LOG_ERR, could not find named location
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, _buffer_size  is not enough for cache key,                            it should be increased to at least
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, cache  not found
+src/http/ngx_http_upstream.c, NGX_LOG_CRIT, cache file  contains invalid header
+src/http/ngx_http_upstream.c, NGX_LOG_INFO, kevent() reported that client prematurely closed                            connection, so upstream connection is closed too
+src/http/ngx_http_upstream.c, NGX_LOG_INFO, kevent() reported that client prematurely closed                        connection
+src/http/ngx_http_upstream.c, NGX_LOG_INFO, epoll_wait() reported that client prematurely closed                          connection, so upstream connection is closed too
+src/http/ngx_http_upstream.c, NGX_LOG_INFO, epoll_wait() reported that client prematurely closed                        connection
+src/http/ngx_http_upstream.c, NGX_LOG_INFO, client prematurely closed connection,                        so upstream connection is closed too
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream prematurely closed connection
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent too big header
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, connection upgrade in subrequest
+src/http/ngx_http_upstream.c, NGX_LOG_WARN, upstream sent more data than specified in                        Content-Length header
+src/http/ngx_http_upstream.c, NGX_LOG_WARN, upstream sent duplicate header line: : ,                        previous value: : , ignored
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent duplicate header line: : ,                        previous value: :
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent Content-Length and                        Transfer-Encoding headers at the same time
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent invalid Content-Length header:                        :
+src/http/ngx_http_upstream.c, NGX_LOG_ERR, upstream sent unknown Transfer-Encoding:
+src/http/modules/ngx_http_scgi_module.c, NGX_LOG_ERR, upstream sent invalid status
+src/http/modules/ngx_http_scgi_module.c, NGX_LOG_ERR, upstream sent invalid header: %*sx%02xd...
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, cannot PUT to a collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT with range is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT request body is unavailable
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, PUT request body must be in a file
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, could not be created
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, DELETE with body is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, insufficient URI depth: to DELETE
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, DELETE  failed
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Depth header must be infinity
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Depth header must be 0 or infinity
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, MKCOL with body is unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, MKCOL can create a collection only
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, COPY and MOVE with body are unsupported
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent no Destination header
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent no Host header
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, Destination URI  is handled by                        different repository than the source URI
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Destination header:
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, both URI  and Destination URI                         should be either collections or non-collections
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Overwrite header:
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, could not be ed to collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, is collection
+src/http/modules/ngx_http_dav_module.c, NGX_LOG_ERR, client sent invalid Depth header:
+src/http/modules/ngx_http_log_module.c, NGX_LOG_ERR, testing  existence failed
+src/http/modules/ngx_http_gzip_filter_module.c, NGX_LOG_ALERT, deflate() failed: ,
+src/http/modules/ngx_http_gzip_filter_module.c, NGX_LOG_ALERT, gzip filter failed to use preallocated memory:                         of
+src/http/modules/ngx_http_range_filter_module.c, NGX_LOG_ALERT, range in overlapped buffers
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined for                                the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                                for certificate  and                                the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                            the ssl directive in :
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_WARN, nginx was built with SNI support, however, now it is linked              dynamically to an OpenSSL library which has no tlsext support,              therefore SNI is not available
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, ssl_ocsp is incompatible with                            ssl_verify_client optional_no_ca
+src/http/modules/ngx_http_ssl_module.c, NGX_LOG_EMERG, no ssl_certificate is defined for                                the listen ... ssl directive in :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, grpcs protocol requires SSL support
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected http2 frame:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent frame for unknown stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream rejected request with error
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway with error
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected push promise frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent duplicate :status header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid :status
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent unexpected :status
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent no :status header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream prematurely closed stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent data frame                                    for unknown stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream violated stream flow control,                                    received  data frame with window
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream violated connection flow control,                                    received  data frame with window
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent frame for closed stream
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid                                        trailer :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent trailer without                                    end stream flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid trailer
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too short http2 frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 frame with too long                                padding:  in frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent response body larger                                    than indicated content length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent response body larger                                than indicated content length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2 frame:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent headers frame                                with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 frame with too long                            padding:  in frame
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent truncated http2 header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                    table index:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                    dynamic table size update:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent http2 table index                                with continuation flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid http2                                table index:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent zero http2                                header name length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2                                header name length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid encoded header
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large http2                                header value length
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent invalid header: :
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent rst stream frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent goaway frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent window update frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too large window update
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                                with ack flag and non-zero length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too many settings frames
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent settings frame                                    with too large initial window size:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame                            with non-zero stream id:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame                            with invalid length:
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent ping frame with ack flag
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, upstream sent too many ping frames
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_ERR, no connection data found for                            keepalive http2 connection
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_EMERG, no grpc_ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_grpc_module.c, NGX_LOG_EMERG, no grpc_ssl_trusted_certificate for grpc_ssl_verify
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: multipart/x-mixed-replace response
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: too big response: %O
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, image filter: too big response
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, gdImageCreateTrueColor() failed
+src/http/modules/ngx_http_image_filter_module.c, NGX_LOG_ERR, gdImageCreate() failed
+src/http/modules/ngx_http_charset_filter_module.c, NGX_LOG_ERR, no charset_map between the charsets  and
+src/http/modules/ngx_http_charset_filter_module.c, NGX_LOG_ERR, unknown charset  to override
+src/http/modules/ngx_http_autoindex_module.c, NGX_LOG_INFO, client sent too long callback name:
+src/http/modules/ngx_http_autoindex_module.c, NGX_LOG_INFO, client sent invalid callback name:
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, the $memcached_key variable is not set
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid key in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid flags in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid length in response                             for key
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_INFO, key:  was not found by memcached
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid response:
+src/http/modules/ngx_http_memcached_module.c, NGX_LOG_ERR, memcached sent invalid trailer
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid SSI command:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid context of SSI command:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too many SSI command parameters:
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, duplicate  parameter                                                in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid parameter name:                                         in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, mandatory  parameter is absent                                        in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ALERT, the same buf was used in ssi
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the ... SSI command is too long
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected - symbol after                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... parameter in                                     SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol after                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol before value of                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... value of                                     parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, too long ... value of                                 parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol after  value                                of  parameter in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unexpected  symbol in  SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the closing bracket in                                 variable is missing
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid variable name in
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ALERT, the using of the regex  in SSI requires PCRE library
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, inclusion may be either virtual= or file=
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, no parameter in include SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, set and stub cannot be used together                        in include SSI command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, wait cannot be used with file=
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid value  in the wait parameter
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, stub= for include not found
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, can only wait for one subrequest at a time
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, unknown encoding  in the echo command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, the if command inside the if command
+src/http/modules/ngx_http_ssi_filter_module.c, NGX_LOG_ERR, invalid expression in
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ERR, eval_pv() failed
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ALERT, perl_alloc() failed
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ALERT, perl_parse() failed:
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ALERT, version  NGINX_VERSION  of nginx.pm is required,                        but  was found
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_EMERG, require_pv() failed: %*s
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ERR, call_sv() failed: %*s
+src/http/modules/perl/ngx_http_perl_module.c, NGX_LOG_ALERT, call_sv() returned  results
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, not well formed XML document
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlCreatePushParserCtxt() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlParseChunk() failed, error:
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xmlCopyDtd() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, libxml2 error: %*s
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltApplyStylesheet() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltSaveResultToString() failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltSaveResultToString() returned zero-length result
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, xsltQuoteOneUserParam(, ) failed
+src/http/modules/ngx_http_xslt_filter_module.c, NGX_LOG_ERR, invalid libxslt parameter
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, unexpected status code  in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, etag mismatch in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, invalid range in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, no complete length in slice response
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, unexpected range in slice response: %O-%O
+src/http/modules/ngx_http_slice_filter_module.c, NGX_LOG_ERR, missing slice response
+src/http/modules/ngx_http_sub_filter_module.c, NGX_LOG_ALERT, the same buf was used in sub
+src/http/modules/ngx_http_index_module.c, NGX_LOG_ALERT, is not a directory
+src/http/modules/ngx_http_index_module.c, NGX_LOG_ERR, is forbidden
+src/http/modules/ngx_http_index_module.c, NGX_LOG_ERR, is not found
+src/http/modules/ngx_http_auth_basic_module.c, NGX_LOG_INFO, no user/password was provided for basic authentication
+src/http/modules/ngx_http_auth_basic_module.c, NGX_LOG_ERR, user  was not found in
+src/http/modules/ngx_http_auth_basic_module.c, NGX_LOG_ERR, user : password mismatch
+src/http/modules/ngx_http_rewrite_module.c, NGX_LOG_WARN, using uninitialized  variable
+src/http/modules/ngx_http_referer_module.c, NGX_LOG_EMERG, the none or blocked referers are specified                        in the valid_referers directive                        without any valid referer
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 trak atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 mdat atom was found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 mdat atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 atom is too small:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 atom too large:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 file truncated
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 ftyp atom is too large:%uL
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 ftyp atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 moov atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 moov atom is too large:%uL,                            you may want to increase mp4_max_buffer_size
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdat atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mvhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 mvhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 start time exceeds file duration
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 compressed moov atom (cmov) is not supported
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 tkhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 tkhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdia atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 mdhd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 mdhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 hdlr atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 minf atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 vmhd/smhd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 dinf atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stbl atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsd atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsd atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stts atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stts atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stts atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stts samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stss atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stss atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 ctts atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 ctts atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsc atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsc atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stsc atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, zero number of entries in stsc atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, time is out mp4 stsc chunks in ,                       start ? start : end
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, zero number of samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stsz atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stsz atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stsz samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large mp4 start samples size in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 stsz samples in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large mp4 end samples size in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 stco atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, duplicate mp4 stco/co64 atom in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 stco atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 stco chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, too large chunk offset in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 stco chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, mp4 co64 atom too small
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, no mp4 co64 atoms were found in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, start time is out mp4 co64 chunks in
+src/http/modules/ngx_http_mp4_module.c, NGX_LOG_ERR, end time is out mp4 co64 chunks in
+src/http/modules/ngx_http_limit_req_module.c, NGX_LOG_ERR, the value of the  key                            is more than 65535 bytes:
+src/http/modules/ngx_http_limit_req_module.c, NONE, limiting requests, excess: .%03ui by zone ,                         lrcf->dry_run ? , dry run :
+src/http/modules/ngx_http_limit_req_module.c, NONE, delaying request, excess: .%03ui, by zone ,                   lrcf->dry_run ? , dry run :
+src/http/modules/ngx_http_limit_req_module.c, NGX_LOG_EMERG, limit_req  uses the  key                            while previously it used the  key
+src/http/modules/ngx_http_auth_request_module.c, NGX_LOG_ERR, auth request unexpected status:
+src/http/modules/ngx_http_degradation_module.c, NGX_LOG_NOTICE, degradation sbrk:M
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ALERT, fastcgi request record is too big:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI record:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed FastCGI stdout
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, FastCGI sent in stderr: %*s
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ALERT, invalid header after joining                                        FastCGI records
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed                                    FastCGI stdout
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream prematurely closed                                    FastCGI request
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_WARN, upstream sent more data than specified in                            Content-Length header
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_WARN, upstream sent more data than specified in                                Content-Length header
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unsupported FastCGI                                protocol version:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent invalid FastCGI                                record type:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI                                request id high byte:
+src/http/modules/ngx_http_fastcgi_module.c, NGX_LOG_ERR, upstream sent unexpected FastCGI                                request id low byte:
+src/http/modules/ngx_http_gzip_static_module.c, NGX_LOG_CRIT, is not a regular file
+src/http/modules/ngx_http_userid_filter_module.c, NGX_LOG_ERR, client sent too short userid cookie
+src/http/modules/ngx_http_userid_filter_module.c, NGX_LOG_ERR, client sent invalid userid cookie
+src/http/modules/ngx_http_userid_filter_module.c, NGX_LOG_NOTICE, userid cookie =%08XD%08XD%08XD%08XD was reset
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_ERR, suwsgi protocol requires SSL support
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_ALERT, uwsgi request is too little:
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_ALERT, uwsgi request is too big:
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_EMERG, no uwsgi_ssl_certificate_key is defined                            for certificate
+src/http/modules/ngx_http_uwsgi_module.c, NGX_LOG_EMERG, no uwsgi_ssl_trusted_certificate for uwsgi_ssl_verify
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ALERT, inflateInit2() failed:
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ERR, inflate() failed: ,
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ERR, inflate() returned  on response end
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ALERT, inflateReset() failed:
+src/http/modules/ngx_http_gunzip_filter_module.c, NGX_LOG_ALERT, inflateEnd() failed:
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, invalid URL prefix in
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, zero length URI to proxy
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, upstream sent no valid HTTP/1.0 header
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_WARN, upstream sent data after final chunk
+src/http/modules/ngx_http_proxy_module.c, NGX_LOG_ERR, upstream sent invalid chunked response
+src/http/ngx_http_parse.c, NGX_LOG_ERR, unsafe URI  was detected
+src/os/unix/ngx_freebsd_sendfile_chain.c, NGX_LOG_ALERT, sendfile() reported that  was truncated at %O
+src/os/unix/ngx_solaris_sendfilev_chain.c, NGX_LOG_ALERT, sendfilev() reported that  was truncated at %O
+src/os/unix/ngx_solaris_sendfilev_chain.c, NGX_LOG_ALERT, sendfilev() returned 0 with memory buffers
+src/os/unix/ngx_writev_chain.c, NGX_LOG_ALERT, file buf in writev                            t: r: f:  -  %O-%O
+src/os/unix/ngx_writev_chain.c, NGX_LOG_ALERT, bad buf in output chain                            t: r: f:  -  %O-%O
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, malloc() failed
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, posix_memalign(, ) failed
+src/os/unix/ngx_alloc.c, NGX_LOG_EMERG, memalign(, ) failed
+src/os/unix/ngx_darwin_init.c, NGX_LOG_ALERT, sysctlbyname(kern.ostype) failed
+src/os/unix/ngx_darwin_init.c, NGX_LOG_ALERT, sysctlbyname(kern.osrelease) failed
+src/os/unix/ngx_darwin_init.c, NGX_LOG_ALERT, sysctlbyname() failed
+src/os/unix/ngx_darwin_init.c, NGX_LOG_ALERT, sysctl kern.ipc.somaxconn must be less than 32768
+src/os/unix/ngx_darwin_init.c, NGX_LOG_NOTICE, OS:
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pread()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, lseek()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, read()  failed
+src/os/unix/ngx_files.c, NGX_LOG_ALERT, invalid thread call, read instead of write
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwrite()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, write()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwritev()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwritev()  has written only %z of
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, writev()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, writev()  has written only %z of
+src/os/unix/ngx_files.c, NGX_LOG_ALERT, invalid thread call, write instead of read
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, ftruncate()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, mmap()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, munmap()  failed
+src/os/unix/ngx_readv_chain.c, NGX_LOG_INFO, kevent() reported about an closed connection
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, mmap(MAP_ANON|MAP_SHARED, ) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, munmap(, ) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, open(/dev/zero) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, mmap(/dev/zero, MAP_SHARED, ) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, close(/dev/zero) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, shmget() failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, shmat() failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, shmctl(IPC_RMID) failed
+src/os/unix/ngx_shmem.c, NGX_LOG_ALERT, shmdt() failed
+src/os/unix/ngx_darwin_sendfile_chain.c, NGX_LOG_ALERT, sendfile() reported that  was truncated
+src/os/unix/ngx_linux_init.c, NGX_LOG_ALERT, uname() failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_ALERT, second aio post for
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio read  failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio_read() failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_ALERT, aio_error() failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_ALERT, aio_read() still in progress
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio_return() failed
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, sendmsg() failed
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() failed
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() returned not enough data: %z
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() returned too small ancillary data
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() returned invalid ancillary data                            level  or type
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() truncated data
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, recvmsg() returned no ancillary data
+src/os/unix/ngx_channel.c, NGX_LOG_ALERT, close() channel failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_ALERT, getrlimit(RLIMIT_NOFILE) failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_NOTICE, built by
+src/os/unix/ngx_posix_init.c, NGX_LOG_NOTICE, getrlimit(RLIMIT_NOFILE): %r:%r
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, pipe() failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, dup2(STDERR) failed
+src/os/unix/ngx_posix_init.c, NGX_LOG_EMERG, close() failed
+src/os/unix/ngx_solaris_init.c, NGX_LOG_ALERT, sysinfo(SI_SYSNAME) failed
+src/os/unix/ngx_solaris_init.c, NGX_LOG_ALERT, sysinfo(SI_RELEASE) failed
+src/os/unix/ngx_solaris_init.c, NGX_LOG_NOTICE, version:
+src/os/unix/ngx_user.c, NGX_LOG_CRIT, crypt_r() failed
+src/os/unix/ngx_user.c, NGX_LOG_CRIT, crypt() failed
+src/os/unix/ngx_send.c, NGX_LOG_ALERT, send() returned zero
+src/os/unix/ngx_setaffinity.c, NGX_LOG_NOTICE, cpuset_setaffinity(): using cpu #
+src/os/unix/ngx_setaffinity.c, NGX_LOG_ALERT, cpuset_setaffinity() failed
+src/os/unix/ngx_setaffinity.c, NGX_LOG_NOTICE, sched_setaffinity(): using cpu #
+src/os/unix/ngx_setaffinity.c, NGX_LOG_ALERT, sched_setaffinity() failed
+src/os/unix/ngx_linux_aio_read.c, NGX_LOG_CRIT, io_submit() failed
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, no more than  processes can be spawned
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, socketpair() failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, ioctl(FIOASYNC) failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, fcntl(F_SETOWN) failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, fcntl(FD_CLOEXEC) failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, fork() failed while spawning
+src/os/unix/ngx_process.c, NGX_LOG_NOTICE, start
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, execve() failed while executing
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, sigaction() failed, ignored
+src/os/unix/ngx_process.c, NGX_LOG_EMERG, sigaction() failed
+src/os/unix/ngx_process.c, NGX_LOG_NOTICE, signal  () received from
+src/os/unix/ngx_process.c, NGX_LOG_NOTICE, signal  () received
+src/os/unix/ngx_process.c, NGX_LOG_CRIT, the changing binary signal is ignored:                        you should shutdown or terminate                        before either old or new binary's process
+src/os/unix/ngx_process.c, NGX_LOG_INFO, waitpid() failed
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, exited on signal ,                           process, pid, WTERMSIG(status),                           WCOREDUMP(status) ?  (core dumped) :
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, exited on signal
+src/os/unix/ngx_process.c, NGX_LOG_NOTICE, exited with code
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, exited with fatal code                             and cannot be respawned
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, shared memory zone  was locked by
+src/os/unix/ngx_process.c, NGX_LOG_ALERT, kill(, ) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, sigprocmask() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, setitimer() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, reconfiguring
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, reopening logs
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, changing binary
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, start worker processes
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, could not respawn
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, back to  failed                                    after the new binary process  exited
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, exit
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, exiting
+src/os/unix/ngx_process_cycle.c, NGX_LOG_NOTICE, gracefully shutting down
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, setpriority() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, setrlimit(RLIMIT_NOFILE, ) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, setrlimit(RLIMIT_CORE, %O) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, setgid() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, initgroups(, ) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, prctl(PR_SET_KEEPCAPS, 1) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, setuid() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_EMERG, capset() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, prctl(PR_SET_DUMPABLE) failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, chdir() failed
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, *%uA open socket # left in connection
+src/os/unix/ngx_process_cycle.c, NGX_LOG_ALERT, aborting
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_init() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_destroy() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_EMERG, pthread_cond_signal() failed
+src/os/unix/ngx_thread_cond.c, NGX_LOG_ALERT, pthread_cond_wait() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutexattr_init() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutexattr_settype                       (PTHREAD_MUTEX_ERRORCHECK) failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_EMERG, pthread_mutex_init() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_ALERT, pthread_mutexattr_destroy() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_ALERT, pthread_mutex_destroy() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_ALERT, pthread_mutex_lock() failed
+src/os/unix/ngx_thread_mutex.c, NGX_LOG_ALERT, pthread_mutex_unlock() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, fork() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, setsid() failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, open(/dev/null) failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, dup2(STDIN) failed
+src/os/unix/ngx_daemon.c, NGX_LOG_EMERG, dup2(STDOUT) failed
+src/os/unix/ngx_freebsd_init.c, NGX_LOG_ALERT, sysctlbyname(kern.osreldate) failed
+src/os/unix/ngx_freebsd_init.c, NGX_LOG_NOTICE, kern.osreldate: , built on
+src/os/unix/ngx_udp_sendmsg_chain.c, NGX_LOG_ALERT, file buf in sendmsg                            t: r: f:  -  %O-%O
+src/os/unix/ngx_udp_sendmsg_chain.c, NGX_LOG_ALERT, too many parts in a datagram
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, GetVersionEx() failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, WSAStartup() failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_ACCEPTEX) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_GETACCEPTEXSOCKADDRS) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_TRANSMITFILE) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_TRANSMITPACKETS) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_CONNECTEX) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER,                                 WSAID_DISCONNECTEX) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, GetModuleHandle(ws2_32.dll) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_NOTICE, GetProcAddress(WSAPoll) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_EMERG, GetEnvironmentVariable(ngx_unique) failed
+src/os/win32/ngx_win32_init.c, NGX_LOG_INFO, OS:  build:, , suite:%Xd, type:
+src/os/win32/ngx_win32_init.c, NGX_LOG_INFO, OS:  build:..,
+src/os/win32/ngx_win32_init.c, NGX_LOG_INFO, OS:  build:,
+src/os/win32/ngx_files.c, NGX_LOG_ERR, ReadFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_ERR, WriteFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, WriteFile()  has written only %ul of
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, MoveFile()  to  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, DeleteFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, SetFilePointerEx(, ) failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, SetEndOfFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, CreateFileMapping(, ) failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, MapViewOfFile() of file mapping  failed
+src/os/win32/ngx_files.c, NGX_LOG_ALERT, CloseHandle() of file mapping  failed
+src/os/win32/ngx_files.c, NGX_LOG_ALERT, UnmapViewOfFile() of file mapping  failed
+src/os/win32/ngx_files.c, NGX_LOG_ALERT, FindNextFile() failed
+src/os/win32/ngx_files.c, NGX_LOG_ALERT, FindClose() failed
+src/os/win32/ngx_shmem.c, NGX_LOG_ALERT, MapViewOfFileEx(, ) of file mapping  failed
+src/os/win32/ngx_thread.c, NGX_LOG_NOTICE, create thread
+src/os/win32/ngx_thread.c, NGX_LOG_ALERT, CreateThread() failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, StartServiceCtrlDispatcher() failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, RegisterServiceCtrlHandlerEx() failed
+src/os/win32/ngx_service.c, NGX_LOG_EMERG, SetServiceStatus() failed
+src/os/win32/ngx_service.c, NGX_LOG_ALERT, PostQueuedCompletionStatus() failed
+src/os/win32/ngx_udp_wsarecv.c, NGX_LOG_ALERT, second wsa post
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, GetModuleFileName() failed
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, OpenEvent() failed
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, ResetEvent() failed
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, GetExitCodeProcess() failed
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, process  exited with code
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, the event  was not signaled for 5s
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, WaitForSingleObject() failed
+src/os/win32/ngx_process.c, NGX_LOG_CRIT, CreateProcess() failed
+src/os/win32/ngx_process.c, NGX_LOG_ALERT, CloseHandle(pi.hThread) failed
+src/os/win32/ngx_process.c, NGX_LOG_NOTICE, start  process
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, CreateEvent() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, CreateMutex() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_NOTICE, shutting down
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, WaitForMultipleObjects() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, WaitForMultipleObjects() returned unexpected value %ul
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, FreeConsole() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, SetConsoleCtrlHandler() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, SetEvent() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, TerminateProcess() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, unknown process handle
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, OpenMutex() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, CreateEvent(ngx_cache_manager_event) failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, SetEvent(ngx_cache_manager_event) failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, ReleaseMutex() failed
+src/os/win32/ngx_process_cycle.c, NGX_LOG_ALERT, CloseHandle() failed
+src/event/ngx_event_connectex.c, NGX_LOG_NOTICE, max number of pending connect()s is
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSACreateEvent() failed
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSAEventSelect() failed
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSAWaitForMultipleEvents() failed
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSAWaitForMultipleEvents()                            returned unexpected WAIT_TIMEOUT
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSAEnumNetworkEvents() failed
+src/event/ngx_event_connectex.c, NGX_LOG_ALERT, WSAWaitForMultipleEvents()                        returned unexpected network event %ul
+src/event/ngx_event_accept.c, NONE, accept4() failed : accept() failed
+src/event/ngx_event_accept.c, NONE, accept() failed
+src/event/ngx_event_acceptex.c, NGX_LOG_CRIT, AcceptEx()  failed
+src/event/ngx_event_acceptex.c, NGX_LOG_CRIT, setsockopt(SO_UPDATE_ACCEPT_CONTEXT) failed for
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_WARN, ssl_stapling ignored,                        issuer certificate not found for certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_WARN, ssl_stapling ignored,                            no OCSP responder URL in the certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_WARN, ssl_stapling ignored,                        invalid URL prefix in OCSP responder                         in the certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_WARN, ssl_stapling ignored,                             in OCSP responder                             in the certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, certificate status  in the OCSP response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, invalid URL prefix in OCSP responder                             in ssl_ocsp_responder
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, in OCSP responder                                 in ssl_ocsp_responder
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, no OCSP responder URL in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, invalid URL prefix in OCSP responder                         in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, in OCSP responder  in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, empty host in OCSP responder in certificate
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder timed out
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder prematurely closed connection
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder sent invalid response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP responder sent invalid                                    Content-Type header: %*s
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, OCSP response not successful (: )
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, certificate status not found in the OCSP response
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ERR, invalid nextUpdate time in certificate status
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_ALERT, could not allocate new entry
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_WARN, ssl_stapling ignored, not supported
+src/event/ngx_event_openssl_stapling.c, NGX_LOG_EMERG, ssl_ocsp is not supported on this platform
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(SO_RCVBUF) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(SO_KEEPALIVE) failed, ignored
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(IP_BIND_ADDRESS_NO_PORT)                                        failed, ignored
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(SO_REUSEADDR) failed
+src/event/ngx_event_connect.c, NGX_LOG_CRIT, bind() failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(SO_BINDANY) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(IP_TRANSPARENT) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(IP_BINDANY) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(IPV6_TRANSPARENT) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, setsockopt(IPV6_BINDANY) failed
+src/event/ngx_event_connect.c, NGX_LOG_ALERT, could not enable transparent proxying for IPv6                        on this platform
+src/event/ngx_event_openssl.c, NGX_LOG_ALERT, ngx_ssl_password_callback() is called for encryption
+src/event/ngx_event_openssl.c, NGX_LOG_ERR, password is truncated to  bytes
+src/event/ngx_event_openssl.c, NGX_LOG_WARN, ssl_early_data is not supported on this platform,                    ignored
+src/event/ngx_event_openssl.c, NGX_LOG_EMERG, SSL_CONF_cmd() is not available on this platform
+src/event/ngx_event_openssl.c, NGX_LOG_NOTICE, SSL renegotiation disabled
+src/event/ngx_event_openssl.c, NGX_LOG_ALERT, SSL_sendfile() reported that  was truncated at %O
+src/event/ngx_event_openssl.c, NGX_LOG_ALERT, SSL_sendfile() not available
+src/event/ngx_event_openssl.c, NGX_LOG_WARN, could not allocate new session
+src/event/ngx_event_openssl.c, NGX_LOG_WARN, nginx was built with Session Tickets support, however,                        now it is linked dynamically to an OpenSSL library                        which has no tlsext support, therefore Session Tickets                        are not available
+src/event/ngx_event_openssl.c, NGX_LOG_WARN, ssl_session_ticket_key ignored, not supported
+src/event/ngx_event_pipe.c, NGX_LOG_ERR, kevent() reported that upstream                                    closed connection
+src/event/ngx_event_pipe.c, NGX_LOG_ALERT, recycled buffer in pipe out chain
+src/event/ngx_event.c, NGX_LOG_EMERG, no events section in configuration
+src/event/ngx_event.c, NGX_LOG_EMERG, worker_connections are not enough                        for  listening sockets
+src/event/ngx_event.c, NGX_LOG_NOTICE, using the  event method
+src/event/ngx_event.c, NGX_LOG_ALERT, getrlimit(RLIMIT_NOFILE) failed, ignored
+src/event/ngx_event.c, NGX_LOG_WARN, worker_connections exceed                            open file resource limit:
+src/event/ngx_event.c, NGX_LOG_ALERT, sigaction(SIGALRM) failed
+src/event/ngx_event.c, NGX_LOG_WARN, the timer_resolution directive is not supported                        with the configured event method, ignored
+src/event/ngx_event.c, NGX_LOG_EMERG, no events module found
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, eventfd() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, ioctl(eventfd, FIONBIO) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, io_setup() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, epoll_ctl(EPOLL_CTL_ADD, eventfd) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, io_destroy() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, eventfd close() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_EMERG, epoll_create() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, read() eventfd  failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, socketpair() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_ctl() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_wait() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_wait() timed out
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll close() failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_ctl(, ) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_ctl(EPOLL_CTL_ADD, ) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, write() to eventfd  failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, epoll_wait() returned no events without timeout
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, strange epoll_wait() events fd: ev:%04XD
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, read(eventfd) failed
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, read(eventfd) returned only  bytes
+src/event/modules/ngx_epoll_module.c, NGX_LOG_ALERT, io_getevents() failed
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, poll event fd: ev: is already set
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, poll event fd: ev: is already deleted
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, unexpected last event
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, WSAPoll() failed
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, WSAPoll() returned no events without timeout
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, poll() error fd: ev:%04Xd rev:%04Xd
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, strange poll() events fd: ev:%04Xd rev:%04Xd
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, unexpected event
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_ALERT, poll ready != events
+src/event/modules/ngx_win32_poll_module.c, NGX_LOG_EMERG, poll is not available on this platform
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_EMERG, kqueue() failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent() failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent(EVFILT_TIMER) failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent(EVFILT_USER, EV_ADD) failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kqueue close() failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, previous event on # were not passed in kernel
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_WARN, kqueue change list is filled up
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent(EVFILT_USER, NOTE_TRIGGER) failed
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent() returned no events without timeout
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, kevent() error on  filter: flags:%04Xd
+src/event/modules/ngx_kqueue_module.c, NGX_LOG_ALERT, unexpected kevent() filter
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, select event fd: ev: is already set
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, invalid select  event fd: ev:,                       ev->write ? write : read
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ERR, maximum number of descriptors                        supported by select() is
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, select() failed
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, select() returned no events without timeout
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, select ready != events: :
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, invalid descriptor # in read fd_set
+src/event/modules/ngx_win32_select_module.c, NGX_LOG_ALERT, invalid descriptor # in write fd_set
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, CreateIoCompletionPort() failed
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, iocp CloseHandle() failed
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, CancelIo() failed
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, GetQueuedCompletionStatus() failed
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, GetQueuedCompletionStatus() returned no operation
+src/event/modules/ngx_iocp_module.c, NGX_LOG_ALERT, GetQueuedCompletionStatus() returned operation error
+src/event/modules/ngx_select_module.c, NGX_LOG_EMERG, the maximum number of files                        supported by select() is
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, port_create() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, timer_create() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_EMERG, timer_settime() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, timer_delete() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, close() event port failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, port_associate() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, port_dissociate() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, port_send() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, port_getn() returned no events without timeout
+src/event/modules/ngx_eventport_module.c, NONE, port_getn() failed
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, strange port_getn() events fd: ev:%04Xd
+src/event/modules/ngx_eventport_module.c, NGX_LOG_ALERT, unexpected eventport object
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_EMERG, open(/dev/poll) failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, write(/dev/poll) failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, close(/dev/poll) failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_WARN, /dev/pool change list is filled up
+src/event/modules/ngx_devpoll_module.c, NONE, ioctl(DP_POLL) failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, ioctl(DP_POLL) returned no events without timeout
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, ioctl(DP_ISPOLLED) failed for socket , event %04Xd
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, phantom event %04Xd for closed and removed socket
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, unexpected event %04Xd for closed and removed socket ,                      ioctl(DP_ISPOLLED) returned rc:, fd:, event %04Xd
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, write(/dev/poll) for  failed
+src/event/modules/ngx_devpoll_module.c, NGX_LOG_ALERT, strange ioctl(DP_POLL) events                            fd: ev:%04Xd rev:%04Xd
+src/event/modules/ngx_poll_module.c, NONE, poll() failed
+src/event/modules/ngx_poll_module.c, NGX_LOG_ALERT, poll() returned no events without timeout

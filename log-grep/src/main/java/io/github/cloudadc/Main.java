@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,7 @@ public class Main implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		args = new String[] {"/Users/ksong/tmp/test/nginx-1.23.3"};
+		args = new String[] {"/Users/ksong/tmp/test/nginx-1.23.3/src"};
 		log.info("NGINX Log Grepper Start");
 		
 		if(args.length != 1 || !Files.exists(Paths.get(args[0])) || !Paths.get(args[0]).toFile().isDirectory()) {
@@ -55,15 +57,15 @@ public class Main implements CommandLineRunner {
             			if(list.get(i).contains("ngx_log_error")) {
             				String log = list.get(i);
             				if(log.contains(";")) {
-            					dumplines(log);
+            					dumplines(file.getAbsolutePath(), log);
             				} else {
             					List<String> all = new ArrayList<>();
-            					extractAll(all, list, i + 1);
+            					extractAll(file.getAbsolutePath(), all, list, i + 1);
             					i = i + all.size();
             					for(int j = 0 ; j < all.size() ; j ++) {
             						log = log + all.get(j) + " ";
             					}
-            					dumplines(log);
+            					dumplines(file.getAbsolutePath(), log);
             				}
             			}
             		}
@@ -72,22 +74,36 @@ public class Main implements CommandLineRunner {
         }
     }
 
-	private void extractAll(List<String> all, List<String> list, int i) {
+	private void extractAll(String file, List<String> all, List<String> list, int i) {
 		String l = list.get(i);
 		all.add(l);
 		if(l.contains(";")) {
 			return;
 		} else {
-			extractAll(all, list, i + 1);
+			extractAll(file,all, list, i + 1);
 		}
 	}
+	
+	Set<String> set = new HashSet<>();
 
-	private void dumplines(String log) {
+	private void dumplines(String file, String log) {
+		String module = file.substring(file.indexOf("src"));
 		if(log.contains("\"")) {
+			//System.out.println(file + ", " + log);
+			String level = "NONE";
+			if(log.contains("NGX_LOG")) {
+				level = log.substring(log.indexOf("NGX_LOG"), log.indexOf(","));
+			}
+			//System.out.println(level);
 			log = log.substring(log.indexOf("\"") + 1, log.lastIndexOf("\""));
 			log = log.replace("%V", "").replace("%s", "").replace("%c", "").replace("%d", "").replace("%p", "").replace("%uz", "").replace("%P", "").replace("\"", "");
 			log = log.replace("\\", "").replace("%ui", "").replace("%ud", "").replace("%i", "").replace("%Xl", "").replace("%l", "");
-			System.out.println(log);
+			log = log.trim();
+			if(!set.contains(log)) {
+				set.add(log);
+				System.out.println(module + ", " + level + ", " + log);
+			}
+			
 		}	
 	}
 }

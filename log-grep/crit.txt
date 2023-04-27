@@ -1,0 +1,51 @@
+src/misc/ngx_google_perftools_module.c, NGX_LOG_CRIT, ProfilerStart() failed
+src/core/ngx_file.c, NGX_LOG_CRIT, to  failed
+src/core/ngx_resolver.c, NGX_LOG_CRIT, send() incomplete
+src/core/ngx_resolver.c, NGX_LOG_CRIT, buffer overflow
+src/core/ngx_resolver.c, NGX_LOG_CRIT, connect() failed
+src/core/ngx_connection.c, NGX_LOG_CRIT, getsockname() of the inherited                            socket # failed
+src/core/ngx_connection.c, NGX_LOG_CRIT, the inherited socket # has                            an unsupported protocol family
+src/core/ngx_connection.c, NGX_LOG_CRIT, getsockopt(SO_TYPE)  failed
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  is too small
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has md5 collision
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has too long header
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has incorrect vary length
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, cache file  has incorrect vary hash
+src/http/ngx_http_file_cache.c, NGX_LOG_CRIT, read only %z of %z from
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response header name:
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response header value: :
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response trailer name:
+src/http/v2/ngx_http_v2_filter_module.c, NGX_LOG_CRIT, too long response trailer value: :
+src/http/ngx_http_core_module.c, NGX_LOG_CRIT, request reference counter overflow                        while processing
+src/http/ngx_http_upstream.c, NGX_LOG_CRIT, cache file  contains invalid header
+src/http/modules/ngx_http_gzip_static_module.c, NGX_LOG_CRIT, is not a regular file
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pread()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, lseek()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, read()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwrite()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, write()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwritev()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, pwritev()  has written only %z of
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, writev()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, writev()  has written only %z of
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, ftruncate()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, mmap()  failed
+src/os/unix/ngx_files.c, NGX_LOG_CRIT, munmap()  failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio read  failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio_read() failed
+src/os/unix/ngx_file_aio_read.c, NGX_LOG_CRIT, aio_return() failed
+src/os/unix/ngx_user.c, NGX_LOG_CRIT, crypt_r() failed
+src/os/unix/ngx_user.c, NGX_LOG_CRIT, crypt() failed
+src/os/unix/ngx_linux_aio_read.c, NGX_LOG_CRIT, io_submit() failed
+src/os/unix/ngx_process.c, NGX_LOG_CRIT, the changing binary signal is ignored:                        you should shutdown or terminate                        before either old or new binary's process
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, WriteFile()  has written only %ul of
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, MoveFile()  to  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, DeleteFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, SetFilePointerEx(, ) failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, SetEndOfFile()  failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, CreateFileMapping(, ) failed
+src/os/win32/ngx_files.c, NGX_LOG_CRIT, MapViewOfFile() of file mapping  failed
+src/os/win32/ngx_process.c, NGX_LOG_CRIT, CreateProcess() failed
+src/event/ngx_event_acceptex.c, NGX_LOG_CRIT, AcceptEx()  failed
+src/event/ngx_event_acceptex.c, NGX_LOG_CRIT, setsockopt(SO_UPDATE_ACCEPT_CONTEXT) failed for
+src/event/ngx_event_connect.c, NGX_LOG_CRIT, bind() failed
