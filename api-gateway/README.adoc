@@ -1157,6 +1157,10 @@ Request ID: 283cb3a13e190ed8f4433867df6db416
 
 == API Gateway
 
+=== Kubernetes Ingress
+
+link:ingress.adoc[Kubernetes Ingress]
+
 === Content Caching
 
 link:cache.adoc[Content Caching]
