@@ -1,7 +1,7 @@
 = Nginx Dump Plane
 :toc: manual
 
-== What's it?
+== What's dumpplane?
 
 The `dumpplane` is a tool work with link:https://github.com/nginxinc/crossplane[crossplane] to dump `nginx -T` results to MongoDB.
 
@@ -83,7 +83,7 @@ $ crossplane --version
 crossplane 0.5.8
 ----
 
-== How to run
+== How to run?
 
 In order to run `dumpplane`, you need make sure all link:#prerequisites-for-run-dumpplane[prerequisites for run dumpplane] are satisfied.
 
