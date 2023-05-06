@@ -94,7 +94,7 @@ Refer blow steps to run `dumpplane`.
 [source, bash]
 ----
 $ ls input/
-nginx.conf_10.1.10.171	nginx.conf_10.1.10.195	nginx.conf_15.55.240.8
+nginx.conf_10.1.10.171	nginx.conf_10.1.10.195	nginx.conf_10.1.10.8
 ----
 
 NOTE: `input` is folder, which contains 3 files, each file are output of `nginx -T`.
@@ -106,7 +106,7 @@ NOTE: `input` is folder, which contains 3 files, each file are output of `nginx 
 $ dumpplane parse input
 
 split nginx.conf_10.1.10.171 to data/nginx.conf_10.1.10.171, total blocks: 6
-split nginx.conf_15.55.240.8 to data/nginx.conf_15.55.240.8, total blocks: 8
+split nginx.conf_10.1.10.8 to data/nginx.conf_10.1.10.8, total blocks: 8
 split nginx.conf_10.1.10.195 to data/nginx.conf_10.1.10.195, total blocks: 58
 ----
 
@@ -128,7 +128,7 @@ NOTE: Current crossplane parse output must equals `nginx -T` plus `.json`.
 $ dumpplane dump input
 
 write nginx.conf_10.1.10.171 to DB was acknowledged, matched count: 0
-write nginx.conf_15.55.240.8 to DB was acknowledged, matched count: 0
+write nginx.conf_10.1.10.8 to DB was acknowledged, matched count: 0
 write nginx.conf_10.1.10.195 to DB was acknowledged, matched count: 0
 ----
 
