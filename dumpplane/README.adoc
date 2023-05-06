@@ -83,4 +83,63 @@ $ crossplane --version
 crossplane 0.5.8
 ----
 
+== How to run
+
+In order to run `dumpplane`, you need make sure all link:#prerequisites-for-run-dumpplane[prerequisites for run dumpplane] are satisfied.
+
+Refer blow steps to run `dumpplane`.
+
+=== Step 1: prepare nginx dump file
+
+[source, bash]
+----
+$ ls input/
+nginx.conf_10.1.10.171	nginx.conf_10.1.10.195	nginx.conf_15.55.240.8
+----
+
+NOTE: `input` is folder, which contains 3 files, each file are output of `nginx -T`.
+
+=== Step 2: dumpplane parse
+
+[source, bash]
+----
+$ dumpplane parse input
+
+split nginx.conf_10.1.10.171 to data/nginx.conf_10.1.10.171, total blocks: 6
+split nginx.conf_15.55.240.8 to data/nginx.conf_15.55.240.8, total blocks: 8
+split nginx.conf_10.1.10.195 to data/nginx.conf_10.1.10.195, total blocks: 58
+----
+
+=== Step 3: crossplane parse
+
+[source, bash]
+----
+for i in $(ls data/) ; do crossplane parse -o data/$i.json data/$i/nginx.conf; done 
+----
+
+NOTE: The *data* is dumpplane output file path, recommended crossplane output file are same as dumpplane output file path, or else you need specify `--cpout` while running dumpplane dump.
+
+NOTE: Current crossplane parse output must equals `nginx -T` plus `.json`.
+
+=== Step 4: dumpplane dump
+
+[source, bash]
+----
+$ dumpplane dump input
+
+write nginx.conf_10.1.10.171 to DB was acknowledged, matched count: 0
+write nginx.conf_15.55.240.8 to DB was acknowledged, matched count: 0
+write nginx.conf_10.1.10.195 to DB was acknowledged, matched count: 0
+----
+
+This step will dump both `dumpplane` parsed result and `crossplane` parsed result as a single document to MongoDB.
+
+NOTE: `nginx -T` output file name used as a primary key, which means if same file be dumped many times, only the 1st time is insert, the rest are upset.
+
+=== Step 5: nginx management & governance
+
+Refer to below sections for details.
+
+== NGINX Management & Governance
+
 
