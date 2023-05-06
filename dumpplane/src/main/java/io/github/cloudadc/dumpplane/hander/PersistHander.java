@@ -7,8 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
-import io.github.cloudadc.dumpplane.NGXConfiguration;
-import io.github.cloudadc.dumpplane.NGXConfigurationBlock;
+import io.github.cloudadc.dumpplane.model.Configuration;
+import io.github.cloudadc.dumpplane.model.Dumpplane;
 
 public class PersistHander extends AbstractHander {
 
@@ -22,11 +22,11 @@ public class PersistHander extends AbstractHander {
 	}
 	
 
-	public void execute(NGXConfiguration config) throws IOException {
+	public void execute(Configuration config) throws IOException {
 		
 
-		for(int i = 0 ; i < config.rawConfigBlock().size() ; i ++) {
-			NGXConfigurationBlock block = config.rawConfigBlock().get(i);
+		for(int i = 0 ; i < config.dumpplane().size() ; i ++) {
+			Dumpplane block = config.dumpplane().get(i);
 			String path = block.getPath().substring(0, block.getPath().lastIndexOf("/"));
 			String fileName = block.getPath().substring(path.length() + 1);
 			

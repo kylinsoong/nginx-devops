@@ -2,7 +2,7 @@ package io.github.cloudadc.dumpplane.hander;
 
 import java.io.File;
 
-import io.github.cloudadc.dumpplane.NGXConfiguration;
+import io.github.cloudadc.dumpplane.model.Configuration;
 
 public abstract class AbstractHander implements Hander {
 	
@@ -23,7 +23,7 @@ public abstract class AbstractHander implements Hander {
 	}
 
 	@Override
-	public void execute(NGXConfiguration config) throws Exception {
+	public void execute(Configuration config) throws Exception {
 		
 	}
 

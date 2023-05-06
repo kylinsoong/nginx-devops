@@ -3,7 +3,7 @@ package io.github.cloudadc.dumpplane.hander;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.cloudadc.dumpplane.NGXConfiguration;
+import io.github.cloudadc.dumpplane.model.Configuration;
 
 public class DumpHander extends AbstractHander {
 	
@@ -16,8 +16,8 @@ public class DumpHander extends AbstractHander {
 	}
 
 	@Override
-	public void execute(NGXConfiguration config) throws Exception {
-		
+	public void execute(Configuration config) throws Exception {
+				
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		String json = objectMapper.writeValueAsString(config);

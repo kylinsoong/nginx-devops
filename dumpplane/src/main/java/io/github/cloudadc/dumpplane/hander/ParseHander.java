@@ -9,17 +9,17 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.github.cloudadc.dumpplane.NGXConfiguration;
-import io.github.cloudadc.dumpplane.NGXConfigurationBlock;
+import io.github.cloudadc.dumpplane.model.Configuration;
+import io.github.cloudadc.dumpplane.model.Dumpplane;
 
 
 public class ParseHander extends AbstractHander {
 	
-	private NGXConfiguration config = null;
+	private Configuration config = null;
 	
 	public ParseHander(File file) throws Exception {
 		super(file);
-		config = new NGXConfiguration();
+		config = new Configuration();
 		execute() ;
 	}
 
@@ -57,7 +57,7 @@ public class ParseHander extends AbstractHander {
             throw new RuntimeException(e);
         }
 		
-		config.rawConfigBlock().forEach(block -> {
+		config.dumpplane().forEach(block -> {
 			String path = block.getPath().substring(0, block.getPath().lastIndexOf("/"));
 			if(config.getBasePath() == null || config.getBasePath().length() ==0) {
 				config.setBasePath(path);
@@ -75,8 +75,8 @@ public class ParseHander extends AbstractHander {
 		if(sb != null && configPath != null) {
 			String originalString = sb.toString();
 			String encodedString = Base64.getEncoder().encodeToString(originalString.getBytes());
-			NGXConfigurationBlock block = new NGXConfigurationBlock(configPath, encodedString);
-			config.addConfig(block);
+			Dumpplane block = new Dumpplane(configPath, encodedString);
+			config.addDump(block);
 			sb = null;
 			configPath = null;
 		}
@@ -95,7 +95,7 @@ public class ParseHander extends AbstractHander {
 		return dumpFileName;
 	}
 	
-	public NGXConfiguration getConfig() {
+	public Configuration getConfig() {
 		return config;
 	}
 

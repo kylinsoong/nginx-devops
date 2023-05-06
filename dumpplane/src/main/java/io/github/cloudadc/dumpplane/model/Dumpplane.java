@@ -1,16 +1,27 @@
-package io.github.cloudadc.dumpplane;
+package io.github.cloudadc.dumpplane.model;
 
-public class NGXConfigurationBlock {
+import java.io.Serializable;
+
+/**
+ * 
+ *  Dumpplane represent the nginx -T output, which is s group of configuration block, Dumpplane is one of block
+ * 
+ * @author ksong
+ *
+ */
+public class Dumpplane implements Serializable {
 	
+	private static final long serialVersionUID = -5526117033798890872L;
+
 	private String path;
 	
 	private String content;
 	
-	public NGXConfigurationBlock() {
+	public Dumpplane() {
 		
 	}
 
-	public NGXConfigurationBlock(String path, String content) {
+	public Dumpplane(String path, String content) {
 		super();
 		this.path = path;
 		this.content = content;

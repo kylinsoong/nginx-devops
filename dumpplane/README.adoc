@@ -1,0 +1,43 @@
+= Nginx Dump Plane
+:toc: manual
+
+== Prerequisites
+
+=== MongoDB setup
+
+This section including steps to setup MongoDB on local machine.
+
+[source, bash]
+.*1. Cfreate DBpath*
+----
+mkdir nginx
+----
+
+[source, bash]
+.*2. Start a single node mongodb*
+----
+mongod --dbpath nginx/
+----
+
+[source, bash]
+.*3. connect to mongoDB via mongo shell*
+----
+$ mongosh 
+Current Mongosh Log ID:	6455bd1f1642278a956b6a76
+Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.1
+Using MongoDB:		6.0.3
+Using Mongosh:		1.6.1
+----
+
+[source, bash]
+.*4. Create db and collection*
+----
+use nginx
+----
+
+[source, bash]
+.**
+----
+
+----
+

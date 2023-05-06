@@ -42,6 +42,8 @@ public class Main implements CommandLineRunner {
 			}
 		}
 		
+		String uri = "mongodb://127.0.0.1:27017";
+		
 		if(args[0].equals("parse")) {
 			String file = args[args.length - 1];
 			log.info("parse " + file);
