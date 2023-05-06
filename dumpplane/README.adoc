@@ -1,9 +1,37 @@
 = Nginx Dump Plane
 :toc: manual
 
-== Prerequisites
+== What's it?
 
-=== MongoDB setup
+The `dumpplane` is a tool work with link:https://github.com/nginxinc/crossplane[crossplane] to dump `nginx -T` results to MongoDB.
+
+The `nginx -T` output should same to a file and copy to a directory, which used as input of `dumpplane` tool.
+
+[source, bash]
+----
+usage: dumpplane <commands> [options] [input]
+
+commands:
+  parse                 parse a nginx dump(nginx -T) file to raw object
+
+  dump                  dump nginx crossplane result to mongodb
+
+options:
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  --output              set dumpplane output file path. default data
+  --cpout               set crossplane(https://github.com/nginxinc/crossplane) parse output file path. default same as dumpplane output
+                            suggest crossplane commands is for i in $(ls data/) ; do crossplane parse -o data/$i.json data/$i/nginx.conf; done 
+  --uri                 mongodb connection string, default mongodb://127.0.0.1:27017, refer to https://www.mongodb.com/docs/manual/reference/connection-string/ for details
+
+input:
+                        set nginx -T dump file directory, input is mandatory
+
+----
+
+== Prerequisites for run dumpplane
+
+=== MongoDB
 
 This section including steps to setup MongoDB on local machine.
 
@@ -35,9 +63,24 @@ Using Mongosh:		1.6.1
 use nginx
 ----
 
+=== Java
+
 [source, bash]
-.**
+.*Java Runtime time V11 or above version*
+----
+$ java --version
+openjdk 18.0.1.1 2022-04-22
+OpenJDK Runtime Environment (build 18.0.1.1+2-6)
+OpenJDK 64-Bit Server VM (build 18.0.1.1+2-6, mixed mode, sharing)
 ----
 
+=== crossplane
+
+[source, bash]
+.*link:https://github.com/nginxinc/crossplane[crossplane] 0.5.8 and above version*
 ----
+$ crossplane --version
+crossplane 0.5.8
+----
+
 

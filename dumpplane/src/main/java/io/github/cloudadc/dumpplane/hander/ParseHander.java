@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,25 +17,43 @@ import io.github.cloudadc.dumpplane.model.Dumpplane;
 
 public class ParseHander extends AbstractHander {
 	
-	private Configuration config = null;
+	private List<Configuration> list = new ArrayList<>();
+	
+	
+	public static ParseHander newInstance(File file) throws Exception {
+		return new ParseHander(file);
+	}
 	
 	public ParseHander(File file) throws Exception {
 		super(file);
-		config = new Configuration();
-		execute() ;
 	}
 
 	@Override
 	public void execute() throws Exception {
 		
+		parse(file);
 		
-		config.setDumpFileName(file.getName());
+	}
+
+	private void parse(File targetFile) {
+		
+		if(targetFile.isDirectory()) {
+			for(File f : file.listFiles()) {
+				parse(f);
+			}
+			
+			return;
+		}
+		
+		Configuration config = new Configuration();
+		config.setDumpFileName(targetFile.getName());
 		config.setNgxHost(extractHost(config.getDumpFileName()));
+		config.setDiskPath(DISK_PATH);
 		
 		String configPath = null;
 
 		try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = new BufferedReader(new FileReader(targetFile));
             String line = reader.readLine();
             BufferedWriter writer = null;
             StringBuffer sb = null;
@@ -42,21 +62,38 @@ public class ParseHander extends AbstractHander {
                 	if (writer != null) {
                         writer.close();
                     }
-                	addBlock(sb, configPath);
+                	addBlock(sb, configPath, config);
                     configPath = line.substring(line.indexOf("/"), line.length() -1);
+                    
+                    String basePath = configPath.substring(0, configPath.lastIndexOf("/"));
+                    if(config.getBasePath() == null || config.getBasePath().length() ==0) {
+        				config.setBasePath(basePath);
+        			} else if (basePath.length() <= config.getBasePath().length()) {
+        				config.setBasePath(basePath);
+        			}
+                    
                     sb = new StringBuffer();
                 } else {
-
+                	// crossparse tried to load mime.types
+                	if(line.contains("/etc/nginx/mime.types")) {
+                		line = line.replace("/etc/nginx/mime.types", "mime.types");
+                	}
+                	
+                	if(line.contains(config.getBasePath())) {
+                		line = line.replace(config.getBasePath() + "/", "");
+                	}
+                	
                     sb.append(line).append("\n");
                 }
                 line = reader.readLine();
             }
-            addBlock(sb, configPath);
+            addBlock(sb, configPath, config);
             reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-		
+	
+		/*
 		config.dumpplane().forEach(block -> {
 			String path = block.getPath().substring(0, block.getPath().lastIndexOf("/"));
 			if(config.getBasePath() == null || config.getBasePath().length() ==0) {
@@ -65,12 +102,13 @@ public class ParseHander extends AbstractHander {
 				config.setBasePath(path);
 			}
 		});
+		*/
+		
+		list.add(config);
 		
 	}
 
-	
-
-	private void addBlock(StringBuffer sb, String configPath) {
+	private void addBlock(StringBuffer sb, String configPath, Configuration config) {
 
 		if(sb != null && configPath != null) {
 			String originalString = sb.toString();
@@ -95,13 +133,13 @@ public class ParseHander extends AbstractHander {
 		return dumpFileName;
 	}
 	
-	public Configuration getConfig() {
-		return config;
+	public List<Configuration> getConfigs() {
+		return list;
 	}
 
 	@Override
 	public void close() throws Exception {
-		this.config = null;
+		this.list = null;
 	}
 
 }

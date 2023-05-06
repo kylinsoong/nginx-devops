@@ -14,6 +14,8 @@ public class Configuration implements Serializable {
 	
 	private String basePath;
 	
+	private String diskPath;
+	
 	private List<Dumpplane> dumpplane = new ArrayList<>();
 	
 	private Crossplane crossplane;
@@ -28,18 +30,20 @@ public class Configuration implements Serializable {
 		this.ngxHost = ngxHost;
 	}
 	
-	public Configuration(String dumpFileName, String ngxHost, String basePath) {
+	public Configuration(String dumpFileName, String ngxHost, String basePath, String diskPath) {
 		super();
 		this.dumpFileName = dumpFileName;
 		this.ngxHost = ngxHost;
 		this.basePath = basePath;
+		this.diskPath = diskPath;
 	}
 	
-	public Configuration(String dumpFileName, String ngxHost, String basePath, List<Dumpplane> dumpplane) {
+	public Configuration(String dumpFileName, String ngxHost, String basePath, String diskPath, List<Dumpplane> dumpplane) {
 		super();
 		this.dumpFileName = dumpFileName;
 		this.ngxHost = ngxHost;
 		this.basePath = basePath;
+		this.diskPath = diskPath;
 		this.dumpplane = dumpplane;
 	}
 	
@@ -80,6 +84,14 @@ public class Configuration implements Serializable {
 		return basePath;
 	}
 
+	public String getDiskPath() {
+		return diskPath;
+	}
+
+	public void setDiskPath(String diskPath) {
+		this.diskPath = diskPath;
+	}
+
 	public void setBasePath(String basePath) {
 		this.basePath = basePath;
 	}
@@ -103,10 +115,7 @@ public class Configuration implements Serializable {
 	@Override
 	public String toString() {
 		return "[dumpFileName=" + dumpFileName + ", ngxHost=" + ngxHost + ", basePath=" + basePath
-		        + ", dumpplane=" + dumpplane + ", crossplane=" + crossplane + "]";
+		        + ", diskPath=" + diskPath + ", dumpplane=" + dumpplane + ", crossplane=" + crossplane + "]";
 	}
-
-	
-
 
 }

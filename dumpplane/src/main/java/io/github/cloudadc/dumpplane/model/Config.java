@@ -12,7 +12,7 @@ public class Config implements Serializable {
 	
 	private List<Error> errors = new ArrayList<>();
 	
-	private List<Parse> parsed = new ArrayList<>();
+	private List<Block> parsed = new ArrayList<>();
 	
 	private String file;
 	
@@ -20,7 +20,7 @@ public class Config implements Serializable {
 		
 	}
 
-	public Config(String status, List<Error> errors, List<Parse> parsed, String file) {
+	public Config(String status, List<Error> errors, List<Block> parsed, String file) {
 		super();
 		this.status = status;
 		this.errors = errors;
@@ -44,11 +44,11 @@ public class Config implements Serializable {
 		this.errors = errors;
 	}
 
-	public List<Parse> getParsed() {
+	public List<Block> getParsed() {
 		return parsed;
 	}
 
-	public void setParsed(List<Parse> parsed) {
+	public void setParsed(List<Block> parsed) {
 		this.parsed = parsed;
 	}
 

@@ -6,19 +6,20 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.List;
 
 import io.github.cloudadc.dumpplane.model.Configuration;
 import io.github.cloudadc.dumpplane.model.Dumpplane;
 
-public class PersistHander extends AbstractHander {
+public class DumpSplitHander extends AbstractHander {
 
-	public PersistHander() {
+	public DumpSplitHander() {
 		super(null);
 	}
 
 
-	public static PersistHander newInstance() {
-		return new PersistHander();
+	public static DumpSplitHander newInstance() {
+		return new DumpSplitHander();
 	}
 	
 
@@ -38,11 +39,11 @@ public class PersistHander extends AbstractHander {
 			Path filePath = null;
 			
 			if(subPath != null) {
-				filePath = Paths.get("data", config.getNgxHost(), subPath, fileName);
+				filePath = Paths.get(DISK_PATH, config.getDumpFileName(), subPath, fileName);
 			} else {
-				filePath = Paths.get("data", config.getNgxHost(), fileName);
+				filePath = Paths.get(DISK_PATH, config.getDumpFileName(), fileName);
 			}
-			
+
 			File directory = filePath.getParent().toFile();
 			if (!directory.exists()) {
 			    directory.mkdirs();
@@ -53,10 +54,18 @@ public class PersistHander extends AbstractHander {
 			FileWriter writer = new FileWriter(filePath.toFile());
 			writer.write(new String(decodedBytes));
 			writer.close();
-			
 		}
 		
+		System.out.println("split " + config.getDumpFileName() + " to " + Paths.get(config.getDiskPath(), config.getDumpFileName()) + ", total blocks: " + config.dumpplane().size());
 		
+	}
+
+
+	@Override
+	public void execute(List<Configuration> list) throws Exception {
+		for(Configuration c : list) {
+			execute(c);
+		}
 	}
 
 }
