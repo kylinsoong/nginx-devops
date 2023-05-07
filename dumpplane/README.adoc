@@ -1,5 +1,1 @@
-= Nginx Dump Plane
-:toc: manual
-
-Nginx Dump Plane has moved to https://github.com/kylinsoong/dumpplane.
-
+= Nginx Dump Plane has moved to https://github.com/kylinsoong/dumpplane
