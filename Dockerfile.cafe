@@ -1,0 +1,9 @@
+FROM cloudadc/nginx-alpine:0.2
+
+COPY conf/cafe/app.conf /etc/nginx/conf.d/
+
+EXPOSE 8080
+
+STOPSIGNAL SIGQUIT
+
+CMD ["nginx", "-g", "daemon off;"]
