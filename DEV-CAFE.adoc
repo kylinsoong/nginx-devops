@@ -6,14 +6,14 @@
 [source, bash]
 .*Build*
 ----
-docker build -t cloudadc/cafe:1.1 -f Dockerfile.cafe .
-docker push cloudadc/cafe:1.1
+docker build -t cloudadc/cafe:1.2 -f Dockerfile.cafe .
+docker push cloudadc/cafe:1.2
 ----
 
 [source, bash]
 .*Run*
 ----
-docker run -it --rm --name nginx -p 8080:8080 cloudadc/cafe:1.1
+docker run -it --rm --name nginx -p 8080:8080 cloudadc/cafe:1.2
 ----
 
 [source, bash]
