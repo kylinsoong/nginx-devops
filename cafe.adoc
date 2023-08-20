@@ -54,7 +54,21 @@ docker run -it --rm --name nginx -p 8080:8080 cloudadc/cafe:1.5
 [source, bash]
 .*Test*
 ----
+$ curl http://127.0.0.1:8080/foo
 
+            request: GET /foo HTTP/1.1
+                uri: /foo
+         request id: bd1097874a9abb4ee92d89d95a5d06ce
+               host: 127.0.0.1
+               date: 20/Aug/2023:11:47:28 +0000
+
+        server name: 612ceec8bbb9
+        client addr: 172.18.0.1:55744
+        server addr: 172.18.0.2:8080
+
+             cookie: 
+                xff: 
+         user agent: curl/7.74.0
 -----
 
 
