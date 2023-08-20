@@ -1,14 +1,8 @@
-FROM arm64v8/nginx:1.25-alpine3.17
+FROM arm64v8/nginx:alpine3.18
 
 COPY conf/cafe/app.conf /etc/nginx/conf.d/
 
-COPY conf/dev/ssl.conf /etc/nginx/conf.d/
-COPY conf/dev/crt/example.com.crt /etc/nginx
-COPY conf/dev/crt/example.com.key /etc/nginx
-COPY conf/dev/crt/example.com.pass /etc/nginx
-
 EXPOSE 8080
-EXPOSE 8443
 
 STOPSIGNAL SIGQUIT
 
