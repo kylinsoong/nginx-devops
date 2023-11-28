@@ -1,0 +1,94 @@
+= Nginx Compression
+:toc: manual
+
+== GZIP
+
+[source, bash]
+.*Start backends*
+----
+sudo docker run -it --rm -d  -p 8080:8080 cloudadc/cafe:1.5-aarch64
+sudo docker run -it --rm -d  -p 8090:8080 cloudadc/cafe:1.5-aarch64
+----
+
+[source, bash]
+.*Enable GZIP*
+----
+    gzip            on;
+    gzip_types      text/plain application/xml;
+----
+
+[source, bash]
+.*Test 1*
+----
+% curl -s http://10.1.10.129:8081/coffee -I 
+HTTP/1.1 200 OK
+Server: nginx/1.25.1
+Date: Tue, 28 Nov 2023 06:53:57 GMT
+Content-Type: text/plain
+Content-Length: 406
+Connection: keep-alive
+
+% curl -s -H "Accept-Encoding: gzip" http://10.1.10.129:8081/coffee -I
+HTTP/1.1 200 OK
+Server: nginx/1.25.1
+Date: Tue, 28 Nov 2023 06:58:02 GMT
+Content-Type: text/plain
+Connection: keep-alive
+Content-Encoding: gzip
+----
+
+NOTE: `Accept-Encoding` request header will cause a `Content-Encoding` response header.
+
+[source, bash]
+.*Test 2*
+----
+curl -s http://10.1.10.129:8081/coffee -o response.1
+curl -s -H "Accept-Encoding: gzip" http://10.1.10.129:8081/coffee -o response.2.gz
+
+ % ls -l
+-rw-r--r--  1 k.song  staff  405 Nov 28 15:12 response.1
+-rw-r--r--  1 k.song  staff  237 Nov 28 15:14 response.2.gz
+
+gzip -d response.2.gz
+
+% ls -l
+-rw-r--r--  1 k.song  staff  405 Nov 28 15:12 response.1
+-rw-r--r--  1 k.song  staff  405 Nov 28 15:14 response.2
+----
+
+[source, bash]
+.*Test 3*
+----
+% cat response.1 
+
+            request: GET /coffee HTTP/1.1
+                uri: /coffee
+         request id: 98d99bbb469f00a1a005aeb2b20ddf33
+               host: 10.1.10.129
+               date: 28/Nov/2023:07:04:25 +0000
+
+        server name: 1f95d2cfc7e4
+        client addr: 10.1.10.129:54016
+        server addr: 172.17.0.3:8080
+
+             cookie: 
+                xff: 
+         user agent: curl/7.88.1
+
+
+% cat response.2
+
+            request: GET /coffee HTTP/1.1
+                uri: /coffee
+         request id: db3ed56beaa76becfd91b0a08ec0367e
+               host: 10.1.10.129
+               date: 28/Nov/2023:07:05:52 +0000
+
+        server name: 1f95d2cfc7e4
+        client addr: 10.1.10.129:45590
+        server addr: 172.17.0.3:8080
+
+             cookie: 
+                xff: 
+         user agent: curl/7.88.1
+----
