@@ -1,4 +1,4 @@
-= Nginx DevOps Demo
+= Nginx DevOps
 :toc: manual
 
 == Build & Run
@@ -454,7 +454,57 @@ $ curl http://localhost:8009/foo
 
 === SSL
 
-link:DEV.adoc#ssl[SSL]
+[source, bash]
+.*1. 创建 private key*
+----
+openssl genrsa -out example.com.key 2048
+----
+
+[source, bash]
+.*2. 创建 CSR*
+----
+openssl req -new -key example.com.key -out example.com.csr -subj "/C=CN/ST=BJ/L=BJ/O=IT/OU=IT/CN=example.com"
+----
+
+[source, bash]
+.*3. 创建证书*
+----
+openssl x509 -req -days 3650 -in example.com.csr -signkey example.com.key -out example.com.crt
+----
+
+[source, bash]
+.*4. Build 镜像*
+----
+docker buildx create --use
+docker buildx inspect --bootstrap
+docker buildx build --platform linux/amd64,linux/arm64  -t cloudadc/cafe:2.0 --push -f Dockerfile.cafe .
+----
+
+[source, bash]
+.*5. Start*
+----
+docker run -it --rm --name nginx -p 8080:8080 -p 8443:8443 cloudadc/cafe:2.0
+----
+
+[source, bash]
+.*6. 测试*
+----
+% curl --cacert tls/example.com.crt --resolve example.com:8443:127.0.0.1 https://example.com:8443
+
+            request: GET / HTTP/1.0
+                uri: /
+         request id: d60d4c70ea801d36ee87b07a8c7f70a6
+               host: 127.0.0.1
+               date: 18/Sep/2024:03:56:49 +0000
+
+        server name: 0c0f8c6078fb
+        client addr: 127.0.0.1:40282
+        server addr: 127.0.0.1:8080
+
+             cookie: 
+                xff: 
+         user agent: curl/8.7.1
+----
 
 === JWT
 

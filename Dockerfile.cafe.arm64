@@ -1,9 +1,0 @@
-FROM arm64v8/nginx:alpine3.18
-
-COPY conf/cafe/app.conf /etc/nginx/conf.d/
-
-EXPOSE 8080
-
-STOPSIGNAL SIGQUIT
-
-CMD ["nginx", "-g", "daemon off;"]
